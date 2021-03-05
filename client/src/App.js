@@ -1,14 +1,19 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import store, { history } from "./store";
 import Router from "./routes/Router";
-import "./app.css";
+
+import "./assets/custom.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Router />
+      </ConnectedRouter>
+    </Provider>
   );
 }
 

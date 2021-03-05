@@ -9,7 +9,15 @@ function Footer() {
         <Row style={{ width: "100%" }}>
           <Col>
             <p style={{ fontSize: "0.85rem " }}>
-              &copy;<b>Y</b>, I built a blog in <b>2021</b>
+              &copy;
+              <a
+                href="http://github.com/Yun-Jehyeok"
+                className="text-decoration-none text-dark"
+                target="_blank"
+              >
+                <b>Y</b>
+              </a>
+              , I built a blog in <b>2021</b>
             </p>
           </Col>
         </Row>

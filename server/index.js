@@ -8,6 +8,9 @@ const morgan = require("morgan");
 const path = require("path");
 
 const app = express();
+const { MONGO_URI } = config;
+
+const prod = process.env.NODE_ENV === "production";
 
 app.use(hpp());
 app.use(helmet());
@@ -33,6 +36,10 @@ mongoose
     console.log("MongoDB Connecting Success!!");
   })
   .catch((err) => console.log(err));
+
+app.use("/api/post", require("./routes/api/post"));
+app.use("/api/user", require("./routes/api/user"));
+app.use("/api/auth", require("./routes/api/auth"));
 
 app.listen(config.PORT, () => {
   console.log(`Server started on ${config.PORT} port`);
