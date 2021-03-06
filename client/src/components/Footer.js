@@ -12,7 +12,7 @@ function Footer() {
               &copy;
               <a
                 href="http://github.com/Yun-Jehyeok"
-                className="text-decoration-none text-dark"
+                className="text-decoration-none text-white"
                 target="_blank"
               >
                 <b>Y</b>

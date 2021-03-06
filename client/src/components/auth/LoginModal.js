@@ -64,17 +64,24 @@ function LoginModal() {
       <NavLink
         onClick={handleToggle}
         href="#"
-        className="text-decoration-none text-dark"
+        className="text-decoration-none text-white p-0"
+        style={{ fontSize: "1.2rem" }}
       >
-        Login
+        LOGIN
       </NavLink>
-      <Modal isOpen={modal} toggle={handleToggle} className="text-dark">
-        <ModalHeader toggle={handleToggle}> Login</ModalHeader>
+      <Modal
+        isOpen={modal}
+        toggle={handleToggle}
+        className="custom-modal-style text-dark"
+      >
+        <ModalHeader toggle={handleToggle} style={{ fontSize: "2rem" }}>
+          <b>Y&nbsp;</b>LOG
+        </ModalHeader>
         <ModalBody>
           {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <Label for="email">이메일</Label>
+              <Label for="email">Email</Label>
               <Input
                 type="email"
                 name="email"
@@ -82,7 +89,9 @@ function LoginModal() {
                 placeholder="Email"
                 onChange={onChange}
               />
-              <Label for="password">패스워드</Label>
+              <Label for="password" className="mt-3">
+                Password
+              </Label>
               <Input
                 type="password"
                 name="password"
@@ -93,6 +102,17 @@ function LoginModal() {
               <Button color="dark" style={{ marginTop: "2rem" }} block>
                 LOGIN
               </Button>
+              <div
+                className="d-flex justify-content-end mt-3"
+                style={{ fontSize: "0.8rem" }}
+              >
+                <span>아직 회원이 아니신가요?&nbsp;&nbsp;</span>
+                <span>
+                  <a href="/register" className="text-decoration-none">
+                    REGISTER
+                  </a>
+                </span>
+              </div>
             </FormGroup>
           </Form>
         </ModalBody>
