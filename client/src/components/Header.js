@@ -1,12 +1,14 @@
-import React, { useCallback, useEffect } from "react";
-import { Col, Row } from "reactstrap";
+import React, { useCallback } from "react";
+import { Button, Col, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import LoginModal from "./auth/LoginModal";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT_REQUEST } from "../redux/types";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function Header() {
-  const { isAuthenticated, userName, userRole } = useSelector(
+  const { isAuthenticated, user, userRole } = useSelector(
     (state) => state.auth
   );
 
@@ -42,9 +44,18 @@ function Header() {
             >
               <span className="mr-5">
                 {isAuthenticated ? (
-                  <span className="text-white" style={{ fontSize: "1.2rem" }}>
-                    NAME - dropdown - logout
-                  </span>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                      User
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item>
+                        <Button onClick={onLogout} block>
+                          LOGOUT
+                        </Button>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 ) : (
                   <LoginModal />
                 )}

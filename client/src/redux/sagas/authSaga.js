@@ -10,6 +10,9 @@ import {
   USER_LOADING_SUCCESS,
   USER_LOADING_FAILURE,
   USER_LOADING_REQUEST,
+  LOGOUT_REQUEST,
+  LOGOUT_FAILURE,
+  LOGOUT_SUCCESS,
 } from "../types";
 
 const loginUserAPI = (loginData) => {
@@ -108,10 +111,28 @@ function* watchuserLoading() {
   yield takeEvery(USER_LOADING_REQUEST, userLoading);
 }
 
+// LOGOUT
+function* logout() {
+  try {
+    yield put({
+      type: LOGOUT_SUCCESS,
+    });
+  } catch (e) {
+    yield put({
+      type: LOGOUT_FAILURE,
+    });
+  }
+}
+
+function* watchlogout() {
+  yield takeEvery(LOGOUT_REQUEST, logout);
+}
+
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
     fork(watchregisterUser),
     fork(watchuserLoading),
+    fork(watchlogout),
   ]);
 }
