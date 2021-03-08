@@ -11,7 +11,7 @@ function MainBody() {
           className="d-flex justify-content-center text-center align-items-center font-weight-bold"
           style={{
             height: "75vh",
-            fontSize: "7rem",
+            fontSize: "7em",
           }}
         >
           <Row>

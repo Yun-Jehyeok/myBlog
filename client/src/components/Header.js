@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT_REQUEST } from "../redux/types";
 import Dropdown from "react-bootstrap/Dropdown";
+import { CgProfile } from "react-icons/cg";
 
 function Header() {
   const { isAuthenticated, user, userRole } = useSelector(
@@ -45,12 +46,28 @@ function Header() {
               <span className="mr-5">
                 {isAuthenticated ? (
                   <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                      User
+                    <Dropdown.Toggle
+                      id="dropdown-basic"
+                      style={{
+                        backgroundColor: "#343a40",
+                        border: "0",
+                        fontSize: "1.2rem",
+                        paddingTop: "0",
+                      }}
+                    >
+                      <CgProfile />
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>
-                        <Button onClick={onLogout} block>
+                    <Dropdown.Menu style={{ padding: "0" }}>
+                      <Dropdown.Item
+                        style={{
+                          padding: "0",
+                        }}
+                      >
+                        <Button
+                          onClick={onLogout}
+                          block
+                          style={{ backgroundColor: "white", color: "#343a40" }}
+                        >
                           LOGOUT
                         </Button>
                       </Dropdown.Item>
