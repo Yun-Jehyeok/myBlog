@@ -9,10 +9,7 @@ function MainBody() {
         <Container
           id="content"
           className="d-flex justify-content-center text-center align-items-center font-weight-bold"
-          style={{
-            height: "75vh",
-            fontSize: "7em",
-          }}
+          style={style.container}
         >
           <Row>
             I WANT TO MAKE
@@ -26,5 +23,12 @@ function MainBody() {
     </>
   );
 }
+
+const style = {
+  container: {
+    height: "75vh",
+    fontSize: "7em",
+  },
+};
 
 export default MainBody;

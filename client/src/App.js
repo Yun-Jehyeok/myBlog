@@ -4,7 +4,7 @@ import { ConnectedRouter } from "connected-react-router";
 import store, { history } from "./store";
 import Router from "./routes/Router";
 
-import "./assets/custom.scss";
+import "./assets/custom.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

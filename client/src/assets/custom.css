@@ -1,18 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat&display=swap");
 
 html > body {
-  color: white;
-  background-color: #343a40;
   width: 100vw;
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   height: "100vh";
 }
 
-#main-body {
-  min-height: 90vh;
-}
-
 #content {
   font-family: "Architects Daughter", cursive;
+}
+
+#line {
+  display: flex;
+  width: 95%;
+  flex-basis: 100%;
+  align-items: center;
+  color: gray;
+  margin-left: 2.5%;
+}
+
+#line::before,
+#line::after {
+  content: "";
+  flex-grow: 1;
+  background: #a6a6a6;
+  height: 1px;
+  font-size: 0;
+  line-height: 0;
+  margin: 0 16px;
 }

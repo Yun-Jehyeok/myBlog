@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { Button, Col, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import LoginModal from "./auth/LoginModal";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT_REQUEST } from "../redux/types";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -30,7 +29,7 @@ function Header() {
             <a
               href="/"
               className="d-flex justify-content-center pt-4 text-white text-decoration-none"
-              style={{ fontSize: "2.3rem" }}
+              style={style.logo}
             >
               <b>YLOG</b>
             </a>
@@ -38,35 +37,23 @@ function Header() {
           <Col xs="6" sm="4">
             <div
               className="d-flex justify-content-center"
-              style={{
-                marginRight: "5rem",
-                paddingTop: "2.7rem",
-              }}
+              style={style.container}
             >
               <span className="mr-5">
                 {isAuthenticated ? (
                   <Dropdown>
                     <Dropdown.Toggle
                       id="dropdown-basic"
-                      style={{
-                        backgroundColor: "#343a40",
-                        border: "0",
-                        fontSize: "1.2rem",
-                        paddingTop: "0",
-                      }}
+                      style={style.dropdownToggle}
                     >
                       <CgProfile />
                     </Dropdown.Toggle>
                     <Dropdown.Menu style={{ padding: "0" }}>
-                      <Dropdown.Item
-                        style={{
-                          padding: "0",
-                        }}
-                      >
+                      <Dropdown.Item style={style.dropdownItem}>
                         <Button
                           onClick={onLogout}
                           block
-                          style={{ backgroundColor: "white", color: "#343a40" }}
+                          style={style.logoutButton}
                         >
                           LOGOUT
                         </Button>
@@ -77,7 +64,7 @@ function Header() {
                   <LoginModal />
                 )}
               </span>
-              <span style={{ fontSize: "1.2rem" }}>CONTACT</span>
+              <span style={style.contactButton}>CONTACT</span>
             </div>
           </Col>
         </Row>
@@ -85,5 +72,24 @@ function Header() {
     </>
   );
 }
+
+const style = {
+  logo: { fontSize: "2.3rem" },
+  container: {
+    marginRight: "5rem",
+    paddingTop: "2.7rem",
+  },
+  dropdownToggle: {
+    backgroundColor: "#343a40",
+    border: "0",
+    fontSize: "1.2rem",
+    paddingTop: "0",
+  },
+  dropdownItem: {
+    padding: "0",
+  },
+  logoutButton: { backgroundColor: "white", color: "#343a40" },
+  contactButton: { fontSize: "1.2rem" },
+};
 
 export default Header;

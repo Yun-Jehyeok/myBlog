@@ -65,7 +65,7 @@ function LoginModal() {
         onClick={handleToggle}
         href="#"
         className="text-decoration-none text-white p-0"
-        style={{ fontSize: "1.2rem" }}
+        style={style.loginLink}
       >
         LOGIN
       </NavLink>
@@ -74,7 +74,7 @@ function LoginModal() {
         toggle={handleToggle}
         className="custom-modal-style text-dark"
       >
-        <ModalHeader toggle={handleToggle} style={{ fontSize: "2rem" }}>
+        <ModalHeader toggle={handleToggle} style={style.modalHeader}>
           <b>Y&nbsp;</b>LOG
         </ModalHeader>
         <ModalBody>
@@ -99,12 +99,12 @@ function LoginModal() {
                 placeholder="Password"
                 onChange={onChange}
               />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              <Button color="dark" style={style.loginButton} block>
                 LOGIN
               </Button>
               <div
                 className="d-flex justify-content-end mt-3"
-                style={{ fontSize: "0.8rem" }}
+                style={style.register}
               >
                 <span>아직 회원이 아니신가요?&nbsp;&nbsp;</span>
                 <span>
@@ -120,5 +120,12 @@ function LoginModal() {
     </div>
   );
 }
+
+const style = {
+  loginLink: { fontSize: "1.2rem" },
+  modalHeader: { fontSize: "2rem" },
+  loginButton: { marginTop: "2rem" },
+  register: { fontSize: "0.8rem" },
+};
 
 export default LoginModal;
