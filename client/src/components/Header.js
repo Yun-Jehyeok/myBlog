@@ -7,7 +7,7 @@ import { LOGOUT_REQUEST } from "../redux/types";
 import Dropdown from "react-bootstrap/Dropdown";
 import { CgProfile } from "react-icons/cg";
 
-function Header() {
+function Header({ theme }) {
   const { isAuthenticated, user, userRole } = useSelector(
     (state) => state.auth
   );
@@ -28,7 +28,11 @@ function Header() {
           <Col xs="6" sm="4">
             <a
               href="/"
-              className="d-flex justify-content-center pt-4 text-white text-decoration-none"
+              className={
+                theme === "dark"
+                  ? "d-flex justify-content-center pt-4 text-white text-decoration-none"
+                  : "d-flex justify-content-center pt-4 text-dark text-decoration-none"
+              }
               style={style.logo}
             >
               <b>YLOG</b>
@@ -61,7 +65,7 @@ function Header() {
                     </Dropdown.Menu>
                   </Dropdown>
                 ) : (
-                  <LoginModal />
+                  <LoginModal theme={theme} />
                 )}
               </span>
               <span style={style.contactButton}>CONTACT</span>

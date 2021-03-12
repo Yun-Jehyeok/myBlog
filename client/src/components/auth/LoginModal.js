@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
 
-function LoginModal() {
+function LoginModal({ theme }) {
   const [modal, setModal] = useState(false);
   const [localMsg, setLocalMsg] = useState("");
   const [form, setValues] = useState({
@@ -64,7 +64,11 @@ function LoginModal() {
       <NavLink
         onClick={handleToggle}
         href="#"
-        className="text-decoration-none text-white p-0"
+        className={
+          theme === "dark"
+            ? "text-decoration-none text-white p-0"
+            : "text-decoration-none text-dark p-0"
+        }
         style={style.loginLink}
       >
         LOGIN

@@ -18,14 +18,15 @@ function Router() {
 
   const themeMode = theme === "light" ? lightTheme : darkTheme;
 
-  let HideHeader = window.location.pathname === "/register" ? null : <Header />;
+  let HideHeader =
+    window.location.pathname === "/register" ? null : <Header theme={theme} />;
 
   if (!mountedComponent) return <div />;
   return (
     <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyles />
-        <Toggle theme={theme} toggletheme={themeToggler} />
+        <Toggle theme={theme} toggleTheme={themeToggler} />
         {HideHeader}
         <Container id="main-body">
           <Switch>
@@ -33,7 +34,7 @@ function Router() {
             <Route path="/register" exact component={Resister} />
           </Switch>
         </Container>
-        <Footer />
+        <Footer theme={theme} />
       </>
     </ThemeProvider>
   );

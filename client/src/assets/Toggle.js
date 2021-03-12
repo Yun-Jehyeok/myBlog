@@ -13,7 +13,11 @@ const Button = styled.button`
 `;
 
 const Toggle = ({ theme, toggleTheme }) => {
-  return <Button onClick={toggleTheme}>Switch Theme</Button>;
+  return (
+    <Button onClick={toggleTheme}>
+      <b>{theme === "light" ? "Dark Mode" : "Light Mode"}</b>
+    </Button>
+  );
 };
 
 Toggle.propTypes = {
