@@ -68,7 +68,17 @@ function Header({ theme }) {
                   <LoginModal theme={theme} />
                 )}
               </span>
-              <span style={style.contactButton}>CONTACT</span>
+              <a
+                href="/contact"
+                className={
+                  theme === "dark"
+                    ? "text-decoration-none text-white"
+                    : "text-decoration-none text-dark"
+                }
+                style={style.contactButton}
+              >
+                CONTACT
+              </a>
             </div>
           </Col>
         </Row>
