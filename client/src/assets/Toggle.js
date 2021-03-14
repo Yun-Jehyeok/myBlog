@@ -11,8 +11,6 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 0.8rem;
   padding: 0.6rem;
-  overflow: hidden;
-  margin: 0 auto;
   width: 5rem;
   height: 3rem;
 
@@ -26,29 +24,7 @@ const Button = styled.button`
 const Toggle = ({ theme, toggleTheme }) => {
   return (
     <Button onClick={toggleTheme}>
-      <b>
-        {theme === "light" ? (
-          <div
-            style={
-              theme === "light"
-                ? { transform: "translateY(0)" }
-                : { transform: "translateY(100px)" }
-            }
-          >
-            Dark
-          </div>
-        ) : (
-          <div
-            style={
-              theme === "light"
-                ? { transform: "translateY(100px)" }
-                : { transform: "translateY(0)" }
-            }
-          >
-            Light
-          </div>
-        )}
-      </b>
+      <b>{theme === "light" ? <div>DARK</div> : <div>LIGHT</div>}</b>
     </Button>
   );
 };

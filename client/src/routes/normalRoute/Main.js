@@ -26,7 +26,8 @@ function MainBody() {
 
 const style = {
   container: {
-    height: "75vh",
+    marginTop: "5vh",
+    height: "65vh",
     fontSize: "7em",
   },
 };

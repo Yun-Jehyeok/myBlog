@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Alert,
@@ -13,6 +13,7 @@ import {
   NavLink,
 } from "reactstrap";
 import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
+import Google from "./Google";
 
 function LoginModal({ theme }) {
   const [modal, setModal] = useState(false);
@@ -85,32 +86,51 @@ function LoginModal({ theme }) {
           {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <Label for="email">Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                onChange={onChange}
-              />
-              <Label for="password" className="mt-3">
-                Password
-              </Label>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                onChange={onChange}
-              />
-              <Button color="dark" style={style.loginButton} block>
-                LOGIN
-              </Button>
+              <div id="line" className="mb-3" style={style.textLine}>
+                소셜 계정으로 로그인
+              </div>
+              <Google />
+              <div id="line" className="mt-2 mb-2" style={style.textLine}>
+                이메일로 로그인
+              </div>
+              <div style={style.emailLogin}>
+                <Label for="email">Email</Label>
+                <Input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  onChange={onChange}
+                />
+                <Label for="password" className="mt-3">
+                  Password
+                </Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  onChange={onChange}
+                />
+                <Button color="dark" style={style.loginButton} block>
+                  LOGIN
+                </Button>
+              </div>
               <div
-                className="d-flex justify-content-end mt-3"
+                className="d-flex justify-content-center mt-3"
                 style={style.register}
               >
-                <span>아직 회원이 아니신가요?&nbsp;&nbsp;</span>
+                <span>
+                  <a href="/findpassword" className="text-decoration-none">
+                    Forgot Password?
+                  </a>
+                </span>
+              </div>
+              <div
+                className="d-flex justify-content-center mt-1"
+                style={style.register}
+              >
+                <span>Not a member?&nbsp;&nbsp;</span>
                 <span>
                   <a href="/register" className="text-decoration-none">
                     REGISTER
@@ -130,6 +150,8 @@ const style = {
   modalHeader: { fontSize: "2rem" },
   loginButton: { marginTop: "2rem" },
   register: { fontSize: "0.8rem" },
+  textLine: { width: "100%", marginLeft: "0" },
+  emailLogin: { width: "95%", marginLeft: "2.5%" },
 };
 
 export default LoginModal;
