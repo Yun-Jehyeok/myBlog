@@ -1,4 +1,7 @@
 import {
+  GOOGLE_LOGIN_FAILURE,
+  GOOGLE_LOGIN_REQUEST,
+  GOOGLE_LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -29,6 +32,7 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
+    case GOOGLE_LOGIN_REQUEST:
     case LOGOUT_REQUEST:
       return {
         ...state,
@@ -36,6 +40,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case REGISTER_SUCCESS:
+    case GOOGLE_LOGIN_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
 
@@ -51,6 +56,7 @@ const authReducer = (state = initialState, action) => {
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
     case LOGOUT_FAILURE:
+    case GOOGLE_LOGIN_FAILURE:
       localStorage.removeItem("token");
 
       console.log(action.payload.data.msg);

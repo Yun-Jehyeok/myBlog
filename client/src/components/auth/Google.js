@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { GOOGLE_LOGIN_REQUEST } from "../../redux/types";
 
 function Google() {
   const googleLoginBtn = useRef(null);
   const [token, setToken] = useState("");
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     googleSDK();
   }, []);
 
-  // token을 보내는거 만들어야됨
-
   const googleSDK = () => {
     window.googleSDKLoaded = () => {
-      console.log(window.gapi);
       window.gapi.load("auth2", () => {
         const auth2 = window.gapi.auth2.init({
           client_id:
@@ -28,6 +28,13 @@ function Google() {
             const profile = googleUser.getBasicProfile();
 
             setToken(googleUser.getAuthResponse().id_token);
+
+            const user = [token, profile.ot, profile.sd];
+
+            dispatch({
+              type: GOOGLE_LOGIN_REQUEST,
+              payload: user,
+            });
           },
           (error) => {
             alert(JSON.stringify(error, undefined, 2));
@@ -56,7 +63,6 @@ function Google() {
       className="d-flex justify-content-center mb-5 p-1"
       style={style.loginButton}
     >
-      <span className="icon"></span>
       <span className="buttonText">Google 계정으로 로그인 하기</span>
     </div>
   );

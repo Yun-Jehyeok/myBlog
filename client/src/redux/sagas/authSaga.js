@@ -13,6 +13,9 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_FAILURE,
   LOGOUT_SUCCESS,
+  GOOGLE_LOGIN_REQUEST,
+  GOOGLE_LOGIN_FAILURE,
+  GOOGLE_LOGIN_SUCCESS,
 } from "../types";
 
 const loginUserAPI = (loginData) => {
@@ -43,6 +46,37 @@ function* loginUser(loginaction) {
 
 function* watchLoginUser() {
   yield takeEvery(LOGIN_REQUEST, loginUser);
+}
+
+// Google Login
+const googleLoginAPI = (data) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return axios.get("api/auth/googlelogin", data, config);
+};
+
+function* googleLogin(action) {
+  try {
+    const result = yield call(googleLoginAPI, action.payload);
+
+    yield put({
+      type: GOOGLE_LOGIN_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: GOOGLE_LOGIN_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watchgoogleLogin() {
+  yield takeEvery(GOOGLE_LOGIN_REQUEST, googleLogin);
 }
 
 // Register
@@ -131,6 +165,7 @@ function* watchlogout() {
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
+    fork(watchgoogleLogin),
     fork(watchregisterUser),
     fork(watchuserLoading),
     fork(watchlogout),
