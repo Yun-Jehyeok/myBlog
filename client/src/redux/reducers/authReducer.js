@@ -1,4 +1,7 @@
 import {
+  CHANGE_USER_PASSWORD_FAILURE,
+  CHANGE_USER_PASSWORD_REQUEST,
+  CHANGE_USER_PASSWORD_SUCCESS,
   GOOGLE_LOGIN_FAILURE,
   GOOGLE_LOGIN_REQUEST,
   GOOGLE_LOGIN_SUCCESS,
@@ -30,6 +33,7 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CHANGE_USER_PASSWORD_REQUEST:
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
     case GOOGLE_LOGIN_REQUEST:
@@ -84,6 +88,19 @@ const authReducer = (state = initialState, action) => {
         userRole: null,
         errorMsg: "",
       };
+
+    case CHANGE_USER_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        isAuthenticated: true,
+        isLoading: false,
+        userId: action.payload.user.id,
+        userRole: action.payload.user.role,
+        errorMsg: "",
+      };
+    case CHANGE_USER_PASSWORD_FAILURE:
+      return {};
 
     case USER_LOADING_REQUEST:
       return {

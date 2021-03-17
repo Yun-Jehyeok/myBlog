@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
-import { FIND_USER_PASSWORD_REQUEST } from "../../redux/types";
+import { CHANGE_USER_PASSWORD_REQUEST } from "../../redux/types";
 
 // 1. 이름과 이메일 인증
 // 2. 이름과 이메일이 같은 유저가 있으면 비밀번호 재설정 창으로 이동
@@ -14,8 +14,8 @@ import { FIND_USER_PASSWORD_REQUEST } from "../../redux/types";
 function FindPassword() {
   const [findPassword, setFindPassword] = useState(false);
   const [form, setValue] = useState({
-    name: "",
     email: "",
+    password: "",
   });
 
   const dispatch = useDispatch();
@@ -30,12 +30,12 @@ function FindPassword() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email } = form;
-    const findUserPassword = { name, email };
+    const { email, password } = form;
+    const newData = { email, password };
 
     dispatch({
-      type: FIND_USER_PASSWORD_REQUEST,
-      payload: findUserPassword,
+      type: CHANGE_USER_PASSWORD_REQUEST,
+      payload: newData,
     });
 
     setFindPassword(true);
@@ -72,18 +72,10 @@ function FindPassword() {
               </a>
             </div>
             <div id="line" className="mb-4">
-              Find Password
+              Change Password
             </div>
             <Form onSubmit={onSubmit} style={style.form}>
               <FormGroup>
-                <Label for="name">NAME</Label>
-                <Input
-                  type="name"
-                  name="name"
-                  id="name"
-                  placeholder="Name"
-                  onChange={onChange}
-                />
                 <Label for="email" className="mt-4">
                   EMAIL
                 </Label>
@@ -94,8 +86,18 @@ function FindPassword() {
                   placeholder="Email"
                   onChange={onChange}
                 />
+                <Label for="email" className="mt-4">
+                  NEW PASSWORD
+                </Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="New Password"
+                  onChange={onChange}
+                />
                 <div className="mt-4 d-flex justify-content-center">
-                  <Button style={{ width: "100%" }}>FIND</Button>
+                  <Button style={{ width: "100%" }}>CHANGE PASSWORD</Button>
                 </div>
               </FormGroup>
             </Form>
@@ -109,7 +111,7 @@ function FindPassword() {
 const style = {
   firstContainer: {
     width: "50%",
-    height: "57vh",
+    height: "68vh",
     marginTop: "14vh",
     border: "1px solid #212529",
     borderRadius: "5px",
@@ -118,7 +120,7 @@ const style = {
   },
   secondContainer: {
     width: "50%",
-    height: "57vh",
+    height: "68vh",
     marginTop: "14vh",
     border: "1px solid #212529",
     borderRadius: "5px",

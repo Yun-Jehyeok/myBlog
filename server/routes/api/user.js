@@ -71,4 +71,39 @@ router.post("/register", (req, res) => {
   });
 });
 
+// Change User Password / POST
+router.post("/changepassword", async (req, res) => {
+  const { email, password } = req.body;
+
+  let newPassword = "";
+
+  if (!email) return res.status(400).json({ msg: "이메일을 작성해주세요." });
+  else if (!password)
+    return res.status(400).json({ msg: "비밀번호를 입력해주세요." });
+
+  User.findOne({ email }).then((user) => {
+    if (!user) return res.status(400).json({ msg: "없는 이메일입니다." });
+
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        if (err) return res.status(400).json({ err });
+
+        newPassword = hash;
+      });
+    });
+  });
+
+  try {
+    const modified_user = await User.findByIdAndUpdate(
+      user.id,
+      { password: newPassword },
+      { new: true }
+    );
+
+    res.json(modified_user);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 module.exports = router;

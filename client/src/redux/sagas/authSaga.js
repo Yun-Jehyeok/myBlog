@@ -16,6 +16,9 @@ import {
   GOOGLE_LOGIN_REQUEST,
   GOOGLE_LOGIN_FAILURE,
   GOOGLE_LOGIN_SUCCESS,
+  CHANGE_USER_PASSWORD_REQUEST,
+  CHANGE_USER_PASSWORD_SUCCESS,
+  CHANGE_USER_PASSWORD_FAILURE,
 } from "../types";
 
 const loginUserAPI = (loginData) => {
@@ -162,6 +165,37 @@ function* watchlogout() {
   yield takeEvery(LOGOUT_REQUEST, logout);
 }
 
+// Change Password
+const changeUserPasswordAPI = (newData) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return axios.post("api/user/changepassword", newData, config);
+};
+
+function* changeUserPassword(action) {
+  try {
+    const result = yield call(changeUserPasswordAPI, action.payload);
+
+    yield put({
+      type: CHANGE_USER_PASSWORD_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: CHANGE_USER_PASSWORD_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watchchangeUserPassword() {
+  yield takeEvery(CHANGE_USER_PASSWORD_REQUEST, changeUserPassword);
+}
+
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
@@ -169,5 +203,6 @@ export default function* authSaga() {
     fork(watchregisterUser),
     fork(watchuserLoading),
     fork(watchlogout),
+    fork(watchchangeUserPassword),
   ]);
 }
