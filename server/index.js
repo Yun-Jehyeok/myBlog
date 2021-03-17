@@ -8,7 +8,7 @@ const morgan = require("morgan");
 const path = require("path");
 
 const app = express();
-const { MONGO_URI } = config;
+const { MONGO_URI, PORT } = config;
 
 const prod = process.env.NODE_ENV === "production";
 
@@ -41,6 +41,6 @@ app.use("/api/post", require("./routes/api/post"));
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/auth", require("./routes/api/auth"));
 
-app.listen(config.PORT, () => {
-  console.log(`Server started on ${config.PORT} port`);
+app.listen(PORT, () => {
+  console.log(`Server started on ${PORT} port`);
 });

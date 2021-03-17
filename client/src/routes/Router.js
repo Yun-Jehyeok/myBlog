@@ -13,6 +13,7 @@ import Footer from "../components/Footer";
 import Main from "./normalRoute/Main";
 import Resister from "./normalRoute/Register";
 import Contact from "./normalRoute/Contact";
+import FindPassword from "./normalRoute/FindPassword";
 
 import Fade from "react-reveal/Fade";
 
@@ -35,6 +36,7 @@ function Router() {
             <Route path="/" exact component={Main} />
             <Route path="/register" exact component={Resister} />
             <Route path="/contact" exact component={Contact} />
+            <Route path="/findpassword" exact component={FindPassword} />
           </Switch>
         </Container>
         <Fade left>
