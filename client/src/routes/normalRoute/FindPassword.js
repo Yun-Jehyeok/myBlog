@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
@@ -46,12 +45,11 @@ function FindPassword() {
           className="d-flex justify-content-center text-dark"
           style={style.firstContainer}
         >
-          <div>You've successfly changed your password</div>
-          <br />
-          <div>
-            <Link to="/" className="text-decoration-none" onClick={onClickHome}>
+          <div className="">You've successfly changed your password</div>
+          <div className="">
+            <a href="/" className="text-decoration-none" onClick={onClickHome}>
               GO HOME
-            </Link>
+            </a>
           </div>
         </Container>
       ) : (
@@ -70,9 +68,7 @@ function FindPassword() {
             </div>
             <Form onSubmit={onSubmit} style={style.form}>
               <FormGroup>
-                <Label for="email" className="mt-4">
-                  EMAIL
-                </Label>
+                <Label for="email">EMAIL</Label>
                 <Input
                   type="email"
                   name="email"
@@ -105,7 +101,7 @@ function FindPassword() {
 const style = {
   firstContainer: {
     width: "50%",
-    height: "68vh",
+    height: "57vh",
     marginTop: "14vh",
     border: "1px solid #212529",
     borderRadius: "5px",
@@ -114,7 +110,7 @@ const style = {
   },
   secondContainer: {
     width: "50%",
-    height: "68vh",
+    height: "57vh",
     marginTop: "14vh",
     border: "1px solid #212529",
     borderRadius: "5px",

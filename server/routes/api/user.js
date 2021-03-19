@@ -75,9 +75,6 @@ router.post("/register", (req, res) => {
 router.post("/changepassword", async (req, res) => {
   const { email, password } = req.body;
 
-  let newPassword = "";
-  let userFind;
-
   if (!email) return res.status(400).json({ msg: "이메일을 작성해주세요." });
   else if (!password)
     return res.status(400).json({ msg: "비밀번호를 입력해주세요." });

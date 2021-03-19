@@ -28,7 +28,6 @@ const style = {
   container: {
     marginTop: "5vh",
     height: "65vh",
-    fontSize: "7em",
   },
 };
 

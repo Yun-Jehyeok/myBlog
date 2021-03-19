@@ -11,6 +11,17 @@ html > body {
   font-family: "Architects Daughter", cursive;
 }
 
+@media all and (min-width: 1920px) {
+  #content {
+    font-size: 4.3vw;
+  }
+}
+@media all and (max-width: 1920px) {
+  #content {
+    font-size: 7vw;
+  }
+}
+
 #line {
   display: flex;
   width: 95%;
