@@ -76,6 +76,7 @@ router.post("/changepassword", async (req, res) => {
   const { email, password } = req.body;
 
   let newPassword = "";
+  let userFind;
 
   if (!email) return res.status(400).json({ msg: "이메일을 작성해주세요." });
   else if (!password)
@@ -85,25 +86,23 @@ router.post("/changepassword", async (req, res) => {
     if (!user) return res.status(400).json({ msg: "없는 이메일입니다." });
 
     bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, (err, hash) => {
+      bcrypt.hash(password, salt, async (err, hash) => {
         if (err) return res.status(400).json({ err });
 
-        newPassword = hash;
+        try {
+          await User.findByIdAndUpdate(
+            user.id,
+            { password: hash },
+            { new: true }
+          );
+
+          res.json("success");
+        } catch (e) {
+          console.log(e);
+        }
       });
     });
   });
-
-  try {
-    const modified_user = await User.findByIdAndUpdate(
-      user.id,
-      { password: newPassword },
-      { new: true }
-    );
-
-    res.json(modified_user);
-  } catch (e) {
-    console.log(e);
-  }
 });
 
 module.exports = router;

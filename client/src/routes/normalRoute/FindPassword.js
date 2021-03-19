@@ -5,12 +5,6 @@ import Fade from "react-reveal/Fade";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import { CHANGE_USER_PASSWORD_REQUEST } from "../../redux/types";
 
-// 1. 이름과 이메일 인증
-// 2. 이름과 이메일이 같은 유저가 있으면 비밀번호 재설정 창으로 이동
-// 3. 비밀번호 재설정
-// 4. 완료
-// 오... ㅈㄴ 어려운데...
-
 function FindPassword() {
   const [findPassword, setFindPassword] = useState(false);
   const [form, setValue] = useState({
@@ -52,11 +46,11 @@ function FindPassword() {
           className="d-flex justify-content-center text-dark"
           style={style.firstContainer}
         >
-          <div>회원가입에 성공하셨습니다.</div>
+          <div>You've successfly changed your password</div>
           <br />
           <div>
             <Link to="/" className="text-decoration-none" onClick={onClickHome}>
-              HOME
+              GO HOME
             </Link>
           </div>
         </Container>

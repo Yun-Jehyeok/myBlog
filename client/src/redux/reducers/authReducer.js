@@ -90,17 +90,11 @@ const authReducer = (state = initialState, action) => {
       };
 
     case CHANGE_USER_PASSWORD_SUCCESS:
+    case CHANGE_USER_PASSWORD_FAILURE:
       return {
         ...state,
-        ...action.payload,
-        isAuthenticated: true,
         isLoading: false,
-        userId: action.payload.user.id,
-        userRole: action.payload.user.role,
-        errorMsg: "",
       };
-    case CHANGE_USER_PASSWORD_FAILURE:
-      return {};
 
     case USER_LOADING_REQUEST:
       return {
