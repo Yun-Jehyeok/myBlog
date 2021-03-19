@@ -22,6 +22,7 @@ import {
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
+  isPasswordChange: false,
   isLoading: false,
   user: "",
   userId: "",
@@ -63,8 +64,6 @@ const authReducer = (state = initialState, action) => {
     case GOOGLE_LOGIN_FAILURE:
       localStorage.removeItem("token");
 
-      console.log(action.payload.data.msg);
-
       return {
         ...state,
         ...action.payload,
@@ -90,10 +89,17 @@ const authReducer = (state = initialState, action) => {
       };
 
     case CHANGE_USER_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isPasswordChange: true,
+        isLoading: false,
+      };
     case CHANGE_USER_PASSWORD_FAILURE:
       return {
         ...state,
+        isPasswordChange: false,
         isLoading: false,
+        errorMsg: action.payload.data.msg,
       };
 
     case USER_LOADING_REQUEST:

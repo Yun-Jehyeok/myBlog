@@ -93,7 +93,7 @@ function Register() {
                   placeholder="Password"
                   onChange={onChange}
                 />
-                <div className="mt-4 d-flex justify-content-center">
+                <div className="mt-4 d-flex justify-content-center pb-4">
                   <Button style={{ width: "100%" }}>RESISTER</Button>
                 </div>
               </FormGroup>
@@ -117,7 +117,6 @@ const style = {
   },
   secondContainer: {
     width: "50%",
-    height: "68vh",
     marginTop: "14vh",
     border: "1px solid #212529",
     borderRadius: "5px",

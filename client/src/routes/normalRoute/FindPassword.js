@@ -1,17 +1,34 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Fade from "react-reveal/Fade";
-import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import {
+  Button,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Alert,
+} from "reactstrap";
 import { CHANGE_USER_PASSWORD_REQUEST } from "../../redux/types";
 
 function FindPassword() {
-  const [findPassword, setFindPassword] = useState(false);
+  const { isPasswordChange, errorMsg } = useSelector((state) => state.auth);
+  const [localMsg, setLocalMsg] = useState("");
   const [form, setValue] = useState({
     email: "",
     password: "",
   });
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    try {
+      setLocalMsg(errorMsg);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [errorMsg]);
 
   const onChange = (e) => {
     setValue({
@@ -30,24 +47,18 @@ function FindPassword() {
       type: CHANGE_USER_PASSWORD_REQUEST,
       payload: newData,
     });
-
-    setFindPassword(true);
-  };
-
-  const onClickHome = () => {
-    setFindPassword(false);
   };
 
   return (
     <>
-      {findPassword ? (
+      {isPasswordChange ? (
         <Container
           className="d-flex justify-content-center text-dark"
           style={style.firstContainer}
         >
           <div className="">You've successfly changed your password</div>
           <div className="">
-            <a href="/" className="text-decoration-none" onClick={onClickHome}>
+            <a href="/" className="text-decoration-none">
               GO HOME
             </a>
           </div>
@@ -63,6 +74,11 @@ function FindPassword() {
                 <b>Y&nbsp;</b>LOG
               </a>
             </div>
+            {localMsg ? (
+              <Alert color="danger" style={{ width: "90%", marginLeft: "5%" }}>
+                {localMsg}
+              </Alert>
+            ) : null}
             <div id="line" className="mb-4">
               Change Password
             </div>
@@ -86,7 +102,7 @@ function FindPassword() {
                   placeholder="New Password"
                   onChange={onChange}
                 />
-                <div className="mt-4 d-flex justify-content-center">
+                <div className="mt-4 d-flex justify-content-center pb-4">
                   <Button style={{ width: "100%" }}>CHANGE PASSWORD</Button>
                 </div>
               </FormGroup>
@@ -101,7 +117,7 @@ function FindPassword() {
 const style = {
   firstContainer: {
     width: "50%",
-    height: "57vh",
+    height: "63vh",
     marginTop: "14vh",
     border: "1px solid #212529",
     borderRadius: "5px",
@@ -110,7 +126,6 @@ const style = {
   },
   secondContainer: {
     width: "50%",
-    height: "57vh",
     marginTop: "14vh",
     border: "1px solid #212529",
     borderRadius: "5px",
