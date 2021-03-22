@@ -37,13 +37,12 @@ function Register() {
   return (
     <>
       {isAuthenticated ? (
-        <Container
-          className="d-flex justify-content-center text-dark"
-          style={style.firstContainer}
-        >
-          <div>회원가입에 성공하셨습니다.</div>
+        <Container className="text-dark" style={style.firstContainer}>
+          <div className="d-flex justify-content-cente">
+            회원가입에 성공하셨습니다.
+          </div>
           <br />
-          <div>
+          <div className="d-flex justify-content-center">
             <a href="/" className="text-decoration-none">
               HOME
             </a>

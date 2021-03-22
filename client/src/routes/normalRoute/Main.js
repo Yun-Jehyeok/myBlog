@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "reactstrap";
+import { Button, Container, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
 
 function MainBody() {
@@ -19,6 +19,13 @@ function MainBody() {
             AND USEFUL
           </Row>
         </Container>
+        <Fade right>
+          <Button
+            style={{ float: "right", backgroundColor: "#212529", border: "0" }}
+          >
+            Go to Post&nbsp;&rarr;
+          </Button>
+        </Fade>
       </Fade>
     </>
   );

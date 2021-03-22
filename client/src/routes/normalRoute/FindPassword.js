@@ -52,12 +52,11 @@ function FindPassword() {
   return (
     <>
       {isPasswordChange ? (
-        <Container
-          className="d-flex justify-content-center text-dark"
-          style={style.firstContainer}
-        >
-          <div className="">You've successfly changed your password</div>
-          <div className="">
+        <Container className="text-dark" style={style.firstContainer}>
+          <div className="d-flex justify-content-center">
+            You've successfly changed your password
+          </div>
+          <div className="d-flex justify-content-center">
             <a href="/" className="text-decoration-none">
               GO HOME
             </a>
