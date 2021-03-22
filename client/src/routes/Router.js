@@ -23,15 +23,19 @@ function Router() {
   const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   let HideHeader =
-    window.location.pathname === "/register" ? null : <Header theme={theme} />;
+    window.location.pathname === "/register" ? null : window.location
+        .pathname === "/findpassword" ? null : (
+      <Header theme={theme} />
+    );
 
   if (!mountedComponent) return <div />;
+
   return (
     <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyles />
         {HideHeader}
-        <Container id="main-body">
+        <Container>
           <Switch>
             <Route path="/" exact component={Main} />
             <Route path="/register" exact component={Resister} />

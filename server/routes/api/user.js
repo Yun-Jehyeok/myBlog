@@ -72,7 +72,7 @@ router.post("/register", (req, res) => {
 });
 
 // Change User Password / POST
-router.post("/changepassword", async (req, res) => {
+router.post("/changepassword", (req, res) => {
   const { email, password } = req.body;
 
   if (!email) return res.status(400).json({ msg: "이메일을 작성해주세요." });
@@ -96,6 +96,7 @@ router.post("/changepassword", async (req, res) => {
           res.json("success");
         } catch (e) {
           console.log(e);
+          res.json(e);
         }
       });
     });

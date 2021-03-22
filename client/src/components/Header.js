@@ -8,9 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { CgProfile } from "react-icons/cg";
 
 function Header({ theme }) {
-  const { isAuthenticated, user, userRole } = useSelector(
-    (state) => state.auth
-  );
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -24,7 +22,7 @@ function Header({ theme }) {
     <>
       <Fade top>
         <Row>
-          <Col xs="6" sm="4"></Col>
+          <Col xs="0" sm="4"></Col>
           <Col xs="6" sm="4">
             <a
               href="/"
@@ -48,7 +46,11 @@ function Header({ theme }) {
                   <Dropdown>
                     <Dropdown.Toggle
                       id="dropdown-basic"
-                      style={style.dropdownToggle}
+                      style={
+                        theme === "dark"
+                          ? style.darkDropdownToggle
+                          : style.lightDropdownToggle
+                      }
                     >
                       <CgProfile />
                     </Dropdown.Toggle>
@@ -93,16 +95,23 @@ const style = {
     marginRight: "5rem",
     paddingTop: "2.7rem",
   },
-  dropdownToggle: {
-    backgroundColor: "#343a40",
+  darkDropdownToggle: {
+    backgroundColor: "#212529",
     border: "0",
     fontSize: "1.2rem",
     paddingTop: "0",
   },
+  lightDropdownToggle: {
+    backgroundColor: "white",
+    border: "0",
+    fontSize: "1.2rem",
+    paddingTop: "0",
+    color: "#212529",
+  },
   dropdownItem: {
     padding: "0",
   },
-  logoutButton: { backgroundColor: "white", color: "#343a40" },
+  logoutButton: { backgroundColor: "white", color: "#212529" },
   contactButton: { fontSize: "1.2rem" },
 };
 

@@ -18,6 +18,7 @@ function Footer({ theme }) {
                     : "text-decoration-none text-dark"
                 }
                 target="_blank"
+                rel="noreferrer"
               >
                 <b>Y</b>
               </a>
