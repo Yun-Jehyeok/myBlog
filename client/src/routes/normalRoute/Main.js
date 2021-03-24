@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Container, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
 
-function MainBody() {
+function Main({ theme }) {
   return (
     <>
       <Fade bottom>
@@ -20,11 +20,20 @@ function MainBody() {
           </Row>
         </Container>
         <Fade right>
-          <Button
-            style={{ float: "right", backgroundColor: "#212529", border: "0" }}
+          <a
+            href="/postlist"
+            className={
+              theme === "dark"
+                ? "d-flex justify-content-end text-white text-decoration-none"
+                : "d-flex justify-content-end text-dark text-decoration-none"
+            }
+            style={
+              (theme === "dark" ? style.darkGoPost : style.lightGoPost,
+              { width: "auto" })
+            }
           >
             Go to Post&nbsp;&rarr;
-          </Button>
+          </a>
         </Fade>
       </Fade>
     </>
@@ -36,6 +45,14 @@ const style = {
     marginTop: "5vh",
     height: "65vh",
   },
+  darkGoPost: {
+    backgroundColor: "#212529",
+    border: "0",
+  },
+  lightGoPost: {
+    backgroundColor: "white",
+    color: "#212529",
+  },
 };
 
-export default MainBody;
+export default Main;

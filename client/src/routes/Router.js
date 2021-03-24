@@ -14,6 +14,7 @@ import Main from "./normalRoute/Main";
 import Resister from "./normalRoute/Register";
 import Contact from "./normalRoute/Contact";
 import FindPassword from "./normalRoute/FindPassword";
+import PostList from "./normalRoute/PostList";
 
 import Fade from "react-reveal/Fade";
 
@@ -30,22 +31,28 @@ function Router() {
 
   if (!mountedComponent) return <div />;
 
+  // 이거 Link가 안먹히는게 ThemeProvider 때문에 그런가? 저걸 App.js로 옮기면 되려나...
   return (
     <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyles />
         {HideHeader}
+        <Fade right>
+          <Toggle theme={theme} toggleTheme={themeToggler} />
+        </Fade>
         <Container>
           <Switch>
-            <Route path="/" exact component={Main} />
+            <Route path="/" exact render={() => <Main theme={theme} />} />
             <Route path="/register" exact component={Resister} />
             <Route path="/contact" exact component={Contact} />
             <Route path="/findpassword" exact component={FindPassword} />
+            <Route
+              path="/postlist"
+              exact
+              render={() => <PostList theme={theme} />}
+            />
           </Switch>
         </Container>
-        <Fade left>
-          <Toggle theme={theme} toggleTheme={themeToggler} />
-        </Fade>
         <Footer theme={theme} />
       </>
     </ThemeProvider>

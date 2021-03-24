@@ -1,4 +1,7 @@
 import {
+  CLEAR_ERROR_FAILURE,
+  CLEAR_ERROR_REQUEST,
+  CLEAR_ERROR_SUCCESS,
   CHANGE_USER_PASSWORD_FAILURE,
   CHANGE_USER_PASSWORD_REQUEST,
   CHANGE_USER_PASSWORD_SUCCESS,
@@ -100,6 +103,24 @@ const authReducer = (state = initialState, action) => {
         isPasswordChange: false,
         isLoading: false,
         errorMsg: action.payload.data.msg,
+      };
+
+    // CLEAR ERROR
+    case CLEAR_ERROR_REQUEST:
+      return {
+        ...state,
+      };
+    case CLEAR_ERROR_SUCCESS:
+      return {
+        ...state,
+        errorMsg: "",
+        previousMatchMsg: "",
+      };
+    case CLEAR_ERROR_FAILURE:
+      return {
+        ...state,
+        errorMsg: "Cleear Error Fail",
+        previousMatchMsg: "Clear Error Fail",
       };
 
     case USER_LOADING_REQUEST:

@@ -1,6 +1,9 @@
 import axios from "axios";
 import { all, call, put, takeEvery, fork } from "redux-saga/effects";
 import {
+  CLEAR_ERROR_FAILURE,
+  CLEAR_ERROR_REQUEST,
+  CLEAR_ERROR_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -196,6 +199,23 @@ function* watchchangeUserPassword() {
   yield takeEvery(CHANGE_USER_PASSWORD_REQUEST, changeUserPassword);
 }
 
+// Clear Error
+function* clearError() {
+  try {
+    yield put({
+      type: CLEAR_ERROR_SUCCESS,
+    });
+  } catch (e) {
+    yield put({
+      type: CLEAR_ERROR_FAILURE,
+    });
+  }
+}
+
+function* watchclearError() {
+  yield takeEvery(CLEAR_ERROR_REQUEST, clearError);
+}
+
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
@@ -204,5 +224,6 @@ export default function* authSaga() {
     fork(watchuserLoading),
     fork(watchlogout),
     fork(watchchangeUserPassword),
+    fork(watchclearError),
   ]);
 }

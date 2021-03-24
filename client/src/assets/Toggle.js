@@ -5,14 +5,15 @@ import styled from "styled-components";
 const Button = styled.button`
   background: ${({ theme }) => theme.background};
   border: 2px solid ${({ theme }) => theme.toggleBorder};
-  border-left: 0;
+  border-right: 0;
   color: ${({ theme }) => theme.text};
-  border-radius: 0 30px 30px 0;
+  border-radius: 30px 0 0 30px;
   cursor: pointer;
   font-size: 0.8rem;
   padding: 0.6rem;
   width: 5rem;
   height: 3rem;
+  float: right;
 
   div {
     height: auto;
