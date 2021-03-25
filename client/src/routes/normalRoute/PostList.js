@@ -24,7 +24,7 @@ function PostList({ theme }) {
       <br />
       <Helmet title="Post List" />
       <Row
-        className="d-flex justify-content-center py-2 mb-5 sticky-top rounded"
+        className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
         style={
           theme === "dark" ? style.darkCategoryBox : style.lightCategoryBox
         }

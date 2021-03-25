@@ -15,6 +15,7 @@ import Resister from "./normalRoute/Register";
 import Contact from "./normalRoute/Contact";
 import FindPassword from "./normalRoute/FindPassword";
 import PostList from "./normalRoute/PostList";
+import PostDetail from "./normalRoute/PostDetail";
 
 import Fade from "react-reveal/Fade";
 
@@ -34,27 +35,26 @@ function Router() {
   // 이거 Link가 안먹히는게 ThemeProvider 때문에 그런가? 저걸 App.js로 옮기면 되려나...
   return (
     <ThemeProvider theme={themeMode}>
-      <>
-        <GlobalStyles />
-        {HideHeader}
-        <Fade right>
-          <Toggle theme={theme} toggleTheme={themeToggler} />
-        </Fade>
-        <Container>
-          <Switch>
-            <Route path="/" exact render={() => <Main theme={theme} />} />
-            <Route path="/register" exact component={Resister} />
-            <Route path="/contact" exact component={Contact} />
-            <Route path="/findpassword" exact component={FindPassword} />
-            <Route
-              path="/postlist"
-              exact
-              render={() => <PostList theme={theme} />}
-            />
-          </Switch>
-        </Container>
-        <Footer theme={theme} />
-      </>
+      <GlobalStyles />
+      {HideHeader}
+      <Fade right>
+        <Toggle theme={theme} toggleTheme={themeToggler} />
+      </Fade>
+      <Container>
+        <Switch>
+          <Route path="/" exact render={() => <Main theme={theme} />} />
+          <Route path="/register" exact component={Resister} />
+          <Route path="/contact" exact component={Contact} />
+          <Route path="/findpassword" exact component={FindPassword} />
+          <Route
+            path="/postlist"
+            exact
+            render={() => <PostList theme={theme} />}
+          />
+          <Route path="/post/:id" exact component={PostDetail} />
+        </Switch>
+      </Container>
+      <Footer theme={theme} />
     </ThemeProvider>
   );
 }

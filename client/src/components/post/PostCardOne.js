@@ -8,8 +8,8 @@ function PostCardOne({ posts, theme }) {
         ? posts.map(({ _id, title, contents, date }) => {
             return (
               <div key={_id} className="mb-3" style={style.container}>
-                <Link
-                  to={`/post/${_id}`}
+                <a
+                  href={`/post/${_id}`}
                   className="text-light text-decoration-none"
                 >
                   <div style={style.title}>
@@ -25,7 +25,7 @@ function PostCardOne({ posts, theme }) {
                     Posted on {date.split(" ")[0]}&nbsp;{date.split(" ")[1]}{" "}
                     {date.split(" ")[2]}
                   </div>
-                </Link>
+                </a>
               </div>
             );
           })
