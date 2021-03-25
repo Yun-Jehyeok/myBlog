@@ -31,19 +31,25 @@ function PostList({ theme }) {
       >
         <Category posts={categoryFindResult} />
       </Row>
-      <Row>{posts ? <PostCardOne posts={posts} /> : GrowingSpinner}</Row>
+      <Row style={theme === "dark" ? { color: "white" } : { color: "#212529" }}>
+        {posts ? <PostCardOne posts={posts} theme={theme} /> : GrowingSpinner}
+      </Row>
     </>
   );
 }
 
 const style = {
   darkCategoryBox: {
+    width: "94%",
+    marginLeft: "3%",
     backgroundColor: "white",
     color: "#212529",
     borderLeft: "4px solid gray",
     borderRight: "4px solid gray",
   },
   lightCategoryBox: {
+    width: "94%",
+    marginLeft: "3%",
     backgroundColor: "#212529",
     color: "white",
     borderLeft: "4px solid gray",
