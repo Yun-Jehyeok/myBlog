@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function PostCardOne({ posts, theme }) {
   return (
@@ -11,6 +10,7 @@ function PostCardOne({ posts, theme }) {
                 <a
                   href={`/post/${_id}`}
                   className="text-light text-decoration-none"
+                  style={theme === "dark" ? {} : { color: "#212529" }}
                 >
                   <div style={style.title}>
                     <b>{title}</b>

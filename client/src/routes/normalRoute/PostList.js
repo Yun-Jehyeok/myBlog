@@ -31,7 +31,7 @@ function PostList({ theme }) {
       >
         <Category posts={categoryFindResult} />
       </Row>
-      <Row style={theme === "dark" ? { color: "white" } : { color: "#212529" }}>
+      <Row>
         {posts ? <PostCardOne posts={posts} theme={theme} /> : GrowingSpinner}
       </Row>
     </>

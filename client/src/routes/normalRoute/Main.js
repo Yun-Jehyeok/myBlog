@@ -5,12 +5,12 @@ import Fade from "react-reveal/Fade";
 function Main({ theme }) {
   return (
     <>
-      <Fade bottom>
-        <Container
-          id="content"
-          className="d-flex justify-content-center text-center align-items-center font-weight-bold"
-          style={style.container}
-        >
+      <Container
+        id="content"
+        className="d-flex justify-content-center text-center align-items-center font-weight-bold"
+        style={style.container}
+      >
+        <Fade left>
           <Row>
             I WANT TO MAKE
             <br />
@@ -18,23 +18,23 @@ function Main({ theme }) {
             <br />
             AND USEFUL
           </Row>
-        </Container>
-        <Fade right>
-          <a
-            href="/postlist"
-            className={
-              theme === "dark"
-                ? "d-flex justify-content-end text-white text-decoration-none"
-                : "d-flex justify-content-end text-dark text-decoration-none"
-            }
-            style={
-              (theme === "dark" ? style.darkGoPost : style.lightGoPost,
-              { width: "auto" })
-            }
-          >
-            Go to Post&nbsp;&rarr;
-          </a>
         </Fade>
+      </Container>
+      <Fade right>
+        <a
+          href="/postlist"
+          className={
+            theme === "dark"
+              ? "d-flex justify-content-end text-white text-decoration-none"
+              : "d-flex justify-content-end text-dark text-decoration-none"
+          }
+          style={
+            (theme === "dark" ? style.darkGoPost : style.lightGoPost,
+            { width: "auto" })
+          }
+        >
+          Go to Post&nbsp;&rarr;
+        </a>
       </Fade>
     </>
   );
