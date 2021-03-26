@@ -16,6 +16,7 @@ import Contact from "./normalRoute/Contact";
 import FindPassword from "./normalRoute/FindPassword";
 import PostList from "./normalRoute/PostList";
 import PostDetail from "./normalRoute/PostDetail";
+import PostWrite from "./normalRoute/PostWrite";
 
 import Fade from "react-reveal/Fade";
 
@@ -52,6 +53,7 @@ function Router() {
             render={() => <PostList theme={theme} />}
           />
           <Route path="/post/:id" exact component={PostDetail} />
+          <Route path="/postwrite" exact component={PostWrite} />
         </Switch>
       </Container>
       <Footer theme={theme} />
