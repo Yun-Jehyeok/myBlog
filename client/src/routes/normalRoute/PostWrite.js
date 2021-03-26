@@ -48,11 +48,51 @@ function PostWrite() {
     });
   };
 
+  const getDataFromCKEditor = (event, editor) => {
+    const data = editor.getData();
+
+    if (data && data.match("<img src=")) {
+      const whereImg_start = data.indexOf("<img src=");
+
+      let whereImg_end = "";
+      let ext_name_find = "";
+      let result_Img_Url = "";
+
+      const ext_name = ["jpeg", "png", "gif", "jpg"];
+
+      for (let i = 0; i < ext_name.length; i++) {
+        if (data.match(ext_name[i])) {
+          ext_name_find = ext_name[i];
+
+          whereImg_end = data.indexOf(`${ext_name[i]}`);
+        }
+      }
+
+      if (ext_name_find === "jpeg") {
+        result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 4);
+      } else {
+        result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 3);
+      }
+
+      setValues({
+        ...form,
+        fileUrl: result_Img_Url,
+        contents: data,
+      });
+    } else {
+      setValues({
+        ...form,
+        fileUrl: "",
+        contents: data,
+      });
+    }
+  };
+
   return (
     <div>
       {isAuthenticated ? (
-        <Form onSubmit={onSubmit}>
-          <FormGroup>
+        <Form onSubmit={onSubmit} className="mt-5">
+          <FormGroup className="mb-3">
             <Label for="title">Title</Label>
             <Input
               type="text"
@@ -62,7 +102,7 @@ function PostWrite() {
               onChange={onChange}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="mb-3">
             <Label for="category">Category</Label>
             <Input
               type="text"
@@ -72,18 +112,26 @@ function PostWrite() {
               onChange={onChange}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="mb-3">
             <Label for="content">Content</Label>
             <CKEditor
               editor={ClassicEditor}
               config={editorConfiguration}
               onReady={Myinit}
+              onBlur={getDataFromCKEditor}
             />
-            <Button>작성하기</Button>
+            {/* CKEditor 안에 text 색이 흰색으로 나타남 */}
+            <Button
+              color="success"
+              block
+              className="mt-3 col-md-2 offset-md-10 mb-3"
+            >
+              작성하기
+            </Button>
           </FormGroup>
         </Form>
       ) : (
-        <Col>
+        <Col width={50} className="p-5 m-5">
           <Progress animated color="info" value={100} />
         </Col>
       )}

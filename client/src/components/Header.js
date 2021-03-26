@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Button, Col, Row } from "reactstrap";
+import { Button, Col, Row, Form } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import LoginModal from "./auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +7,10 @@ import { LOGOUT_REQUEST } from "../redux/types";
 import Dropdown from "react-bootstrap/Dropdown";
 import { CgProfile } from "react-icons/cg";
 
+import { POST_WRITE_REQUEST } from "../redux/types";
+
 function Header({ theme }) {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, userRole } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -17,6 +19,12 @@ function Header({ theme }) {
       type: LOGOUT_REQUEST,
     });
   }, [dispatch]);
+
+  const addPostClick = () => {
+    dispatch({
+      type: POST_WRITE_REQUEST,
+    });
+  };
 
   return (
     <>
@@ -41,6 +49,21 @@ function Header({ theme }) {
               className="d-flex justify-content-center"
               style={style.container}
             >
+              <span>
+                {userRole === "Master" ? (
+                  <Form className="mr-5">
+                    <a
+                      href="/postwrite"
+                      className="btn btn-success block text-white text-decoration-none"
+                      onClick={addPostClick}
+                    >
+                      Add Post
+                    </a>
+                  </Form>
+                ) : (
+                  ""
+                )}
+              </span>
               <span className="mr-5">
                 {isAuthenticated ? (
                   <Dropdown>

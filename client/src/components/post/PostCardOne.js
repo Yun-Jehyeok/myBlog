@@ -16,7 +16,7 @@ function PostCardOne({ posts, theme }) {
                     <b>{title}</b>
                   </div>
                   <div className="mt-3" style={style.contents}>
-                    {contents}
+                    {contents.replace(/(<([^>]+)>)/gi, "")}
                   </div>
                   <div
                     className="d-flex justify-content-end mt-4"
