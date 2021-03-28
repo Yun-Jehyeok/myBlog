@@ -2,6 +2,9 @@ import axios from "axios";
 import { all, call, put, takeEvery, fork } from "redux-saga/effects";
 import { push } from "connected-react-router";
 import {
+  CATEGORY_FIND_FAILURE,
+  CATEGORY_FIND_REQUEST,
+  CATEGORY_FIND_SUCCESS,
   POST_DELETE_FAILURE,
   POST_DELETE_REQUEST,
   POST_DELETE_SUCCESS,
@@ -141,11 +144,35 @@ function* watchuploadPost() {
   yield takeEvery(POST_UPLOAD_REQUEST, uploadPost);
 }
 
+const CategoryFindAPI = (payload) => {
+  return axios.get(`/api/post/category/${encodeURIComponent(payload)}`);
+};
+
+function* CategoryFind(action) {
+  try {
+    const result = yield call(CategoryFindAPI, action.payload);
+    yield put({
+      type: CATEGORY_FIND_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: CATEGORY_FIND_FAILURE,
+      payload: e,
+    });
+  }
+}
+
+function* watchCategoryFind() {
+  yield takeEvery(CATEGORY_FIND_REQUEST, CategoryFind);
+}
+
 export default function* postSaga() {
   yield all([
     fork(watchloadPosts),
     fork(watchloadPostDetail),
     fork(watchdeletePost),
     fork(watchuploadPost),
+    fork(watchCategoryFind),
   ]);
 }

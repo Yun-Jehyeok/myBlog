@@ -170,4 +170,23 @@ router.post("/:id/edit", async (req, res, next) => {
   }
 });
 
+// Find Category
+router.get("/category/:categoryName", async (req, res, next) => {
+  try {
+    const result = await Category.findOne(
+      {
+        categoryName: {
+          $regex: req.params.categoryName,
+          $options: "i",
+        },
+      },
+      "posts"
+    ).populate({ path: "posts" });
+
+    res.send(result);
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;

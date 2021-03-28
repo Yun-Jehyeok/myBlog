@@ -6,7 +6,7 @@ function Category({ posts }) {
     <>
       {Array.isArray(posts)
         ? posts.map(({ _id, categoryName }) => (
-            <div key={_id}>
+            <div key={_id} className="mr-3">
               <a href={`/post/category/${categoryName}`}>
                 <span>
                   <Button>{categoryName}</Button>

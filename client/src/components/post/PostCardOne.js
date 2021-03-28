@@ -4,7 +4,7 @@ function PostCardOne({ posts, theme }) {
   return (
     <>
       {Array.isArray(posts)
-        ? posts.map(({ _id, title, contents, date }) => {
+        ? posts.map(({ _id, title, contents, categoryName, date }) => {
             return (
               <div key={_id} className="mb-3" style={style.container}>
                 <a
@@ -13,10 +13,13 @@ function PostCardOne({ posts, theme }) {
                   style={theme === "dark" ? {} : { color: "#212529" }}
                 >
                   <div style={style.title}>
-                    <b>{title}</b>
+                    <b>{title}</b>&nbsp;{categoryName}
                   </div>
                   <div className="mt-3" style={style.contents}>
-                    {contents.replace(/(<([^>]+)>)/gi, "")}
+                    {contents.length >= 70
+                      ? contents.replace(/(<([^>]+)>)/gi, "").slice(0, 70) +
+                        "..."
+                      : contents.replace(/(<([^>]+)>)/gi, "")}
                   </div>
                   <div
                     className="d-flex justify-content-end mt-4"
