@@ -8,6 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { CgProfile } from "react-icons/cg";
 
 import { POST_WRITE_REQUEST } from "../redux/types";
+import { Link } from "react-router-dom";
 
 function Header({ theme }) {
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
@@ -32,8 +33,8 @@ function Header({ theme }) {
         <Row>
           <Col xs="0" sm="4"></Col>
           <Col xs="6" sm="4">
-            <a
-              href="/"
+            <Link
+              to="/"
               className={
                 theme === "dark"
                   ? "d-flex justify-content-center pt-4 text-white text-decoration-none"
@@ -42,7 +43,7 @@ function Header({ theme }) {
               style={style.logo}
             >
               <b>YLOG</b>
-            </a>
+            </Link>
           </Col>
           <Col xs="6" sm="4">
             <div
@@ -52,13 +53,13 @@ function Header({ theme }) {
               <span>
                 {userRole === "Master" ? (
                   <Form className="mr-5">
-                    <a
-                      href="/postwrite"
+                    <Link
+                      to="/postwrite"
                       className="btn btn-success block text-white text-decoration-none"
                       onClick={addPostClick}
                     >
                       Add Post
-                    </a>
+                    </Link>
                   </Form>
                 ) : (
                   ""
@@ -93,8 +94,8 @@ function Header({ theme }) {
                   <LoginModal theme={theme} />
                 )}
               </span>
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className={
                   theme === "dark"
                     ? "text-decoration-none text-white"
@@ -103,7 +104,7 @@ function Header({ theme }) {
                 style={style.contactButton}
               >
                 CONTACT
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

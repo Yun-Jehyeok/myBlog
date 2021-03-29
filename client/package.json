@@ -93,6 +93,7 @@
     "react-redux": "^7.2.2",
     "react-refresh": "^0.8.3",
     "react-reveal": "^1.2.2",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scrollify": "^1.0.4",
     "reactstrap": "^8.9.0",

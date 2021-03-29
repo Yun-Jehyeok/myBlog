@@ -32,7 +32,7 @@ const Toggle = ({ theme, toggleTheme }) => {
 
 Toggle.propTypes = {
   theme: string.isRequired,
-  toggletheme: func.isRequired,
+  toggleTheme: func.isRequired,
 };
 
 export default Toggle;

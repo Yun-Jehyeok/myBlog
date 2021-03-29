@@ -33,7 +33,6 @@ function Router() {
 
   if (!mountedComponent) return <div />;
 
-  // 이거 Link가 안먹히는게 ThemeProvider 때문에 그런가? 저걸 App.js로 옮기면 되려나...
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />

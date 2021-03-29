@@ -95,6 +95,8 @@ function* deletePost(action) {
       type: POST_DELETE_SUCCESS,
       payload: result.data,
     });
+
+    yield put(push("/"));
   } catch (e) {
     yield put({
       type: POST_DELETE_FAILURE,
@@ -132,6 +134,8 @@ function* uploadPost(action) {
       type: POST_UPLOAD_SUCCESS,
       payload: result.data,
     });
+
+    yield put(push("/postlist"));
   } catch (e) {
     yield put({
       type: POST_UPLOAD_FAILURE,
