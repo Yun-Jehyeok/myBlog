@@ -114,13 +114,11 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         errorMsg: "",
-        previousMatchMsg: "",
       };
     case CLEAR_ERROR_FAILURE:
       return {
         ...state,
-        errorMsg: "Cleear Error Fail",
-        previousMatchMsg: "Clear Error Fail",
+        errorMsg: "Clear Error Fail",
       };
 
     case USER_LOADING_REQUEST:

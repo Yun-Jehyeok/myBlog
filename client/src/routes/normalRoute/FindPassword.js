@@ -12,6 +12,8 @@ import {
 } from "reactstrap";
 import { CHANGE_USER_PASSWORD_REQUEST } from "../../redux/types";
 
+import { Link } from "react-router-dom";
+
 function FindPassword() {
   const { isPasswordChange, errorMsg } = useSelector((state) => state.auth);
   const [localMsg, setLocalMsg] = useState("");
@@ -57,9 +59,9 @@ function FindPassword() {
             You've successfly changed your password
           </div>
           <div className="d-flex justify-content-center">
-            <a href="/" className="text-decoration-none">
+            <Link to="/" className="text-decoration-none">
               GO HOME
-            </a>
+            </Link>
           </div>
         </Container>
       ) : (
@@ -69,9 +71,9 @@ function FindPassword() {
               className="d-flex justify-content-center bold mb-3 mt-4"
               style={{ fontSize: "2rem" }}
             >
-              <a href="/" className="text-decoration-none text-dark">
+              <Link to="/" className="text-decoration-none text-dark">
                 <b>Y&nbsp;</b>LOG
-              </a>
+              </Link>
             </div>
             {localMsg ? (
               <Alert color="danger" style={{ width: "90%", marginLeft: "5%" }}>

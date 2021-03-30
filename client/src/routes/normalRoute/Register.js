@@ -4,6 +4,8 @@ import Fade from "react-reveal/Fade";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import { REGISTER_REQUEST } from "../../redux/types";
 
+import { Link } from "react-router-dom";
+
 function Register() {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
@@ -43,9 +45,9 @@ function Register() {
           </div>
           <br />
           <div className="d-flex justify-content-center">
-            <a href="/" className="text-decoration-none">
+            <Link to="/" className="text-decoration-none">
               HOME
-            </a>
+            </Link>
           </div>
         </Container>
       ) : (
@@ -55,9 +57,9 @@ function Register() {
               className="d-flex justify-content-center bold mb-3 mt-4"
               style={{ fontSize: "2rem" }}
             >
-              <a href="/" className="text-decoration-none text-dark">
+              <Link to="/" className="text-decoration-none text-dark">
                 <b>Y&nbsp;</b>LOG
-              </a>
+              </Link>
             </div>
             <div id="line" className="mb-4">
               REGISTER

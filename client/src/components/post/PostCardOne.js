@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function PostCardOne({ posts, theme }) {
   return (
@@ -7,8 +8,8 @@ function PostCardOne({ posts, theme }) {
         ? posts.map(({ _id, title, contents, categoryName, date }) => {
             return (
               <div key={_id} className="mb-3" style={style.container}>
-                <a
-                  href={`/post/${_id}`}
+                <Link
+                  to={`/post/${_id}`}
                   className="text-light text-decoration-none"
                   style={theme === "dark" ? {} : { color: "#212529" }}
                 >
@@ -28,7 +29,7 @@ function PostCardOne({ posts, theme }) {
                     Posted on {date.split(" ")[0]}&nbsp;{date.split(" ")[1]}{" "}
                     {date.split(" ")[2]}
                   </div>
-                </a>
+                </Link>
               </div>
             );
           })

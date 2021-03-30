@@ -15,6 +15,8 @@ import {
 import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
 import Google from "./Google";
 
+import { Link } from "react-router-dom";
+
 function LoginModal({ theme }) {
   const [modal, setModal] = useState(false);
   const [localMsg, setLocalMsg] = useState("");
@@ -120,9 +122,9 @@ function LoginModal({ theme }) {
                 style={style.register}
               >
                 <span>
-                  <a href="/findpassword" className="text-decoration-none">
+                  <Link to="/findpassword" className="text-decoration-none">
                     Forgot Password?
-                  </a>
+                  </Link>
                 </span>
               </div>
               <div
@@ -131,9 +133,9 @@ function LoginModal({ theme }) {
               >
                 <span>Not a member?&nbsp;&nbsp;</span>
                 <span>
-                  <a href="/register" className="text-decoration-none">
+                  <Link to="/register" className="text-decoration-none">
                     REGISTER
-                  </a>
+                  </Link>
                 </span>
               </div>
             </FormGroup>

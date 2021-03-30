@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
+import { ConnectedRouter } from "connected-react-router/immutable";
 import store, { history } from "./store";
 import Router from "./routes/Router";
 

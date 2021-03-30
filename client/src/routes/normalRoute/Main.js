@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
 
+import { Link } from "react-router-dom";
+
 function Main({ theme }) {
   return (
     <>
@@ -21,8 +23,8 @@ function Main({ theme }) {
         </Fade>
       </Container>
       <Fade right>
-        <a
-          href="/postlist"
+        <Link
+          to="/postlist"
           className={
             theme === "dark"
               ? "d-flex justify-content-end text-white text-decoration-none"
@@ -34,7 +36,7 @@ function Main({ theme }) {
           }
         >
           Go to Post&nbsp;&rarr;
-        </a>
+        </Link>
       </Fade>
     </>
   );
