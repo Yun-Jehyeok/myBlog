@@ -11,16 +11,19 @@ function PostCardOne({ posts, theme }) {
                 <Link
                   to={`/post/${_id}`}
                   className="text-light text-decoration-none"
-                  style={theme === "dark" ? {} : { color: "#212529" }}
                 >
-                  <div style={style.title}>
-                    <b>{title}</b>&nbsp;{categoryName}
-                  </div>
-                  <div className="mt-3" style={style.contents}>
-                    {contents.length >= 70
-                      ? contents.replace(/(<([^>]+)>)/gi, "").slice(0, 70) +
-                        "..."
-                      : contents.replace(/(<([^>]+)>)/gi, "")}
+                  <div
+                    className={theme === "dark" ? "text-white" : "text-dark"}
+                  >
+                    <div style={style.title}>
+                      <b>{title}</b>&nbsp;{categoryName}
+                    </div>
+                    <div className="mt-3" style={style.contents}>
+                      {contents.length >= 70
+                        ? contents.replace(/(<([^>]+)>)/gi, "").slice(0, 70) +
+                          "..."
+                        : contents.replace(/(<([^>]+)>)/gi, "")}
+                    </div>
                   </div>
                   <div
                     className="d-flex justify-content-end mt-4"

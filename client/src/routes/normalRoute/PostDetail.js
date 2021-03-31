@@ -15,8 +15,10 @@ function PostDetail(req) {
   const { postDetail, creatorId, title, loading } = useSelector(
     (state) => state.post
   );
-  const { userId, userName } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
   const { comments } = useSelector((state) => state.comment);
+
+  const { date } = postDetail;
 
   useEffect(() => {
     dispatch({
@@ -43,7 +45,7 @@ function PostDetail(req) {
   const EditButton = (
     <>
       <Row className="d-flex justify-content-center pb-3">
-        <Col className="col-md-3 mr-md-3">
+        <Col>
           <Link
             to={`/post/${req.match.params.id}/edit`}
             className="btn btn-success btn-block"
@@ -61,9 +63,12 @@ function PostDetail(req) {
   );
 
   const Body = (
-    <>
+    <Container
+      style={true ? style.darkContainer : style.lightContainer}
+      className="mb-4 p-3"
+    >
       {userId === creatorId ? EditButton : ""}
-      <Row className="d-flex p-3 mb-1 justify-content-center mt-5">
+      <Row className="d-flex p-3 mb-1 justify-content-center mt-3 pt-5">
         {(() => {
           if (postDetail && postDetail.creator) {
             return (
@@ -83,7 +88,8 @@ function PostDetail(req) {
             style={{ borderBottom: "1px solid gray" }}
           >
             <span className="text-muted" style={{ fontSize: "1.2rem" }}>
-              Posted on {postDetail.date.split(" ")[0]}
+              Posted on {date.split(" ")[0]}&nbsp;
+              {date.split(" ")[1]} {date.split(" ")[2]}
             </span>
           </div>
           <div
@@ -124,7 +130,7 @@ function PostDetail(req) {
       ) : (
         ""
       )}
-    </>
+    </Container>
   );
 
   return (
@@ -134,5 +140,18 @@ function PostDetail(req) {
     </div>
   );
 }
+
+const style = {
+  darkContainer: {
+    backgroundColor: "#212529",
+    color: "white",
+    minHeight: "70vh",
+  },
+  lightContainer: {
+    backgroundColor: "white",
+    color: "black",
+    minHeight: "70vh",
+  },
+};
 
 export default PostDetail;
