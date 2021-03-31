@@ -135,16 +135,6 @@ router.delete("/:id", auth, async (req, res) => {
   return res.json({ success: true });
 });
 
-// EDIT POST / GET
-router.get("/:id/edit", async (req, res, next) => {
-  try {
-    const post = await Post.findById(req.params.id).populate("creator", "name");
-    res.json(post);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
 // EDIT POST / POST
 router.post("/:id/edit", async (req, res, next) => {
   const {

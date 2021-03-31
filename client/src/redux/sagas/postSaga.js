@@ -11,9 +11,6 @@ import {
   POST_DETAIL_LOADING_FAILURE,
   POST_DETAIL_LOADING_REQUEST,
   POST_DETAIL_LOADING_SUCCESS,
-  POST_EDIT_LOADING_REQUEST,
-  POST_EDIT_LOADING_SUCCESS,
-  POST_EDIT_LOADING_FAILURE,
   POST_EDIT_UPLOADING_FAILURE,
   POST_EDIT_UPLOADING_REQUEST,
   POST_EDIT_UPLOADING_SUCCESS,
@@ -154,44 +151,6 @@ function* watchuploadPost() {
   yield takeEvery(POST_UPLOAD_REQUEST, uploadPost);
 }
 
-// Post Edit Load
-const PostEditLoadAPI = (payload) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  const token = payload.token;
-
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
-  return axios.get(`/api/post/${payload.id}/edit`, config);
-};
-
-function* PostEditLoad(action) {
-  try {
-    const result = yield call(PostEditLoadAPI, action.payload);
-
-    yield put({
-      type: POST_EDIT_LOADING_SUCCESS,
-      payload: result.data,
-    });
-  } catch (e) {
-    yield put({
-      type: POST_EDIT_LOADING_FAILURE,
-      payload: e,
-    });
-
-    yield put(push("/"));
-  }
-}
-
-function* watchPostEditLoad() {
-  yield takeEvery(POST_EDIT_LOADING_REQUEST, PostEditLoad);
-}
-
 // Post Edit Upload
 const PostEditUploadAPI = (payload) => {
   const config = {
@@ -262,6 +221,5 @@ export default function* postSaga() {
     fork(watchuploadPost),
     fork(watchCategoryFind),
     fork(watchPostEditUpload),
-    fork(watchPostEditLoad),
   ]);
 }
