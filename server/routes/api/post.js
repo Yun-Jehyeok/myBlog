@@ -163,7 +163,7 @@ router.post("/:id/edit", async (req, res, next) => {
       { new: true }
     );
 
-    res.redirect(modified_post, "edit modified");
+    res.redirect(`/api/post/${modified_post}`);
   } catch (e) {
     console.log(e);
     next(e);

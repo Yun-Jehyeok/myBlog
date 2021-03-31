@@ -9,6 +9,9 @@ import {
 import { Row, Col, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
+import { editorConfiguration } from "../../components/editor/EditorConfig";
 
 function PostDetail(req) {
   const dispatch = useDispatch();
@@ -64,7 +67,7 @@ function PostDetail(req) {
 
   const Body = (
     <Container
-      style={true ? style.darkContainer : style.lightContainer}
+      style={false ? style.darkContainer : style.lightContainer}
       className="mb-4 p-3"
     >
       {userId === creatorId ? EditButton : ""}
@@ -72,11 +75,9 @@ function PostDetail(req) {
         {(() => {
           if (postDetail && postDetail.creator) {
             return (
-              <>
-                <div className="font-weight-bold" style={{ fontSize: "3rem" }}>
-                  {postDetail.title}
-                </div>
-              </>
+              <div className="font-weight-bold" style={{ fontSize: "3rem" }}>
+                {postDetail.title}
+              </div>
             );
           }
         })()}
@@ -84,9 +85,14 @@ function PostDetail(req) {
       {postDetail && postDetail.comments ? (
         <>
           <div
-            className="d-flex justify-content-end pb-4"
+            className="d-flex justify-content-between pb-4"
             style={{ borderBottom: "1px solid gray" }}
           >
+            <span className="ml-2">
+              <Button outline color="primary">
+                {postDetail.category.categoryName}
+              </Button>
+            </span>
             <span className="text-muted" style={{ fontSize: "1.2rem" }}>
               Posted on {date.split(" ")[0]}&nbsp;
               {date.split(" ")[1]} {date.split(" ")[2]}
@@ -101,7 +107,12 @@ function PostDetail(req) {
               wordBreak: "break-all",
             }}
           >
-            {postDetail.contents.replace(/(<([^>]+)>)/gi, "")}
+            <CKEditor
+              editor={BalloonEditor}
+              data={postDetail.contents}
+              config={editorConfiguration}
+              disabled="true"
+            />
           </div>
           <Row>
             <Container className="mb-3">
