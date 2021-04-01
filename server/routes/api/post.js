@@ -179,4 +179,55 @@ router.get("/category/:categoryName", async (req, res, next) => {
   }
 });
 
+///////////////////////////////////////////////
+// Comments Route
+
+// GET ALL COMMENTS
+router.get("/:id/comments", async (req, res) => {
+  try {
+    const comment = await Post.findById(req.params.id).populate({
+      path: "comments",
+    });
+
+    const result = comment.comments;
+
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+// WRITE COMMENT
+router.post("/:id/comments", async (req, res) => {
+  const newComment = await Comment.create({
+    contents: req.body.contents,
+    creator: req.body.userId,
+    creatorName: req.body.userName,
+    post: req.body.id,
+    date: moment().format("MMMM DD, YYYY"),
+  });
+
+  try {
+    await Post.findByIdAndUpdate(req.body.id, {
+      $push: {
+        comments: newComment._id,
+      },
+    });
+
+    await User.findByIdAndUpdate(req.body.userId, {
+      $push: {
+        comments: {
+          post_id: req.body.id,
+          comment_id: newComment._id,
+        },
+      },
+    });
+
+    res.json(newComment);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
 module.exports = router;

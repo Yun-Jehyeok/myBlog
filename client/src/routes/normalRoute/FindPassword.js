@@ -13,6 +13,7 @@ import {
 import { CHANGE_USER_PASSWORD_REQUEST } from "../../redux/types";
 
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function FindPassword() {
   const { isPasswordChange, errorMsg } = useSelector((state) => state.auth);
@@ -53,6 +54,7 @@ function FindPassword() {
 
   return (
     <>
+      <Helmet title="YLOG - 비밀번호 변경" />
       {isPasswordChange ? (
         <Container className="text-dark" style={style.firstContainer}>
           <div className="d-flex justify-content-center">

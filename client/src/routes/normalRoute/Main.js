@@ -1,12 +1,14 @@
 import React from "react";
 import { Container, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
+import { Helmet } from "react-helmet";
 
 import { Link } from "react-router-dom";
 
 function Main({ theme }) {
   return (
     <>
+      <Helmet title="YLOG" />
       <Container
         id="content"
         className="d-flex justify-content-center text-center align-items-center font-weight-bold"

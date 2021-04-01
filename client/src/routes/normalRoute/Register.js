@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import { REGISTER_REQUEST } from "../../redux/types";
+import { Helmet } from "react-helmet";
 
 import { Link } from "react-router-dom";
 
@@ -38,6 +39,7 @@ function Register() {
 
   return (
     <>
+      <Helmet title="YLOG - 회원가입" />
       {isAuthenticated ? (
         <Container className="text-dark" style={style.firstContainer}>
           <div className="d-flex justify-content-cente">

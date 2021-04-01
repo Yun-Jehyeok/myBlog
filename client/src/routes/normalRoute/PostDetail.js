@@ -12,13 +12,14 @@ import { GrowingSpinner } from "../../components/spinner/Spinner";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
+import Comments from "../../components/comments/Comments";
 
 function PostDetail(req) {
   const dispatch = useDispatch();
   const { postDetail, creatorId, title, loading } = useSelector(
     (state) => state.post
   );
-  const { userId } = useSelector((state) => state.auth);
+  const { userId, userName } = useSelector((state) => state.auth);
   const { comments } = useSelector((state) => state.comment);
 
   const { date } = postDetail;
@@ -125,7 +126,7 @@ function PostDetail(req) {
                             {creatorName ? creatorName : creator}
                           </div>
                           <div className="text-small">
-                            <span>{date.split(" ")[0]}</span>
+                            <span>{date}</span>
                           </div>
                         </Row>
                         <Row className="p-2">
@@ -135,6 +136,11 @@ function PostDetail(req) {
                     )
                   )
                 : "Creator"}
+              <Comments
+                id={req.match.params.id}
+                userId={userId}
+                userName={userName}
+              />
             </Container>
           </Row>
         </>
@@ -146,7 +152,7 @@ function PostDetail(req) {
 
   return (
     <div>
-      <Helmet title={`Post - ${title}`} />
+      <Helmet title={title} />
       {loading === true ? GrowingSpinner : Body}
     </div>
   );

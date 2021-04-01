@@ -22,7 +22,7 @@ function PostList({ theme }) {
     <>
       <br />
       <br />
-      <Helmet title="Post List" />
+      <Helmet title="YLOG - POST" />
       <Row
         className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
         style={
