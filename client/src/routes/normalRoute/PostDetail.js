@@ -117,16 +117,32 @@ function PostDetail(req) {
           </div>
           <Row>
             <Container className="mb-3">
+              <div>
+                <b>{comments.length}&nbsp;Comments</b>
+              </div>
+              <hr />
+              <Comments
+                id={req.match.params.id}
+                userId={userId}
+                userName={userName}
+              />
               {Array.isArray(comments)
                 ? comments.map(
                     ({ contents, creator, date, _id, creatorName }) => (
                       <div key={_id} className="mb-3">
                         <Row className="d-flex justify-content-between p-2">
-                          <div className="font-weight-bold">
+                          <div
+                            className="font-weight-bold"
+                            style={{ fontSize: "0.9rem" }}
+                          >
                             {creatorName ? creatorName : creator}
-                          </div>
-                          <div className="text-small">
-                            <span>{date}</span>
+                            &nbsp;&nbsp;&nbsp;
+                            <span
+                              className="font-weight-light"
+                              style={{ color: "gray", fontSize: "0.9em" }}
+                            >
+                              •&nbsp;{date}
+                            </span>
                           </div>
                         </Row>
                         <Row className="p-2">
@@ -136,13 +152,9 @@ function PostDetail(req) {
                     )
                   )
                 : "Creator"}
-              <Comments
-                id={req.match.params.id}
-                userId={userId}
-                userName={userName}
-              />
             </Container>
           </Row>
+          <hr />
         </>
       ) : (
         ""
