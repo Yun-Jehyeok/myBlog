@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container } from "reactstrap";
 import { Route, Switch } from "react-router-dom";
 
@@ -24,22 +24,13 @@ import Fade from "react-reveal/Fade";
 
 function Router() {
   const [theme, themeToggler, mountedComponent] = useDarkMode();
-  const [isMain, setIsMain] = useState(true);
-
-  useEffect(() => {
-    if (window.location.pathname === "/") {
-      setIsMain(true);
-    } else {
-      setIsMain(false);
-    }
-  }, [window.location.pathname]);
 
   const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   let HideHeader =
     window.location.pathname === "/register" ? null : window.location
         .pathname === "/findpassword" ? null : (
-      <Header theme={theme} isMain={isMain} />
+      <Header theme={theme} />
     );
 
   if (!mountedComponent) return <div />;

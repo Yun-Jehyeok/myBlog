@@ -36,6 +36,7 @@ const loginUserAPI = (loginData) => {
 
 function* loginUser(loginaction) {
   try {
+    console.log(loginaction);
     const result = yield call(loginUserAPI, loginaction.payload);
 
     yield put({

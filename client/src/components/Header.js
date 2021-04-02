@@ -10,7 +10,7 @@ import { CgProfile } from "react-icons/cg";
 import { POST_WRITE_REQUEST } from "../redux/types";
 import { Link } from "react-router-dom";
 
-function Header({ theme, isMain }) {
+function Header({ theme }) {
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -31,8 +31,8 @@ function Header({ theme, isMain }) {
     <>
       <Fade top>
         <Row>
-          <Col xs="0" sm={isMain ? "4" : "0"}></Col>
-          <Col xs="6" sm={isMain ? "4" : "6"}>
+          <Col xs="0" sm="4"></Col>
+          <Col xs="6" sm="4">
             <Link
               to="/"
               className={
@@ -45,7 +45,7 @@ function Header({ theme, isMain }) {
               <b>YLOG</b>
             </Link>
           </Col>
-          <Col xs="6" sm={isMain ? "4" : "6"}>
+          <Col xs="6" sm="4">
             <div
               className="d-flex justify-content-center"
               style={style.container}

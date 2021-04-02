@@ -42,7 +42,7 @@ function Register() {
       <Helmet title="YLOG - 회원가입" />
       {isAuthenticated ? (
         <Container className="text-dark" style={style.firstContainer}>
-          <div className="d-flex justify-content-cente">
+          <div className="d-flex justify-content-center">
             회원가입에 성공하셨습니다.
           </div>
           <br />
@@ -97,7 +97,7 @@ function Register() {
                   onChange={onChange}
                 />
                 <div className="mt-4 d-flex justify-content-center pb-4">
-                  <Button style={{ width: "100%" }}>RESISTER</Button>
+                  <Button style={{ width: "100%" }}>REGISTER</Button>
                 </div>
               </FormGroup>
             </Form>
