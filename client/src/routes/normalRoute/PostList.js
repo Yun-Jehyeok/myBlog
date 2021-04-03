@@ -14,7 +14,6 @@ function PostList({ theme }) {
   useEffect(() => {
     dispatch({
       type: POST_LOADING_REQUEST,
-      payload: 0,
     });
   }, [dispatch]);
 

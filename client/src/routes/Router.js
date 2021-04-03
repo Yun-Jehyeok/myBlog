@@ -61,7 +61,11 @@ function Router() {
             exact
             component={PostEdit}
           />
-          <Route path="/search/:searchTerm" exact component={Search} />
+          <Route
+            path="/search/:searchTerm"
+            exact
+            render={() => <Search theme={theme} />}
+          />
         </Switch>
       </Container>
       <Footer theme={theme} />

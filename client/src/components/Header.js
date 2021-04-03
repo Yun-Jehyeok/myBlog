@@ -33,8 +33,8 @@ function Header({ theme }) {
     <>
       <Fade top>
         <Row>
-          <Col xs="0" sm="4"></Col>
-          <Col xs="6" sm="4">
+          <Col xs="0" sm="5"></Col>
+          <Col xs="6" sm="2">
             <a
               href="/"
               className={
@@ -47,14 +47,14 @@ function Header({ theme }) {
               <b>YLOG</b>
             </a>
           </Col>
-          <Col xs="6" sm="4">
+          <Col xs="6" sm="5">
             <div
               className="d-flex justify-content-center"
               style={style.container}
             >
               <span>
                 {userRole === "Master" ? (
-                  <Form className="mr-5">
+                  <Form>
                     <a
                       href="/postwrite"
                       className="btn btn-success block text-white text-decoration-none"
@@ -70,7 +70,7 @@ function Header({ theme }) {
               <span className="mr-5">
                 <SearchInput isOpen={false} />
               </span>
-              <span>
+              <span className="mr-5">
                 {isAuthenticated ? (
                   <Dropdown>
                     <Dropdown.Toggle
