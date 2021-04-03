@@ -20,6 +20,9 @@ import {
   POST_UPLOAD_FAILURE,
   POST_UPLOAD_REQUEST,
   POST_UPLOAD_SUCCESS,
+  SEARCH_FAILURE,
+  SEARCH_REQUEST,
+  SEARCH_SUCCESS,
 } from "../types";
 
 // All Posts Load
@@ -213,6 +216,35 @@ function* watchCategoryFind() {
   yield takeEvery(CATEGORY_FIND_REQUEST, CategoryFind);
 }
 
+// Search
+const SearchResultAPI = (payload) => {
+  return axios.get(`/api/search/${encodeURIComponent(payload)}`);
+};
+
+function* SearchResult(action) {
+  try {
+    const result = yield call(SearchResultAPI, action.payload);
+
+    yield put({
+      type: SEARCH_SUCCESS,
+      payload: result.data,
+    });
+
+    yield put(push(`/search/${encodeURIComponent(action.payload)}`));
+  } catch (e) {
+    yield put({
+      type: SEARCH_FAILURE,
+      payload: e,
+    });
+
+    action.put(push("/"));
+  }
+}
+
+function* watchSearchResult() {
+  yield takeEvery(SEARCH_REQUEST, SearchResult);
+}
+
 export default function* postSaga() {
   yield all([
     fork(watchloadPosts),
@@ -221,5 +253,6 @@ export default function* postSaga() {
     fork(watchuploadPost),
     fork(watchCategoryFind),
     fork(watchPostEditUpload),
+    fork(watchSearchResult),
   ]);
 }

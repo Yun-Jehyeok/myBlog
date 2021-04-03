@@ -18,6 +18,7 @@ import PostList from "./normalRoute/PostList";
 import PostDetail from "./normalRoute/PostDetail";
 import PostWrite from "./normalRoute/PostWrite";
 import PostEdit from "./normalRoute/PostEdit";
+import Search from "./normalRoute/Search";
 import { EditProtectedRoute } from "./protectedRoute/ProtectedRoute";
 
 import Fade from "react-reveal/Fade";
@@ -60,6 +61,7 @@ function Router() {
             exact
             component={PostEdit}
           />
+          <Route path="/search/:searchTerm" exact component={Search} />
         </Switch>
       </Container>
       <Footer theme={theme} />

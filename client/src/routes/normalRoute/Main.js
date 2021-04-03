@@ -25,8 +25,8 @@ function Main({ theme }) {
         </Fade>
       </Container>
       <Fade right>
-        <Link
-          to="/postlist"
+        <a
+          href="/postlist"
           className={
             theme === "dark"
               ? "d-flex justify-content-end text-white text-decoration-none"
@@ -38,7 +38,7 @@ function Main({ theme }) {
           }
         >
           Go to Post&nbsp;&rarr;
-        </Link>
+        </a>
       </Fade>
     </>
   );

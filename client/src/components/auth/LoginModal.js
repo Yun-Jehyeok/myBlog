@@ -63,7 +63,7 @@ function LoginModal({ theme }) {
 
   return (
     <div>
-      <NavLink
+      <a
         onClick={handleToggle}
         href="#"
         className={
@@ -74,7 +74,7 @@ function LoginModal({ theme }) {
         style={style.loginLink}
       >
         LOGIN
-      </NavLink>
+      </a>
       <Modal
         isOpen={modal}
         toggle={handleToggle}
@@ -122,9 +122,9 @@ function LoginModal({ theme }) {
                 style={style.register}
               >
                 <span>
-                  <Link to="/findpassword" className="text-decoration-none">
+                  <a href="/findpassword" className="text-decoration-none">
                     Forgot Password?
-                  </Link>
+                  </a>
                 </span>
               </div>
               <div
@@ -133,9 +133,9 @@ function LoginModal({ theme }) {
               >
                 <span>Not a member?&nbsp;&nbsp;</span>
                 <span>
-                  <Link to="/register" className="text-decoration-none">
+                  <a href="/register" className="text-decoration-none">
                     REGISTER
-                  </Link>
+                  </a>
                 </span>
               </div>
             </FormGroup>

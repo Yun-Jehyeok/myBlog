@@ -61,9 +61,9 @@ function FindPassword() {
             You've successfly changed your password
           </div>
           <div className="d-flex justify-content-center">
-            <Link to="/" className="text-decoration-none">
+            <a href="/" className="text-decoration-none">
               GO HOME
-            </Link>
+            </a>
           </div>
         </Container>
       ) : (
@@ -73,9 +73,9 @@ function FindPassword() {
               className="d-flex justify-content-center bold mb-3 mt-4"
               style={{ fontSize: "2rem" }}
             >
-              <Link to="/" className="text-decoration-none text-dark">
+              <a href="/" className="text-decoration-none text-dark">
                 <b>Y&nbsp;</b>LOG
-              </Link>
+              </a>
             </div>
             {localMsg ? (
               <Alert color="danger" style={{ width: "90%", marginLeft: "5%" }}>

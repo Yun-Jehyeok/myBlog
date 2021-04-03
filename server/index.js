@@ -40,6 +40,7 @@ mongoose
 app.use("/api/post", require("./routes/api/post"));
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/search", require("./routes/api/search"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./../client/public/index.html"));

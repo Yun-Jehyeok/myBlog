@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Button, Col, Row, Form } from "reactstrap";
+import { Button, Col, Row, Form, NavItem } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import LoginModal from "./auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,8 @@ import { CgProfile } from "react-icons/cg";
 
 import { POST_WRITE_REQUEST } from "../redux/types";
 import { Link } from "react-router-dom";
+
+import SearchInput from "./search/SearchInput";
 
 function Header({ theme }) {
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
@@ -33,8 +35,8 @@ function Header({ theme }) {
         <Row>
           <Col xs="0" sm="4"></Col>
           <Col xs="6" sm="4">
-            <Link
-              to="/"
+            <a
+              href="/"
               className={
                 theme === "dark"
                   ? "d-flex justify-content-center pt-4 text-white text-decoration-none"
@@ -43,7 +45,7 @@ function Header({ theme }) {
               style={style.logo}
             >
               <b>YLOG</b>
-            </Link>
+            </a>
           </Col>
           <Col xs="6" sm="4">
             <div
@@ -53,19 +55,22 @@ function Header({ theme }) {
               <span>
                 {userRole === "Master" ? (
                   <Form className="mr-5">
-                    <Link
-                      to="/postwrite"
+                    <a
+                      href="/postwrite"
                       className="btn btn-success block text-white text-decoration-none"
                       onClick={addPostClick}
                     >
                       Add Post
-                    </Link>
+                    </a>
                   </Form>
                 ) : (
                   ""
                 )}
               </span>
               <span className="mr-5">
+                <SearchInput isOpen={false} />
+              </span>
+              <span>
                 {isAuthenticated ? (
                   <Dropdown>
                     <Dropdown.Toggle
@@ -94,8 +99,8 @@ function Header({ theme }) {
                   <LoginModal theme={theme} />
                 )}
               </span>
-              <Link
-                to="/contact"
+              <a
+                href="/contact"
                 className={
                   theme === "dark"
                     ? "text-decoration-none text-white"
@@ -104,7 +109,7 @@ function Header({ theme }) {
                 style={style.contactButton}
               >
                 CONTACT
-              </Link>
+              </a>
             </div>
           </Col>
         </Row>

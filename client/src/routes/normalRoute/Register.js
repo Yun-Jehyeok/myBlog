@@ -47,9 +47,9 @@ function Register() {
           </div>
           <br />
           <div className="d-flex justify-content-center">
-            <Link to="/" className="text-decoration-none">
+            <a href="/" className="text-decoration-none">
               HOME
-            </Link>
+            </a>
           </div>
         </Container>
       ) : (
@@ -59,9 +59,9 @@ function Register() {
               className="d-flex justify-content-center bold mb-3 mt-4"
               style={{ fontSize: "2rem" }}
             >
-              <Link to="/" className="text-decoration-none text-dark">
+              <a href="/" className="text-decoration-none text-dark">
                 <b>Y&nbsp;</b>LOG
-              </Link>
+              </a>
             </div>
             <div id="line" className="mb-4">
               REGISTER

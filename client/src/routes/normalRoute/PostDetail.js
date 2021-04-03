@@ -50,12 +50,12 @@ function PostDetail(req) {
     <>
       <Row className="d-flex justify-content-center pb-3">
         <Col>
-          <Link
-            to={`/post/${req.match.params.id}/edit`}
+          <a
+            href={`/post/${req.match.params.id}/edit`}
             className="btn btn-success btn-block"
           >
             Edit Post
-          </Link>
+          </a>
         </Col>
         <Col>
           <Button className="btn-danger btn-block" onClick={onDeleteClick}>
