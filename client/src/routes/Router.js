@@ -19,6 +19,7 @@ import PostDetail from "./normalRoute/PostDetail";
 import PostWrite from "./normalRoute/PostWrite";
 import PostEdit from "./normalRoute/PostEdit";
 import Search from "./normalRoute/Search";
+import CategoryResult from "./normalRoute/CategoryResult";
 import { EditProtectedRoute } from "./protectedRoute/ProtectedRoute";
 
 import Fade from "react-reveal/Fade";
@@ -56,6 +57,11 @@ function Router() {
           />
           <Route path="/post/:id" exact component={PostDetail} />
           <Route path="/postwrite" exact component={PostWrite} />
+          <Route
+            path="/post/category/:categoryName"
+            exact
+            render={() => <CategoryResult theme={theme} />}
+          />
           <EditProtectedRoute
             path="/post/:id/edit"
             exact

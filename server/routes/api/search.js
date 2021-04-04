@@ -8,6 +8,10 @@ router.get("/:searchTerm", async (req, res, next) => {
     const result = await Post.find({
       title: {
         $regex: req.params.searchTerm,
+        $options: "i", // 대소문자 구분 X
+      },
+      contents: {
+        $regex: req.params.searchTerm,
         $options: "i",
       },
     });

@@ -102,7 +102,7 @@ function* deletePost(action) {
       payload: result.data,
     });
 
-    yield put(push("/"));
+    yield put(push("/postlist"));
   } catch (e) {
     yield put({
       type: POST_DELETE_FAILURE,
@@ -193,6 +193,7 @@ function* watchPostEditUpload() {
   yield takeEvery(POST_EDIT_UPLOADING_REQUEST, PostEditUpload);
 }
 
+// Find Category
 const CategoryFindAPI = (payload) => {
   return axios.get(`/api/post/category/${encodeURIComponent(payload)}`);
 };
@@ -200,6 +201,9 @@ const CategoryFindAPI = (payload) => {
 function* CategoryFind(action) {
   try {
     const result = yield call(CategoryFindAPI, action.payload);
+
+    console.log(result);
+
     yield put({
       type: CATEGORY_FIND_SUCCESS,
       payload: result.data,

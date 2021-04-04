@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { CATEGORY_FIND_REQUEST } from "../../redux/types";
-import { Row } from "reactstrap";
+import { Row, Button } from "reactstrap";
 import PostCardOne from "../../components/post/PostCardOne";
 import { Helmet } from "react-helmet";
 
-function CategoryResult() {
+function CategoryResult({ theme }) {
   const dispatch = useDispatch();
   let { categoryName } = useParams();
   const { categoryFindResult } = useSelector((state) => state.post);
@@ -16,7 +16,7 @@ function CategoryResult() {
       type: CATEGORY_FIND_REQUEST,
       payload: categoryName,
     });
-  }, [dispatch, categoryname]);
+  }, [dispatch, categoryName]);
 
   return (
     <>
@@ -29,13 +29,38 @@ function CategoryResult() {
           theme === "dark" ? style.darkCategoryBox : style.lightCategoryBox
         }
       >
-        <Category posts={categoryFindResult} />
+        <div className="mr-3">
+          <a href={`/post/category/${categoryName}`}>
+            <span>
+              <Button>{categoryName}</Button>
+            </span>
+          </a>
+        </div>
       </Row>
       <Row>
-        <PostCardOne posts={categoryFindResult.posts} />
+        <PostCardOne posts={categoryFindResult.posts} theme={theme} />
       </Row>
     </>
   );
 }
+
+const style = {
+  darkCategoryBox: {
+    width: "94%",
+    marginLeft: "3%",
+    backgroundColor: "white",
+    color: "#212529",
+    borderLeft: "4px solid gray",
+    borderRight: "4px solid gray",
+  },
+  lightCategoryBox: {
+    width: "94%",
+    marginLeft: "3%",
+    backgroundColor: "#212529",
+    color: "white",
+    borderLeft: "4px solid gray",
+    borderRight: "4px solid gray",
+  },
+};
 
 export default CategoryResult;
