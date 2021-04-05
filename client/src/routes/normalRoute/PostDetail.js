@@ -16,15 +16,12 @@ import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Comments from "../../components/comments/Comments";
 
 function PostDetail(req) {
-  const { path } = useParams();
   const dispatch = useDispatch();
   const { postDetail, creatorId, title, loading } = useSelector(
     (state) => state.post
   );
   const { userId, userName } = useSelector((state) => state.auth);
   const { comments } = useSelector((state) => state.comment);
-
-  console.log(path);
 
   const { date } = postDetail;
 
