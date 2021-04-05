@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { Helmet } from "react-helmet";
 import {
   POST_DETAIL_LOADING_REQUEST,
@@ -15,6 +16,7 @@ import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Comments from "../../components/comments/Comments";
 
 function PostDetail(req) {
+  const { path } = useParams();
   const dispatch = useDispatch();
   const { postDetail, creatorId, title, loading } = useSelector(
     (state) => state.post
@@ -22,7 +24,11 @@ function PostDetail(req) {
   const { userId, userName } = useSelector((state) => state.auth);
   const { comments } = useSelector((state) => state.comment);
 
+  console.log(path);
+
   const { date } = postDetail;
+
+  const theme = localStorage.getItem("theme");
 
   useEffect(() => {
     dispatch({
@@ -68,7 +74,7 @@ function PostDetail(req) {
 
   const Body = (
     <Container
-      style={false ? style.darkContainer : style.lightContainer}
+      style={theme === "dark" ? style.darkContainer : style.lightContainer}
       className="mb-4 p-3"
     >
       {userId === creatorId ? EditButton : ""}
@@ -175,11 +181,13 @@ const style = {
     backgroundColor: "#212529",
     color: "white",
     minHeight: "70vh",
+    transition: "all 0.50s linear",
   },
   lightContainer: {
     backgroundColor: "white",
     color: "black",
     minHeight: "70vh",
+    transition: "all 0.50s linear",
   },
 };
 

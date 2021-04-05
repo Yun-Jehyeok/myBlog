@@ -147,7 +147,7 @@ function LoginModal({ theme }) {
 }
 
 const style = {
-  loginLink: { fontSize: "1.2rem" },
+  loginLink: { fontSize: "1.2rem", transition: "all 0.50s linear" },
   modalHeader: { fontSize: "2rem" },
   loginButton: { marginTop: "2rem" },
   register: { fontSize: "0.8rem" },

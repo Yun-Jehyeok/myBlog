@@ -34,7 +34,7 @@ function Main({ theme }) {
           }
           style={
             (theme === "dark" ? style.darkGoPost : style.lightGoPost,
-            { width: "auto" })
+            { width: "auto", transition: "all 0.50s linear" })
           }
         >
           Go to Post&nbsp;&rarr;
@@ -51,7 +51,6 @@ const style = {
   },
   darkGoPost: {
     backgroundColor: "#212529",
-    border: "0",
   },
   lightGoPost: {
     backgroundColor: "white",

@@ -45,6 +45,7 @@ const style = {
     color: "#212529",
     borderLeft: "4px solid gray",
     borderRight: "4px solid gray",
+    transition: "all 0.50s linear",
   },
   lightCategoryBox: {
     width: "94%",
@@ -53,6 +54,7 @@ const style = {
     color: "white",
     borderLeft: "4px solid gray",
     borderRight: "4px solid gray",
+    transition: "all 0.50s linear",
   },
 };
 

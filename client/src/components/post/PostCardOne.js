@@ -48,9 +48,11 @@ const style = {
   },
   title: {
     fontSize: "2.2rem",
+    transition: "all 0.50s linear",
   },
   contents: {
     fontSize: "1.3rem",
+    transition: "all 0.50s linear",
   },
   date: { color: "gray", fontSize: "1.2rem" },
 };

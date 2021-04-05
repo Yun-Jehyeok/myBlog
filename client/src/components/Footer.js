@@ -19,6 +19,7 @@ function Footer({ theme }) {
                 }
                 target="_blank"
                 rel="noreferrer"
+                style={{ transition: "all 0.50s linear" }}
               >
                 <b>Y</b>
               </a>

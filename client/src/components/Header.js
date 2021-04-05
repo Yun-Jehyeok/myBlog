@@ -119,7 +119,7 @@ function Header({ theme }) {
 }
 
 const style = {
-  logo: { fontSize: "2.3rem" },
+  logo: { fontSize: "2.3rem", transition: "all 0.50s linear" },
   container: {
     marginRight: "5rem",
     paddingTop: "2.7rem",
@@ -141,7 +141,7 @@ const style = {
     padding: "0",
   },
   logoutButton: { backgroundColor: "white", color: "#212529" },
-  contactButton: { fontSize: "1.2rem" },
+  contactButton: { fontSize: "1.2rem", transition: "all 0.50s linear" },
 };
 
 export default Header;
