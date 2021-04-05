@@ -70,6 +70,8 @@ function* googleLogin(action) {
   try {
     const result = yield call(googleLoginAPI, action.payload);
 
+    console.log(result);
+
     yield put({
       type: GOOGLE_LOGIN_SUCCESS,
       payload: result.data,

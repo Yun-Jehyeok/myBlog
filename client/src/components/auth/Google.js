@@ -4,7 +4,6 @@ import { GOOGLE_LOGIN_REQUEST } from "../../redux/types";
 
 function Google() {
   const googleLoginBtn = useRef(null);
-  const [token, setToken] = useState("");
 
   const dispatch = useDispatch();
 
@@ -27,13 +26,9 @@ function Google() {
           (googleUser) => {
             const profile = googleUser.getBasicProfile();
 
-            setToken(googleUser.getAuthResponse().id_token);
-
-            const user = [token, profile.ot, profile.sd];
-
             dispatch({
               type: GOOGLE_LOGIN_REQUEST,
-              payload: user,
+              payload: profile,
             });
           },
           (error) => {

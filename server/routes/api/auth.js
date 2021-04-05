@@ -48,28 +48,20 @@ router.post("/login", (req, res) => {
 
 // GOOGLE LOGIN / GET
 router.get("/googlelogin", (req, res) => {
-  const { ot, sd } = req.body;
+  console.log(req.body);
+  const { RR, Se, At } = req.body;
 
-  jwt.sign({ id: sd }, JWT_SECRET, { expiresIn: "2 days" }, (err, token) => {
+  jwt.sign({ id: RR }, JWT_SECRET, { expiresIn: "2 days" }, (err, token) => {
     if (err) return res.status(400).json({ err });
 
     res.json({
       token,
       user: {
-        name: sd,
-        email: ot,
+        name: Se,
+        email: At,
         role: "Visitor",
       },
     });
-  });
-
-  res.json({
-    token,
-    user: {
-      name: sd,
-      email: ot,
-      role: "Visitor",
-    },
   });
 });
 
