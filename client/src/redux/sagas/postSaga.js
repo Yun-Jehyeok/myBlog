@@ -136,6 +136,8 @@ function* uploadPost(action) {
   try {
     const result = yield call(uploadPostAPI, action.payload);
 
+    console.log(result);
+
     yield put({
       type: POST_UPLOAD_SUCCESS,
       payload: result.data,
@@ -179,6 +181,8 @@ function* PostEditUpload(action) {
       type: POST_EDIT_UPLOADING_SUCCESS,
       payload: result.data,
     });
+
+    console.log(result);
 
     yield put(push(`/post/${result.data._id}`));
   } catch (e) {

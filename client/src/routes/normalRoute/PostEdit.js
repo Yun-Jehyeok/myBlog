@@ -21,12 +21,12 @@ dotenv.config();
 
 function PostWrite() {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { postDetail } = useSelector((state) => state.post);
   const [form, setValues] = useState({
-    title: "",
-    contents: "",
+    title: `${postDetail.title}`,
+    contents: `${postDetail.contents}`,
     fileUrl: "",
   });
-  const { postDetail } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
@@ -52,6 +52,7 @@ function PostWrite() {
 
   const getDataFromCKEditor = (event, editor) => {
     const data = editor.getData();
+    console.log(data);
 
     if (data && data.match("<img src=")) {
       const whereImg_start = data.indexOf("<img src=");
@@ -97,7 +98,7 @@ function PostWrite() {
           <FormGroup className="mb-3">
             <Label for="title">Title</Label>
             <Input
-              defaultValue={postDetail.title}
+              defaultValue={form.title}
               type="text"
               name="title"
               id="title"
@@ -110,7 +111,7 @@ function PostWrite() {
             <CKEditor
               editor={ClassicEditor}
               config={editorConfiguration}
-              data={postDetail.contents}
+              data={form.contents}
               onReady={Myinit}
               onBlur={getDataFromCKEditor}
             />

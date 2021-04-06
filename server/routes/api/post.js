@@ -136,6 +136,16 @@ router.delete("/:id", auth, async (req, res) => {
 });
 
 // EDIT POST / POST
+
+router.get("/:id/edit", async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.id).populate("creator", "name");
+    res.json(post);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 router.post("/:id/edit", async (req, res, next) => {
   const {
     body: { title, contents, fileUrl, id },
@@ -153,7 +163,7 @@ router.post("/:id/edit", async (req, res, next) => {
       { new: true }
     );
 
-    res.redirect(`/api/post/${modified_post}`);
+    res.redirect(`/api/post/${modified_post.id}`);
   } catch (e) {
     console.log(e);
     next(e);
