@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
 function PostCardOne({ posts, theme }) {
   return (
     <>
       {Array.isArray(posts)
-        ? posts.map(({ _id, title, contents, categoryName, date }) => {
+        ? posts.map(({ _id, title, contents, category, date }) => {
             return (
               <div key={_id} className="mb-3" style={style.container}>
                 <a
@@ -16,7 +17,10 @@ function PostCardOne({ posts, theme }) {
                     className={theme === "dark" ? "text-white" : "text-dark"}
                   >
                     <div style={style.title}>
-                      <b>{title}</b>&nbsp;{categoryName}
+                      <b>{title}</b>
+                      {/* <span>
+                        <Button className="btn btn-success">{category}</Button>
+                      </span> */}
                     </div>
                     <div className="mt-3" style={style.contents}>
                       {contents.length >= 70
@@ -29,8 +33,10 @@ function PostCardOne({ posts, theme }) {
                     className="d-flex justify-content-end mt-4"
                     style={style.date}
                   >
-                    Posted on {date.split(" ")[0]}&nbsp;{date.split(" ")[1]}{" "}
-                    {date.split(" ")[2]}
+                    <span>
+                      Posted on {date.split(" ")[0]}&nbsp;{date.split(" ")[1]}{" "}
+                      {date.split(" ")[2]}
+                    </span>
                   </div>
                 </a>
               </div>

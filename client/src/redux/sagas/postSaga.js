@@ -143,7 +143,7 @@ function* uploadPost(action) {
       payload: result.data,
     });
 
-    yield put(push("/postlist"));
+    yield put(push(`/post/${result.data._id}`));
   } catch (e) {
     yield put({
       type: POST_UPLOAD_FAILURE,
