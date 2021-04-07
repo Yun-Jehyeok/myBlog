@@ -240,4 +240,24 @@ router.post("/:id/comments", async (req, res) => {
   }
 });
 
+// DELETE COMMENT / DELETE
+router.delete("/comment/:id", auth, async (req, res) => {
+  await Comment.deleteOne({ _id: req.params.id });
+  await Post.findByIdAndUpdate(
+    { comments: { comment_id: req.params.id } },
+    {
+      $pull: {
+        comments: { comment_id: req.params.id },
+      },
+    }
+  );
+  await User.findByIdAndUpdate(req.user.id, {
+    $pull: {
+      comments: { comment_id: req.params.id },
+    },
+  });
+
+  return res.json({ success: true });
+});
+
 module.exports = router;
