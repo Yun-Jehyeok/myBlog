@@ -39,7 +39,6 @@ const commentReducer = (state = initialState, action) => {
         loading: true,
       };
     case COMMENT_UPLOADING_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         comments: [...state.comments, action.payload],

@@ -5,6 +5,7 @@ import {
   POST_DETAIL_LOADING_REQUEST,
   USER_LOADING_REQUEST,
   POST_DELETE_REQUEST,
+  COMMENT_DELETE_REQUEST,
 } from "../../redux/types";
 import { Row, Col, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -44,6 +45,17 @@ function PostDetail(req) {
       payload: {
         id: req.match.params.id,
         token: localStorage.getItem("token"),
+      },
+    });
+  };
+
+  const onCommentDeleteClick = (commentId) => {
+    dispatch({
+      type: COMMENT_DELETE_REQUEST,
+      payload: {
+        commentId: commentId,
+        token: localStorage.getItem("token"),
+        postId: req.match.params.id,
       },
     });
   };
@@ -150,6 +162,9 @@ function PostDetail(req) {
                         <Row className="p-2">
                           <div>{contents}</div>
                         </Row>
+                        <Button onClick={() => onCommentDeleteClick(_id)}>
+                          delete
+                        </Button>
                       </div>
                     )
                   )

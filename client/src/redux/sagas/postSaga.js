@@ -5,9 +5,6 @@ import {
   CATEGORY_FIND_FAILURE,
   CATEGORY_FIND_REQUEST,
   CATEGORY_FIND_SUCCESS,
-  COMMENT_DELETE_FAILURE,
-  COMMENT_DELETE_REQUEST,
-  COMMENT_DELETE_SUCCESS,
   POST_DELETE_FAILURE,
   POST_DELETE_REQUEST,
   POST_DELETE_SUCCESS,
@@ -256,44 +253,6 @@ function* watchSearchResult() {
   yield takeEvery(SEARCH_REQUEST, SearchResult);
 }
 
-// Comment Delete
-const deleteCommentAPI = (payload) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  const token = payload.token;
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
-
-  return axios.delete(`/api/comment/${payload.id}`, config);
-};
-
-function* deleteComment(action) {
-  try {
-    const result = yield call(deleteCommentAPI, action.payload);
-
-    yield put({
-      type: COMMENT_DELETE_SUCCESS,
-      payload: result.data,
-    });
-
-    yield put(push(`/post/${action.payload.post.id}`));
-  } catch (e) {
-    yield put({
-      type: COMMENT_DELETE_FAILURE,
-      payload: e,
-    });
-  }
-}
-
-function* watchdeleteComment() {
-  yield takeEvery(COMMENT_DELETE_REQUEST, deleteComment);
-}
-
 export default function* postSaga() {
   yield all([
     fork(watchloadPosts),
@@ -303,6 +262,5 @@ export default function* postSaga() {
     fork(watchCategoryFind),
     fork(watchPostEditUpload),
     fork(watchSearchResult),
-    fork(watchdeleteComment),
   ]);
 }

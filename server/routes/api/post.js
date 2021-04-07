@@ -241,7 +241,9 @@ router.post("/:id/comments", async (req, res) => {
 });
 
 // DELETE COMMENT / DELETE
-router.delete("/comment/:id", auth, async (req, res) => {
+router.delete("/comment/:id", async (req, res) => {
+  console.log(req);
+
   await Comment.deleteOne({ _id: req.params.id });
   await Post.findByIdAndUpdate(
     { comments: { comment_id: req.params.id } },
