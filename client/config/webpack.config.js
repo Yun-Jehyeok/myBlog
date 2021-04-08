@@ -502,9 +502,10 @@ module.exports = function (webpackEnv) {
             // to a file, but in development "style" loader enables hot editing
             // of CSS.
             // By default we support CSS Modules with the extension .module.css
+
+            // CKEditor5 Setting
             {
               test: cssRegex,
-              // CKEditor5 Setting
               exclude: [
                 cssModuleRegex,
                 /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
@@ -523,9 +524,10 @@ module.exports = function (webpackEnv) {
             },
             // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
             // using the extension .module.css
+
+            // CKEditor5 Setting
             {
               test: cssModuleRegex,
-              // CKEditor5 Setting
               exclude: [/ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/],
 
               use: getStyleLoaders({

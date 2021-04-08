@@ -60,6 +60,10 @@ function PostDetail(req) {
     });
   };
 
+  const onCommentEditClick = (commentId) => {
+    console.log(commentId);
+  };
+
   const EditButton = (
     <>
       <Row className="d-flex justify-content-center pb-3">
@@ -147,7 +151,7 @@ function PostDetail(req) {
                         <Row className="d-flex justify-content-between p-2">
                           <div
                             className="font-weight-bold"
-                            style={{ fontSize: "0.9rem" }}
+                            style={{ fontSize: "1.1rem" }}
                           >
                             {creatorName ? creatorName : creator}
                             &nbsp;&nbsp;&nbsp;
@@ -162,9 +166,28 @@ function PostDetail(req) {
                         <Row className="p-2">
                           <div>{contents}</div>
                         </Row>
-                        <Button onClick={() => onCommentDeleteClick(_id)}>
-                          delete
-                        </Button>
+                        {creator === userId ? (
+                          <div
+                            className="d-flex justify-content-end border-bottom"
+                            style={{ width: "20%", marginLeft: "80%" }}
+                          >
+                            <span
+                              className="mr-3"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => onCommentEditClick(_id)}
+                            >
+                              수정
+                            </span>
+                            <span
+                              style={{ cursor: "pointer" }}
+                              onClick={() => onCommentDeleteClick(_id)}
+                            >
+                              삭제
+                            </span>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     )
                   )
