@@ -134,11 +134,10 @@ function PostDetail(req) {
             />
           </div>
           <Row>
-            <Container className="mb-3">
-              <div>
+            <Container className="mb-3 p-4">
+              <div style={{ borderBottom: "1px solid white" }}>
                 <b>{comments.length}&nbsp;Comments</b>
               </div>
-              <hr />
               <Comments
                 id={req.match.params.id}
                 userId={userId}
@@ -169,7 +168,11 @@ function PostDetail(req) {
                         {creator === userId ? (
                           <div
                             className="d-flex justify-content-end border-bottom"
-                            style={{ width: "20%", marginLeft: "80%" }}
+                            style={{
+                              width: "20%",
+                              marginLeft: "80%",
+                              borderWidth: "70%",
+                            }}
                           >
                             <span
                               className="mr-3"

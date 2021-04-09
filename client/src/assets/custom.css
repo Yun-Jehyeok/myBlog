@@ -8,6 +8,23 @@ html > body {
   height: "100vh";
 }
 
+/* 스크롤바 스타일링 */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: gray;
+}
+body::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+/* ////////////////////////////////// */
+
 #content {
   font-family: "Architects Daughter", cursive;
 }

@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
       jwt.sign(
         { id: user.id },
         JWT_SECRET,
-        { expiresIn: "2 days" },
+        { expiresIn: 3600 },
         (err, token) => {
           if (err) return res.status(400).json({ err });
 

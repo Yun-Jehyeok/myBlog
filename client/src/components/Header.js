@@ -129,6 +129,7 @@ const style = {
     border: "0",
     fontSize: "1.2rem",
     paddingTop: "0",
+    transition: "all 0.50s linear",
   },
   lightDropdownToggle: {
     backgroundColor: "white",
@@ -136,6 +137,7 @@ const style = {
     fontSize: "1.2rem",
     paddingTop: "0",
     color: "#212529",
+    transition: "all 0.50s linear",
   },
   dropdownItem: {
     padding: "0",

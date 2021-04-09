@@ -8,12 +8,13 @@ const Button = styled.button`
   border-right: 0;
   color: ${({ theme }) => theme.text};
   border-radius: 30px 0 0 30px;
+  position: fixed;
   cursor: pointer;
   font-size: 0.8rem;
   padding: 0.6rem;
   width: 5rem;
   height: 3rem;
-  float: right;
+  right: 0;
 
   div {
     height: auto;

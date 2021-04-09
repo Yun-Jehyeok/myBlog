@@ -92,8 +92,6 @@ function* deleteComment(action) {
       type: COMMENT_DELETE_SUCCESS,
       payload: result.data,
     });
-
-    yield put(push(`/post/${action.payload.postId}`));
   } catch (e) {
     yield put({
       type: COMMENT_DELETE_FAILURE,

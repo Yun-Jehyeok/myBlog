@@ -1,4 +1,5 @@
 import {
+  COMMENT_DELETE_SUCCESS,
   COMMENT_LOADING_FAILURE,
   COMMENT_LOADING_REQUEST,
   COMMENT_LOADING_SUCCESS,
@@ -49,6 +50,13 @@ const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      };
+
+    case COMMENT_DELETE_SUCCESS:
+      window.location.reload();
+
+      return {
+        ...state,
       };
 
     default:
