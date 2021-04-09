@@ -7,6 +7,17 @@ import PostCardOne from "../../components/post/PostCardOne";
 import { Helmet } from "react-helmet";
 
 function CategoryResult({ theme }) {
+  const style = {
+    categoryBox: {
+      width: "94%",
+      marginLeft: "3%",
+      backgroundColor: `${theme === "dark" ? "white" : "#212529"}`,
+      color: `${theme === "dark" ? "#212529" : "white"}`,
+      borderLeft: "4px solid gray",
+      borderRight: "4px solid gray",
+    },
+  };
+
   const dispatch = useDispatch();
   let { categoryName } = useParams();
   const { categoryFindResult } = useSelector((state) => state.post);
@@ -25,9 +36,7 @@ function CategoryResult({ theme }) {
       <Helmet title={`Category - ${categoryName}`} />
       <Row
         className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
-        style={
-          theme === "dark" ? style.darkCategoryBox : style.lightCategoryBox
-        }
+        style={style.categoryBox}
       >
         <div className="mr-3">
           <a href={`/post/category/${categoryName}`}>
@@ -43,24 +52,5 @@ function CategoryResult({ theme }) {
     </>
   );
 }
-
-const style = {
-  darkCategoryBox: {
-    width: "94%",
-    marginLeft: "3%",
-    backgroundColor: "white",
-    color: "#212529",
-    borderLeft: "4px solid gray",
-    borderRight: "4px solid gray",
-  },
-  lightCategoryBox: {
-    width: "94%",
-    marginLeft: "3%",
-    backgroundColor: "#212529",
-    color: "white",
-    borderLeft: "4px solid gray",
-    borderRight: "4px solid gray",
-  },
-};
 
 export default CategoryResult;

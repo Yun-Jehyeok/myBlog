@@ -13,6 +13,27 @@ import { Link } from "react-router-dom";
 import SearchInput from "./search/SearchInput";
 
 function Header({ theme }) {
+  const style = {
+    logo: { fontSize: "2.3rem", transition: "all 0.50s linear" },
+    container: {
+      marginRight: "5rem",
+      paddingTop: "2.7rem",
+    },
+    dropdownToggle: {
+      backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
+      color: `${theme === "dark" ? "white" : "#212529"}`,
+      border: "0",
+      fontSize: "1.2rem",
+      paddingTop: "0",
+      transition: "all 0.50s linear",
+    },
+    dropdownItem: {
+      padding: "0",
+    },
+    logoutButton: { backgroundColor: "white", color: "#212529" },
+    contactButton: { fontSize: "1.2rem", transition: "all 0.50s linear" },
+  };
+
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -37,11 +58,9 @@ function Header({ theme }) {
           <Col xs="6" sm="2">
             <a
               href="/"
-              className={
-                theme === "dark"
-                  ? "d-flex justify-content-center pt-4 text-white text-decoration-none"
-                  : "d-flex justify-content-center pt-4 text-dark text-decoration-none"
-              }
+              className={`d-flex justify-content-center pt-4 ${
+                theme === "dark" ? "text-white" : "text-dark"
+              } text-decoration-none`}
               style={style.logo}
             >
               <b>YLOG</b>
@@ -75,11 +94,7 @@ function Header({ theme }) {
                   <Dropdown>
                     <Dropdown.Toggle
                       id="dropdown-basic"
-                      style={
-                        theme === "dark"
-                          ? style.darkDropdownToggle
-                          : style.lightDropdownToggle
-                      }
+                      style={style.dropdownToggle}
                     >
                       <CgProfile />
                     </Dropdown.Toggle>
@@ -101,11 +116,9 @@ function Header({ theme }) {
               </span>
               <a
                 href="/contact"
-                className={
-                  theme === "dark"
-                    ? "text-decoration-none text-white"
-                    : "text-decoration-none text-dark"
-                }
+                className={`text-decoration-none ${
+                  theme === "dark" ? "text-white" : "text-dark"
+                }`}
                 style={style.contactButton}
               >
                 CONTACT
@@ -117,33 +130,5 @@ function Header({ theme }) {
     </>
   );
 }
-
-const style = {
-  logo: { fontSize: "2.3rem", transition: "all 0.50s linear" },
-  container: {
-    marginRight: "5rem",
-    paddingTop: "2.7rem",
-  },
-  darkDropdownToggle: {
-    backgroundColor: "#212529",
-    border: "0",
-    fontSize: "1.2rem",
-    paddingTop: "0",
-    transition: "all 0.50s linear",
-  },
-  lightDropdownToggle: {
-    backgroundColor: "white",
-    border: "0",
-    fontSize: "1.2rem",
-    paddingTop: "0",
-    color: "#212529",
-    transition: "all 0.50s linear",
-  },
-  dropdownItem: {
-    padding: "0",
-  },
-  logoutButton: { backgroundColor: "white", color: "#212529" },
-  contactButton: { fontSize: "1.2rem", transition: "all 0.50s linear" },
-};
 
 export default Header;

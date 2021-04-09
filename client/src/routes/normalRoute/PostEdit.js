@@ -52,7 +52,6 @@ function PostWrite() {
 
   const getDataFromCKEditor = (event, editor) => {
     const data = editor.getData();
-    console.log(data);
 
     if (data && data.match("<img src=")) {
       const whereImg_start = data.indexOf("<img src=");

@@ -6,6 +6,17 @@ import { Row, Button } from "reactstrap";
 import PostCardOne from "../../components/post/PostCardOne";
 
 function Search({ theme }) {
+  const style = {
+    categoryBox: {
+      width: "94%",
+      marginLeft: "3%",
+      backgroundColor: `${theme === "dark" ? "white" : "#212529"}`,
+      color: `${theme === "dark" ? "#212529" : "white"}`,
+      borderLeft: "4px solid gray",
+      borderRight: "4px solid gray",
+    },
+  };
+
   const dispatch = useDispatch();
   let { searchTerm } = useParams();
   const { searchResult } = useSelector((state) => state.post);
@@ -23,9 +34,7 @@ function Search({ theme }) {
     <div className="mt-5 mb-5">
       <Row
         className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
-        style={
-          theme === "dark" ? style.darkCategoryBox : style.lightCategoryBox
-        }
+        style={style.categoryBox}
       >
         <div className="mr-3">
           <span style={{ fontSize: "1.5rem" }}>
@@ -39,24 +48,5 @@ function Search({ theme }) {
     </div>
   );
 }
-
-const style = {
-  darkCategoryBox: {
-    width: "94%",
-    marginLeft: "3%",
-    backgroundColor: "white",
-    color: "#212529",
-    borderLeft: "4px solid gray",
-    borderRight: "4px solid gray",
-  },
-  lightCategoryBox: {
-    width: "94%",
-    marginLeft: "3%",
-    backgroundColor: "#212529",
-    color: "white",
-    borderLeft: "4px solid gray",
-    borderRight: "4px solid gray",
-  },
-};
 
 export default Search;

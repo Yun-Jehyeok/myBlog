@@ -12,11 +12,9 @@ function Footer({ theme }) {
               &copy;
               <a
                 href="http://github.com/Yun-Jehyeok"
-                className={
-                  theme === "dark"
-                    ? "text-decoration-none text-white"
-                    : "text-decoration-none text-dark"
-                }
+                className={`text-decoration-none ${
+                  theme === "dark" ? "text-white" : "text-dark"
+                }`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ transition: "all 0.50s linear" }}

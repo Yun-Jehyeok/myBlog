@@ -8,6 +8,18 @@ import PostCardOne from "../../components/post/PostCardOne";
 import Category from "../../components/post/Category";
 
 function PostList({ theme }) {
+  const style = {
+    categoryBox: {
+      width: "94%",
+      marginLeft: "3%",
+      backgroundColor: `${theme === "dark" ? "white" : "#212529"}`,
+      color: `${theme === "dark" ? "#212529" : "white"}`,
+      borderLeft: "4px solid gray",
+      borderRight: "4px solid gray",
+      transition: "all 0.50s linear",
+    },
+  };
+
   const { posts, categoryFindResult } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
@@ -24,9 +36,7 @@ function PostList({ theme }) {
       <Helmet title="YLOG - POST" />
       <Row
         className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
-        style={
-          theme === "dark" ? style.darkCategoryBox : style.lightCategoryBox
-        }
+        style={style.categoryBox}
       >
         <Category posts={categoryFindResult} />
       </Row>
@@ -36,26 +46,5 @@ function PostList({ theme }) {
     </>
   );
 }
-
-const style = {
-  darkCategoryBox: {
-    width: "94%",
-    marginLeft: "3%",
-    backgroundColor: "white",
-    color: "#212529",
-    borderLeft: "4px solid gray",
-    borderRight: "4px solid gray",
-    transition: "all 0.50s linear",
-  },
-  lightCategoryBox: {
-    width: "94%",
-    marginLeft: "3%",
-    backgroundColor: "#212529",
-    color: "white",
-    borderLeft: "4px solid gray",
-    borderRight: "4px solid gray",
-    transition: "all 0.50s linear",
-  },
-};
 
 export default PostList;

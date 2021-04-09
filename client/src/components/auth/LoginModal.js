@@ -66,11 +66,9 @@ function LoginModal({ theme }) {
       <a
         onClick={handleToggle}
         href="#"
-        className={
-          theme === "dark"
-            ? "text-decoration-none text-white p-0"
-            : "text-decoration-none text-dark p-0"
-        }
+        className={`text-decoration-none ${
+          theme === "dark" ? "text-white" : "text-dark"
+        } p-0`}
         style={style.loginLink}
       >
         LOGIN

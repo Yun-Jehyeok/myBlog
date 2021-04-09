@@ -6,6 +6,19 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 function Main({ theme }) {
+  const style = {
+    container: {
+      marginTop: "5vh",
+      height: "65vh",
+    },
+    goPost: {
+      width: "auto",
+      backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
+      color: `${theme === "dark" ? "white" : "#212529"}`,
+      transition: "all 0.50s linear",
+    },
+  };
+
   return (
     <>
       <Helmet title="YLOG" />
@@ -27,15 +40,10 @@ function Main({ theme }) {
       <Fade right>
         <a
           href="/postlist"
-          className={
-            theme === "dark"
-              ? "d-flex justify-content-end text-white text-decoration-none"
-              : "d-flex justify-content-end text-dark text-decoration-none"
-          }
-          style={
-            (theme === "dark" ? style.darkGoPost : style.lightGoPost,
-            { width: "auto", transition: "all 0.50s linear" })
-          }
+          className={`d-flex justify-content-end ${
+            theme === "dark" ? "text-white" : "text-dark"
+          } text-decoration-none`}
+          style={style.goPost}
         >
           Go to Post&nbsp;&rarr;
         </a>
@@ -43,19 +51,5 @@ function Main({ theme }) {
     </>
   );
 }
-
-const style = {
-  container: {
-    marginTop: "5vh",
-    height: "65vh",
-  },
-  darkGoPost: {
-    backgroundColor: "#212529",
-  },
-  lightGoPost: {
-    backgroundColor: "white",
-    color: "#212529",
-  },
-};
 
 export default Main;

@@ -16,6 +16,23 @@ import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Comments from "../../components/comments/Comments";
 
 function PostDetail(req) {
+  const theme = localStorage.getItem("theme");
+
+  const style = {
+    container: {
+      backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
+      color: `${theme === "dark" ? "white" : "black"}`,
+      minHeight: "70vh",
+      transition: "all 0.50s linear",
+    },
+    editor: {
+      width: "100%",
+      height: "auto",
+      minHeight: "20vh",
+      wordBreak: "break-all",
+    },
+  };
+
   const dispatch = useDispatch();
   const { postDetail, creatorId, title, loading } = useSelector(
     (state) => state.post
@@ -24,8 +41,6 @@ function PostDetail(req) {
   const { comments } = useSelector((state) => state.comment);
 
   const { date } = postDetail;
-
-  const theme = localStorage.getItem("theme");
 
   useEffect(() => {
     dispatch({
@@ -85,10 +100,7 @@ function PostDetail(req) {
   );
 
   const Body = (
-    <Container
-      style={theme === "dark" ? style.darkContainer : style.lightContainer}
-      className="mb-4 p-3"
-    >
+    <Container style={style.container} className="mb-4 p-3">
       {userId === creatorId ? EditButton : ""}
       <Row className="d-flex p-3 mb-1 justify-content-center mt-3 pt-5">
         {(() => {
@@ -117,15 +129,7 @@ function PostDetail(req) {
               {date.split(" ")[1]} {date.split(" ")[2]}
             </span>
           </div>
-          <div
-            className="mb-3 mt-4 p-3"
-            style={{
-              width: "100%",
-              height: "auto",
-              minHeight: "20vh",
-              wordBreak: "break-all",
-            }}
-          >
+          <div className="mb-3 mt-4 p-3" style={style.editor}>
             <CKEditor
               editor={BalloonEditor}
               data={postDetail.contents}
@@ -134,8 +138,14 @@ function PostDetail(req) {
             />
           </div>
           <Row>
-            <Container className="mb-3 p-4">
-              <div style={{ borderBottom: "1px solid white" }}>
+            <Container>
+              <div
+                style={{
+                  borderBottom: `1px solid ${
+                    theme === "dark" ? "white" : "gray"
+                  }`,
+                }}
+              >
                 <b>{comments.length}&nbsp;Comments</b>
               </div>
               <Comments
@@ -146,19 +156,15 @@ function PostDetail(req) {
               {Array.isArray(comments)
                 ? comments.map(
                     ({ contents, creator, date, _id, creatorName }) => (
-                      <div key={_id} className="mb-3">
+                      <div key={_id}>
                         <Row className="d-flex justify-content-between p-2">
-                          <div
-                            className="font-weight-bold"
-                            style={{ fontSize: "1.1rem" }}
-                          >
-                            {creatorName ? creatorName : creator}
-                            &nbsp;&nbsp;&nbsp;
+                          <div style={{ fontSize: "1.1rem" }}>
+                            <b>{creatorName ? creatorName : creator}</b>&nbsp;•
                             <span
                               className="font-weight-light"
-                              style={{ color: "gray", fontSize: "0.9em" }}
+                              style={{ color: "gray", fontSize: "0.8em" }}
                             >
-                              •&nbsp;{date}
+                              &nbsp;{date}
                             </span>
                           </div>
                         </Row>
@@ -212,20 +218,5 @@ function PostDetail(req) {
     </div>
   );
 }
-
-const style = {
-  darkContainer: {
-    backgroundColor: "#212529",
-    color: "white",
-    minHeight: "70vh",
-    transition: "all 0.50s linear",
-  },
-  lightContainer: {
-    backgroundColor: "white",
-    color: "black",
-    minHeight: "70vh",
-    transition: "all 0.50s linear",
-  },
-};
 
 export default PostDetail;
