@@ -75,10 +75,6 @@ function PostDetail(req) {
     });
   };
 
-  const onCommentEditClick = (commentId) => {
-    console.log(commentId);
-  };
-
   const EditButton = (
     <>
       <Row className="d-flex justify-content-center pb-3">
@@ -171,22 +167,15 @@ function PostDetail(req) {
                         <Row className="p-2">
                           <div>{contents}</div>
                         </Row>
-                        {creator === userId ? (
+                        {creator === userId && userId ? (
                           <div
                             className="d-flex justify-content-end border-bottom"
                             style={{
-                              width: "20%",
-                              marginLeft: "80%",
+                              width: "10%",
+                              marginLeft: "90%",
                               borderWidth: "70%",
                             }}
                           >
-                            <span
-                              className="mr-3"
-                              style={{ cursor: "pointer" }}
-                              onClick={() => onCommentEditClick(_id)}
-                            >
-                              수정
-                            </span>
                             <span
                               style={{ cursor: "pointer" }}
                               onClick={() => onCommentDeleteClick(_id)}
