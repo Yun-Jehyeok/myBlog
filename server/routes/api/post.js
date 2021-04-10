@@ -4,15 +4,39 @@ const { Post } = require("../../models/post");
 const { Category } = require("../../models/category");
 const { User } = require("../../models/user");
 const { Comment } = require("../../models/comment");
+require("@babel/polyfill");
 
 const router = express.Router();
 
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const AWS = require("aws-sdk");
 const path = require("path");
 const dotenv = require("dotenv");
 const moment = require("moment");
 const { isNullOrUndefined } = require("util");
 
 dotenv.config();
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_KEY,
+  secretAccessKey: process.env.AWS_PRIVATE_KEY,
+});
+
+const uploadS3 = multer({
+  storage: multerS3({
+    s3,
+    bucket: "jehyeokblog2021/upload",
+    region: "ap-northeast-2",
+    key(req, file, cb) {
+      const ext = path.extname(file.originalname);
+      const basename = path.basename(file.originalname, ext);
+
+      cb(null, basename + new Date().valueOf() + ext);
+    },
+  }),
+  limits: { fileSize: 100 * 1024 * 1024 },
+});
 
 // LOADING ALL POSTS / GET
 router.get("/skip/:skip", async (req, res) => {
@@ -34,7 +58,7 @@ router.get("/skip/:skip", async (req, res) => {
 });
 
 // CREATE A POST / POST
-router.post("/createpost", async (req, res, next) => {
+router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
   try {
     res.json({ upload: true, url: req.files.map((v) => v.location) });
   } catch (e) {
@@ -44,7 +68,7 @@ router.post("/createpost", async (req, res, next) => {
 });
 
 // WRITE A POST / POST
-router.post("/write", auth, async (req, res, next) => {
+router.post("/write", auth, uploadS3.none(), async (req, res, next) => {
   try {
     const { title, contents, fileUrl, creator, category } = req.body;
     const newPost = await Post.create({
