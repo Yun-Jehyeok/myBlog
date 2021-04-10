@@ -214,6 +214,9 @@ router.get("/:id/comments", async (req, res) => {
 
 // WRITE COMMENT
 router.post("/:id/comments", async (req, res) => {
+  if (req.body.userName === "")
+    return res.status(400).json({ msg: "로그인이 필요합니다." });
+
   const newComment = await Comment.create({
     contents: req.body.contents,
     creator: req.body.userId,

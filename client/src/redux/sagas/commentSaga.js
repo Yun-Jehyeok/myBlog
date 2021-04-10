@@ -47,6 +47,8 @@ function* uploadComment(action) {
   try {
     const result = yield call(uploadCommentAPI, action.payload);
 
+    console.log(result);
+
     yield put({
       type: COMMENT_UPLOADING_SUCCESS,
       payload: result.data,

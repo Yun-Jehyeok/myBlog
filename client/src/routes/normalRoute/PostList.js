@@ -10,8 +10,8 @@ import Category from "../../components/post/Category";
 function PostList({ theme }) {
   const style = {
     categoryBox: {
-      width: "94%",
-      marginLeft: "3%",
+      width: "96%",
+      marginLeft: "2%",
       backgroundColor: `${theme === "dark" ? "white" : "#212529"}`,
       color: `${theme === "dark" ? "#212529" : "white"}`,
       borderLeft: "4px solid gray",

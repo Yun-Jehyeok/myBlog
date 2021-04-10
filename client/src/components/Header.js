@@ -1,5 +1,13 @@
-import React, { useCallback } from "react";
-import { Button, Col, Row, Form, NavItem } from "reactstrap";
+import React, { useCallback, useState, useEffect } from "react";
+import {
+  Button,
+  Col,
+  Row,
+  Form,
+  NavItem,
+  NavbarToggler,
+  Collapse,
+} from "reactstrap";
 import Fade from "react-reveal/Fade";
 import LoginModal from "./auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,6 +74,7 @@ function Header({ theme }) {
               <b>YLOG</b>
             </a>
           </Col>
+
           <Col xs="6" sm="5">
             <div
               className="d-flex justify-content-center"

@@ -13,6 +13,7 @@ const initialState = {
   creatorId: "",
   loading: false,
   isAuthenticated: false,
+  errorMsg: "",
 };
 
 const commentReducer = (state = initialState, action) => {
@@ -50,6 +51,7 @@ const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        errorMsg: action.payload.data.msg,
       };
 
     case COMMENT_DELETE_SUCCESS:
