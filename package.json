@@ -15,8 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/node": "^7.13.13",
     "@babel/polyfill": "^7.12.1",
     "aws-sdk": "^2.884.0",
+    "babel": "^6.23.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

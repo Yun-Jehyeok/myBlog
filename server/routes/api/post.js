@@ -8,9 +8,9 @@ require("@babel/polyfill");
 
 const router = express.Router();
 
-const multer = require("multer");
-const multerS3 = require("multer-s3");
-const AWS = require("aws-sdk");
+// const multer = require("multer");
+// const multerS3 = require("multer-s3");
+// const AWS = require("aws-sdk");
 const path = require("path");
 const dotenv = require("dotenv");
 const moment = require("moment");
@@ -18,25 +18,25 @@ const { isNullOrUndefined } = require("util");
 
 dotenv.config();
 
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_KEY,
-  secretAccessKey: process.env.AWS_PRIVATE_KEY,
-});
+// const s3 = new AWS.S3({
+//   accessKeyId: process.env.AWS_KEY,
+//   secretAccessKey: process.env.AWS_PRIVATE_KEY,
+// });
 
-const uploadS3 = multer({
-  storage: multerS3({
-    s3,
-    bucket: "jehyeokblog2021/upload",
-    region: "ap-northeast-2",
-    key(req, file, cb) {
-      const ext = path.extname(file.originalname);
-      const basename = path.basename(file.originalname, ext);
+// const uploadS3 = multer({
+//   storage: multerS3({
+//     s3,
+//     bucket: "jehyeokblog2021/upload",
+//     region: "ap-northeast-2",
+//     key(req, file, cb) {
+//       const ext = path.extname(file.originalname);
+//       const basename = path.basename(file.originalname, ext);
 
-      cb(null, basename + new Date().valueOf() + ext);
-    },
-  }),
-  limits: { fileSize: 100 * 1024 * 1024 },
-});
+//       cb(null, basename + new Date().valueOf() + ext);
+//     },
+//   }),
+//   limits: { fileSize: 100 * 1024 * 1024 },
+// });
 
 // LOADING ALL POSTS / GET
 router.get("/skip/:skip", async (req, res) => {
@@ -58,14 +58,14 @@ router.get("/skip/:skip", async (req, res) => {
 });
 
 // CREATE A POST / POST
-router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
-  try {
-    res.json({ upload: true, url: req.files.map((v) => v.location) });
-  } catch (e) {
-    console.error(e);
-    res.json({ upload: false, url: null });
-  }
-});
+// router.post("/image", uploadS3.array("upload", 5),async (req, res, next) => {
+//   try {
+//     res.json({ upload: true, url: req.files.map((v) => v.location) });
+//   } catch (e) {
+//     console.error(e);
+//     res.json({ upload: false, url: null });
+//   }
+// });
 
 // WRITE A POST / POST
 router.post("/write", auth, uploadS3.none(), async (req, res, next) => {
