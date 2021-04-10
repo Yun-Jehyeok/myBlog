@@ -42,9 +42,12 @@ app.use("/api/user", require("./routes/api/user"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/search", require("./routes/api/search"));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./../client/public/index.html"));
-});
+if (prod) {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT} port`);
