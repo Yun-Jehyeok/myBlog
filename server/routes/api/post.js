@@ -15,11 +15,16 @@ const { isNullOrUndefined } = require("util");
 dotenv.config();
 
 // LOADING ALL POSTS / GET
-router.get("/", async (req, res) => {
+router.get("/skip/:skip", async (req, res) => {
   try {
-    const postFindResult = await Post.find();
+    const postCount = await Post.countDocuments();
+    const postFindResult = await Post.find()
+      .skip(Number(req.params.skip))
+      .limit(6)
+      .sort({ date: -1 });
+
     const categoryFindResult = await Category.find();
-    const result = { postFindResult, categoryFindResult };
+    const result = { postFindResult, categoryFindResult, postCount };
 
     res.json(result);
   } catch (e) {

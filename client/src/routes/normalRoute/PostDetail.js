@@ -156,7 +156,7 @@ function PostDetail(req) {
               {Array.isArray(comments)
                 ? comments.map(
                     ({ contents, creator, date, _id, creatorName }) => (
-                      <div key={_id}>
+                      <div key={_id} className="mb-2">
                         <Row className="d-flex justify-content-between p-2">
                           <div style={{ fontSize: "1.1rem" }}>
                             <b>{creatorName ? creatorName : creator}</b>&nbsp;•
