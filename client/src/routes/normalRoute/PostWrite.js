@@ -16,9 +16,6 @@ import Myinit from "../../components/editor/UploadAdapter";
 
 import { POST_UPLOAD_REQUEST } from "../../redux/types";
 
-import dotenv from "dotenv";
-dotenv.config();
-
 function PostWrite() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const [form, setValues] = useState({

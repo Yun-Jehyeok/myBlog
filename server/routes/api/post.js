@@ -68,60 +68,64 @@ router.get("/skip/:skip", async (req, res) => {
 // });
 
 // WRITE A POST / POST
-router.post("/write", auth, uploadS3.none(), async (req, res, next) => {
-  try {
-    const { title, contents, fileUrl, creator, category } = req.body;
-    const newPost = await Post.create({
-      title,
-      contents,
-      fileUrl,
-      creator: req.user.id,
-      date: moment().format("MMMM DD, YYYY"),
-    });
+router.post(
+  "/write",
+  auth,
+  /*uploadS3.none(),*/ async (req, res, next) => {
+    try {
+      const { title, contents, fileUrl, creator, category } = req.body;
+      const newPost = await Post.create({
+        title,
+        contents,
+        fileUrl,
+        creator: req.user.id,
+        date: moment().format("MMMM DD, YYYY"),
+      });
 
-    const categoryFindResult = await Category.findOne({
-      categoryName: category,
-    });
-
-    if (isNullOrUndefined(categoryFindResult)) {
-      const newCategory = await Category.create({
+      const categoryFindResult = await Category.findOne({
         categoryName: category,
       });
 
-      await Post.findByIdAndUpdate(newPost._id, {
-        $push: {
-          category: newCategory._id,
-        },
-      });
-      await Category.findByIdAndUpdate(newCategory._id, {
-        $push: {
-          posts: newPost._id,
-        },
-      });
-      await User.findByIdAndUpdate(req.user.id, {
-        $push: {
-          posts: newPost._id,
-        },
-      });
-    } else {
-      await Category.findByIdAndUpdate(categoryFindResult._id, {
-        $push: { posts: newPost._id },
-      });
-      await Post.findByIdAndUpdate(newPost._id, {
-        category: categoryFindResult._id,
-      });
-      await User.findByIdAndUpdate(req.user.id, {
-        $push: {
-          posts: newPost._id,
-        },
-      });
-    }
+      if (isNullOrUndefined(categoryFindResult)) {
+        const newCategory = await Category.create({
+          categoryName: category,
+        });
 
-    return res.redirect(`/api/post/${newPost._id}`);
-  } catch (e) {
-    console.log(e);
+        await Post.findByIdAndUpdate(newPost._id, {
+          $push: {
+            category: newCategory._id,
+          },
+        });
+        await Category.findByIdAndUpdate(newCategory._id, {
+          $push: {
+            posts: newPost._id,
+          },
+        });
+        await User.findByIdAndUpdate(req.user.id, {
+          $push: {
+            posts: newPost._id,
+          },
+        });
+      } else {
+        await Category.findByIdAndUpdate(categoryFindResult._id, {
+          $push: { posts: newPost._id },
+        });
+        await Post.findByIdAndUpdate(newPost._id, {
+          category: categoryFindResult._id,
+        });
+        await User.findByIdAndUpdate(req.user.id, {
+          $push: {
+            posts: newPost._id,
+          },
+        });
+      }
+
+      return res.redirect(`/api/post/${newPost._id}`);
+    } catch (e) {
+      console.log(e);
+    }
   }
-});
+);
 
 // POST DETAIL / GET
 router.get("/:id", async (req, res, next) => {
@@ -146,7 +150,7 @@ router.delete("/:id", auth, async (req, res) => {
   await Comment.deleteMany({ post: req.params.id });
   await User.findByIdAndUpdate(req.user.id, {
     $pull: {
-      post: req.params.id,
+      posts: req.params.id,
       comments: { post_id: req.params.id },
     },
   });

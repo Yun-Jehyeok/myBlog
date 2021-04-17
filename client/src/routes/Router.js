@@ -8,6 +8,7 @@ import { GlobalStyles } from "../assets/global";
 import { useDarkMode } from "../assets/useDarkMode";
 import Toggle from "../assets/Toggle";
 
+import MainHeader from "../components/MainHeader";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Main from "./normalRoute/Main";
@@ -30,7 +31,9 @@ function Router() {
   const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   let HideHeader =
-    window.location.pathname === "/register" ? null : window.location
+    window.location.pathname === "/" ? (
+      <MainHeader theme={theme} />
+    ) : window.location.pathname === "/register" ? null : window.location
         .pathname === "/findpassword" ? null : (
       <Header theme={theme} />
     );

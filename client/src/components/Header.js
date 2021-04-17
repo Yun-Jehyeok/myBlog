@@ -1,13 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import {
-  Button,
-  Col,
-  Row,
-  Form,
-  NavItem,
-  NavbarToggler,
-  Collapse,
-} from "reactstrap";
+import { Button, Col, Row, Form } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import LoginModal from "./auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";

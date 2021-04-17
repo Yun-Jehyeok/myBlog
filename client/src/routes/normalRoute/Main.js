@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import { Helmet } from "react-helmet";
@@ -19,6 +19,18 @@ function Main({ theme }) {
     },
   };
 
+  const [show, setShow] = useState(false);
+  const [postShow, setPostShow] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(true);
+    }, 1300);
+    setTimeout(() => {
+      setPostShow(true);
+    }, 1800);
+  }, []);
+
   return (
     <>
       <Helmet title="YLOG" />
@@ -27,7 +39,7 @@ function Main({ theme }) {
         className="d-flex justify-content-center text-center align-items-center font-weight-bold"
         style={style.container}
       >
-        <Fade left>
+        <Fade when={show}>
           <Row>
             I WANT TO MAKE
             <br />
@@ -37,7 +49,7 @@ function Main({ theme }) {
           </Row>
         </Fade>
       </Container>
-      <Fade right>
+      <Fade when={postShow}>
         <a
           href="/postlist"
           className={`d-flex justify-content-end ${
