@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
 
 function PostCardOne({ posts, theme }) {
   return (
@@ -8,7 +6,12 @@ function PostCardOne({ posts, theme }) {
       {Array.isArray(posts)
         ? posts.map(({ _id, title, contents, category, date }) => {
             return (
-              <div key={_id} className="mb-3" style={style.container}>
+              <div
+                key={_id}
+                id="postCard"
+                className="mb-3"
+                style={style.container}
+              >
                 <a
                   href={`/post/${_id}`}
                   className="text-light text-decoration-none"
@@ -51,6 +54,7 @@ const style = {
   container: {
     width: "90%",
     marginLeft: "5%",
+    transition: "0.5s",
   },
   title: {
     fontSize: "2.2rem",

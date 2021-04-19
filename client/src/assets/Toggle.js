@@ -16,6 +16,10 @@ const Button = styled.button`
   height: 3rem;
   right: 0;
 
+  :hover {
+    color: #687078;
+  }
+
   div {
     height: auto;
     width: auto;

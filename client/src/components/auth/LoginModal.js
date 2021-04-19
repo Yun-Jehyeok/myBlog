@@ -66,9 +66,7 @@ function LoginModal({ theme }) {
       <a
         onClick={handleToggle}
         href="#"
-        className={`text-decoration-none ${
-          theme === "dark" ? "text-white" : "text-dark"
-        } p-0`}
+        className={`text-decoration-none text-secondary p-0`}
         style={style.loginLink}
       >
         LOGIN
@@ -145,7 +143,7 @@ function LoginModal({ theme }) {
 }
 
 const style = {
-  loginLink: { fontSize: "1.2rem", transition: "all 0.50s linear" },
+  loginLink: { fontSize: "1.3rem", transition: "all 0.50s linear" },
   modalHeader: { fontSize: "2rem" },
   loginButton: { marginTop: "2rem" },
   register: { fontSize: "0.8rem" },

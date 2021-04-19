@@ -19,7 +19,7 @@ function MainHeader({ theme }) {
         <div style={{ width: "100%" }}>
           <a
             href="/"
-            className={`d-flex justify-content-center pt-4 ${
+            className={`d-flex justify-content-center pt-5 ${
               theme === "dark" ? "text-white" : "text-dark"
             } text-decoration-none`}
             style={style.logo}

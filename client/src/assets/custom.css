@@ -59,3 +59,13 @@ body::-webkit-scrollbar-button {
   line-height: 0;
   margin: 0 16px;
 }
+
+#postCard:hover {
+  transform: translateX(1%);
+  border-left: 5px solid darkcyan;
+  padding-left: 1.5%;
+  border-radius: 5px 0 0 5px;
+}
+
+/* 서치바 부분에 포스트로 가는 버튼을 두고
+서치는 포스트리스트에 두는게 맞을듯 */

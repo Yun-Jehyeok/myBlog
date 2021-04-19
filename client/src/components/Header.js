@@ -14,16 +14,17 @@ import SearchInput from "./search/SearchInput";
 
 function Header({ theme }) {
   const style = {
-    logo: { fontSize: "2.3rem", transition: "all 0.50s linear" },
-    container: {
-      marginRight: "5rem",
-      paddingTop: "2.7rem",
+    logo: {
+      fontSize: "1.5rem",
+      transition: "all 0.50s linear",
+      marginLeft: "6%",
     },
+    container: { marginRight: "6%" },
     dropdownToggle: {
       backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
-      color: `${theme === "dark" ? "white" : "#212529"}`,
+      color: `${theme === "dark" ? "#687078" : "#212529"}`,
       border: "0",
-      fontSize: "1.2rem",
+      fontSize: "1.3rem",
       paddingTop: "0",
       transition: "all 0.50s linear",
     },
@@ -31,7 +32,7 @@ function Header({ theme }) {
       padding: "0",
     },
     logoutButton: { backgroundColor: "white", color: "#212529" },
-    contactButton: { fontSize: "1.2rem", transition: "all 0.50s linear" },
+    contactButton: { fontSize: "1.3rem", transition: "all 0.50s linear" },
   };
 
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
@@ -53,23 +54,27 @@ function Header({ theme }) {
   return (
     <>
       <Fade top>
-        <Row>
-          <Col xs="0" sm="5"></Col>
-          <Col xs="6" sm="2">
+        <Row
+          className="pb-3 mb-3"
+          style={{
+            borderBottom: `1px solid ${theme === "dark" ? "white" : "black"}`,
+          }}
+        >
+          <Col xs="3" sm="3">
             <a
               href="/"
-              className={`d-flex justify-content-center pt-4 ${
+              className={`d-flex justify-content-between pt-3 ${
                 theme === "dark" ? "text-white" : "text-dark"
               } text-decoration-none`}
               style={style.logo}
             >
-              <b>YLOG</b>
+              <b>Y&nbsp;LOG</b>
             </a>
           </Col>
-
-          <Col xs="6" sm="5">
+          <Col xs="0" sm="2"></Col>
+          <Col xs="9" sm="7">
             <div
-              className="d-flex justify-content-center"
+              className="d-flex justify-content-end pt-3"
               style={style.container}
             >
               <span>
@@ -117,9 +122,7 @@ function Header({ theme }) {
               </span>
               <a
                 href="/contact"
-                className={`text-decoration-none ${
-                  theme === "dark" ? "text-white" : "text-dark"
-                }`}
+                className={`text-decoration-none text-secondary`}
                 style={style.contactButton}
               >
                 CONTACT
