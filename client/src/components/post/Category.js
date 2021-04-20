@@ -8,7 +8,11 @@ function Category({ posts }) {
     <>
       {Array.isArray(posts)
         ? posts.map(({ _id, categoryName }) => (
-            <div key={_id} className="mr-3">
+            <div
+              key={_id}
+              className="mr-3"
+              style={{ transition: "all 0.50s linear" }}
+            >
               <a href={`/post/category/${categoryName}`}>
                 <span>
                   <Button>{categoryName}</Button>

@@ -10,8 +10,6 @@ import { CgProfile } from "react-icons/cg";
 import { POST_WRITE_REQUEST } from "../redux/types";
 import { Link } from "react-router-dom";
 
-import SearchInput from "./search/SearchInput";
-
 function Header({ theme }) {
   const style = {
     logo: {
@@ -32,7 +30,7 @@ function Header({ theme }) {
       padding: "0",
     },
     logoutButton: { backgroundColor: "white", color: "#212529" },
-    contactButton: { fontSize: "1.3rem", transition: "all 0.50s linear" },
+    button: { fontSize: "1.3rem", transition: "all 0.50s linear" },
   };
 
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
@@ -55,9 +53,10 @@ function Header({ theme }) {
     <>
       <Fade top>
         <Row
-          className="pb-3 mb-3"
+          className="pb-3 mb-4"
           style={{
             borderBottom: `1px solid ${theme === "dark" ? "white" : "black"}`,
+            transition: "all 0.50s linear",
           }}
         >
           <Col xs="3" sm="3">
@@ -82,7 +81,7 @@ function Header({ theme }) {
                   <Form>
                     <a
                       href="/postwrite"
-                      className="btn btn-success block text-white text-decoration-none"
+                      className="btn btn-success block text-white text-decoration-none mr-5"
                       onClick={addPostClick}
                     >
                       Add Post
@@ -93,7 +92,13 @@ function Header({ theme }) {
                 )}
               </span>
               <span className="mr-5">
-                <SearchInput isOpen={false} />
+                <a
+                  href="/postlist"
+                  className="text-decoration-none text-secondary"
+                  style={style.button}
+                >
+                  POST
+                </a>
               </span>
               <span className="mr-5">
                 {isAuthenticated ? (
@@ -123,7 +128,7 @@ function Header({ theme }) {
               <a
                 href="/contact"
                 className={`text-decoration-none text-secondary`}
-                style={style.contactButton}
+                style={style.button}
               >
                 CONTACT
               </a>

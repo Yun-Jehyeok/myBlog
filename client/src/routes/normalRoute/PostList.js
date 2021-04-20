@@ -6,6 +6,7 @@ import { Alert, Row } from "reactstrap";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
 import PostCardOne from "../../components/post/PostCardOne";
 import Category from "../../components/post/Category";
+import SearchInput from "../../components/search/SearchInput";
 
 function PostList({ theme }) {
   const style = {
@@ -87,6 +88,7 @@ function PostList({ theme }) {
       <br />
       <br />
       <Helmet title="YLOG - POST" />
+      <SearchInput />
       <Row
         className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
         style={style.categoryBox}
