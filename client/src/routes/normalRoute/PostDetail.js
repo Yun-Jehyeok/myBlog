@@ -77,32 +77,31 @@ function PostDetail(req) {
 
   const EditButton = (
     <>
-      <Row className="d-flex justify-content-center pb-3">
-        <Col>
+      <div className="d-flex justify-content-end pb-3">
+        <div className="mr-2">
           <Link
             to={`/post/${req.match.params.id}/edit`}
             className="btn btn-success btn-block"
           >
-            Edit Post
+            EDIT
           </Link>
-        </Col>
-        <Col>
+        </div>
+        <div>
           <Button className="btn-danger btn-block" onClick={onDeleteClick}>
-            Delete
+            DELETE
           </Button>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </>
   );
 
   const Body = (
     <Container style={style.container} className="mb-4 p-3">
-      {userId === creatorId ? EditButton : ""}
       <Row className="d-flex p-3 mb-1 justify-content-center mt-3 pt-5">
         {(() => {
           if (postDetail && postDetail.creator) {
             return (
-              <div className="font-weight-bold" style={{ fontSize: "3rem" }}>
+              <div className="font-weight-bold" style={{ fontSize: "2.5rem" }}>
                 {postDetail.title}
               </div>
             );
@@ -133,6 +132,7 @@ function PostDetail(req) {
               disabled="true"
             />
           </div>
+          {userId === creatorId ? EditButton : ""}
           <Row>
             <Container>
               <div

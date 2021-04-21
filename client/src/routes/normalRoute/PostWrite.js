@@ -116,6 +116,7 @@ function PostWrite() {
               config={editorConfiguration}
               onReady={Myinit}
               onBlur={getDataFromCKEditor}
+              style={{ color: "black" }}
             />
             {/* CKEditor 안에 text 색이 흰색으로 나타남 */}
             <Button

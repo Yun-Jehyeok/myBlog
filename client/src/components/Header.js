@@ -92,15 +92,6 @@ function Header({ theme }) {
                 )}
               </span>
               <span className="mr-5">
-                <a
-                  href="/postlist"
-                  className="text-decoration-none text-secondary"
-                  style={style.button}
-                >
-                  POST
-                </a>
-              </span>
-              <span className="mr-5">
                 {isAuthenticated ? (
                   <Dropdown>
                     <Dropdown.Toggle
@@ -124,6 +115,15 @@ function Header({ theme }) {
                 ) : (
                   <LoginModal theme={theme} />
                 )}
+              </span>
+              <span className="mr-5">
+                <a
+                  href="/postlist"
+                  className="text-decoration-none text-secondary"
+                  style={style.button}
+                >
+                  POST
+                </a>
               </span>
               <a
                 href="/contact"

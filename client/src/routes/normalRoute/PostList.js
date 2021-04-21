@@ -90,7 +90,7 @@ function PostList({ theme }) {
       <Helmet title="YLOG - POST" />
       <SearchInput />
       <Row
-        className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
+        className="d-flex justify-content-center mt-3 py-2 mb-5 sticky-top rounded"
         style={style.categoryBox}
       >
         <Category posts={categoryFindResult} />

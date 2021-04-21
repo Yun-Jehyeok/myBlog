@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { CATEGORY_FIND_REQUEST } from "../../redux/types";
 import { Row, Button } from "reactstrap";
 import PostCardOne from "../../components/post/PostCardOne";
+import SearchInput from "../../components/search/SearchInput";
 import { Helmet } from "react-helmet";
 
 function CategoryResult({ theme }) {
@@ -34,8 +35,9 @@ function CategoryResult({ theme }) {
       <br />
       <br />
       <Helmet title={`Category - ${categoryName}`} />
+      <SearchInput />
       <Row
-        className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
+        className="d-flex justify-content-center mt-3 py-2 mb-5 sticky-top rounded"
         style={style.categoryBox}
       >
         <div className="mr-3">

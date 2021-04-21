@@ -5,18 +5,18 @@ function MainHeader({ theme }) {
   const style = {
     logo: { fontSize: "2.3rem", transition: "all 0.50s linear" },
   };
-  const [show, setShow] = useState();
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
-    }, 2000);
+    }, 500);
   }, []);
 
   return (
     <>
       <Fade when={show}>
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "auto" }}>
           <a
             href="/"
             className={`d-flex justify-content-center pt-5 ${

@@ -6,6 +6,12 @@ import { SEARCH_REQUEST } from "../../redux/types";
 function SearchInput() {
   const dispatch = useDispatch();
   const [form, setValues] = useState({ searchBy: "" });
+  const style = {
+    searchInput: {
+      width: "25%",
+      marginLeft: "74%",
+    },
+  };
 
   const onChange = (e) => {
     setValues({
@@ -30,7 +36,7 @@ function SearchInput() {
 
   return (
     <>
-      <Form onSubmit={onSubmit} className="col">
+      <Form onSubmit={onSubmit} className="col" style={style.searchInput}>
         <Input
           name="searchBy"
           onChange={onChange}

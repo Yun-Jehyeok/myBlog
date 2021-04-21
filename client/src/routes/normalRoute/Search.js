@@ -4,12 +4,13 @@ import { useParams } from "react-router-dom";
 import { SEARCH_REQUEST } from "../../redux/types";
 import { Row, Button } from "reactstrap";
 import PostCardOne from "../../components/post/PostCardOne";
+import SearchInput from "../../components/search/SearchInput";
 
 function Search({ theme }) {
   const style = {
     categoryBox: {
-      width: "94%",
-      marginLeft: "3%",
+      width: "96%",
+      marginLeft: "2%",
       backgroundColor: `${theme === "dark" ? "white" : "#212529"}`,
       color: `${theme === "dark" ? "#212529" : "white"}`,
       borderLeft: "4px solid gray",
@@ -31,9 +32,12 @@ function Search({ theme }) {
   }, [dispatch, searchTerm]);
 
   return (
-    <div className="mt-5 mb-5">
+    <>
+      <br />
+      <br />
+      <SearchInput />
       <Row
-        className="d-flex justify-content-center mt-5 py-2 mb-5 sticky-top rounded"
+        className="d-flex justify-content-center mt-3 py-2 mb-5 sticky-top rounded"
         style={style.categoryBox}
       >
         <div className="mr-3">
@@ -45,7 +49,7 @@ function Search({ theme }) {
       <Row>
         <PostCardOne posts={searchResult} theme={theme} />
       </Row>
-    </div>
+    </>
   );
 }
 

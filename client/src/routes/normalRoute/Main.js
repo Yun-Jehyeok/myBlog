@@ -25,10 +25,10 @@ function Main({ theme }) {
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
-    }, 1300);
+    }, 1500);
     setTimeout(() => {
       setPostShow(true);
-    }, 1800);
+    }, 2000);
   }, []);
 
   return (
