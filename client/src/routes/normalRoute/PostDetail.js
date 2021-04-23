@@ -7,7 +7,7 @@ import {
   POST_DELETE_REQUEST,
   COMMENT_DELETE_REQUEST,
 } from "../../redux/types";
-import { Row, Col, Container, Button } from "reactstrap";
+import { Row, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -68,9 +68,10 @@ function PostDetail(req) {
     dispatch({
       type: COMMENT_DELETE_REQUEST,
       payload: {
+        userId: userId,
         commentId: commentId,
-        token: localStorage.getItem("token"),
         postId: req.match.params.id,
+        token: localStorage.getItem("token"),
       },
     });
   };

@@ -27,7 +27,7 @@ function PostCardOne({ posts, theme }) {
                     </div>
                     <div className="mt-3" style={style.contents}>
                       {contents.length >= 70
-                        ? contents.replace(/(<([^>]+)>)/gi, "").slice(0, 70) +
+                        ? contents.replace(/(<([^>]+)>)/gi, "").slice(0, 140) +
                           "..."
                         : contents.replace(/(<([^>]+)>)/gi, "")}
                     </div>

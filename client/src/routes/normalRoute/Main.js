@@ -50,15 +50,17 @@ function Main({ theme }) {
         </Fade>
       </Container>
       <Fade when={postShow}>
-        <a
-          href="/postlist"
-          className={`d-flex justify-content-end ${
-            theme === "dark" ? "text-white" : "text-dark"
-          } text-decoration-none`}
-          style={style.goPost}
-        >
-          Go to Post&nbsp;&rarr;
-        </a>
+        <div className="d-flex justify-content-end">
+          <a
+            href="/postlist"
+            className={`${
+              theme === "dark" ? "text-white" : "text-dark"
+            } text-decoration-none`}
+            style={style.goPost}
+          >
+            Go to Post&nbsp;&rarr;
+          </a>
+        </div>
       </Fade>
     </>
   );

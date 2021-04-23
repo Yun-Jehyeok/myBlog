@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Button, Col, Row, Form } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import LoginModal from "./auth/LoginModal";
@@ -15,7 +15,6 @@ function Header({ theme }) {
     logo: {
       fontSize: "1.5rem",
       transition: "all 0.50s linear",
-      marginLeft: "6%",
     },
     container: { marginRight: "6%" },
     dropdownToggle: {
@@ -60,15 +59,20 @@ function Header({ theme }) {
           }}
         >
           <Col xs="3" sm="3">
-            <a
-              href="/"
-              className={`d-flex justify-content-between pt-3 ${
-                theme === "dark" ? "text-white" : "text-dark"
-              } text-decoration-none`}
-              style={style.logo}
+            <div
+              className="d-flex justify-content-between pt-3"
+              style={{ marginLeft: "6%" }}
             >
-              <b>Y&nbsp;LOG</b>
-            </a>
+              <a
+                href="/"
+                className={`${
+                  theme === "dark" ? "text-white" : "text-dark"
+                } text-decoration-none`}
+                style={style.logo}
+              >
+                <b>Y&nbsp;LOG</b>
+              </a>
+            </div>
           </Col>
           <Col xs="0" sm="2"></Col>
           <Col xs="9" sm="7">

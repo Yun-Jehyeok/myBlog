@@ -275,7 +275,21 @@ router.post("/:id/comments", async (req, res) => {
 
 // DELETE COMMENT / DELETE
 router.delete("/comment/:id", async (req, res) => {
+  console.log(req.body);
+
   await Comment.deleteOne({ _id: req.params.id });
+  // User에서 comment가 안지워지네....
+  await User.findByIdAndUpdate(req.body.userId, {
+    $pull: {
+      comments: { comment_id: req.params.id },
+    },
+  });
+  await Post.findOneAndUpdate(
+    { comments: req.params.id },
+    {
+      $pull: { comments: req.params.id },
+    }
+  );
 
   return res.json({ success: true });
 });

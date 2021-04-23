@@ -111,14 +111,13 @@ function PostWrite() {
           </FormGroup>
           <FormGroup className="mb-3">
             <Label for="content">Content</Label>
+            {/* CKEditor 안에 text 색이 흰색으로 나타남.. 어차피 글 쓸 수 있는 사람이 나밖에 없으니 상관없긴 한데... */}
             <CKEditor
               editor={ClassicEditor}
               config={editorConfiguration}
               onReady={Myinit}
               onBlur={getDataFromCKEditor}
-              style={{ color: "black" }}
             />
-            {/* CKEditor 안에 text 색이 흰색으로 나타남 */}
             <Button
               color="success"
               block

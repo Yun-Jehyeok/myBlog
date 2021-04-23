@@ -81,14 +81,16 @@ const deleteCommentAPI = (payload) => {
     config.headers["x-auth-token"] = token;
   }
 
-  return axios.delete(`/api/post/comment/${payload.commentId}`, config);
+  return axios.delete(
+    `/api/post/comment/${payload.commentId}`,
+    payload,
+    config
+  );
 };
 
 function* deleteComment(action) {
   try {
     const result = yield call(deleteCommentAPI, action.payload);
-
-    console.log(result);
 
     yield put({
       type: COMMENT_DELETE_SUCCESS,

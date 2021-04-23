@@ -16,10 +16,13 @@ function MainHeader({ theme }) {
   return (
     <>
       <Fade when={show}>
-        <div style={{ width: "auto" }}>
+        <div
+          className="d-flex justify-content-center pt-5"
+          style={{ width: "auto" }}
+        >
           <a
             href="/"
-            className={`d-flex justify-content-center pt-5 ${
+            className={`${
               theme === "dark" ? "text-white" : "text-dark"
             } text-decoration-none`}
             style={style.logo}

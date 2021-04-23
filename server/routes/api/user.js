@@ -73,6 +73,7 @@ router.post("/register", (req, res) => {
 
 // Change User Password / POST
 router.post("/changepassword", (req, res) => {
+  // 애초에 회원가입 받을 때, 이메일, 비밀번호만 받아서... 뭐 인증할 수 있는 수단이 없네;
   const { email, password } = req.body;
 
   if (!email) return res.status(400).json({ msg: "이메일을 작성해주세요." });

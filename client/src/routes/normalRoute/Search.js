@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { SEARCH_REQUEST } from "../../redux/types";
-import { Row, Button } from "reactstrap";
+import { Row } from "reactstrap";
 import PostCardOne from "../../components/post/PostCardOne";
 import SearchInput from "../../components/search/SearchInput";
 
