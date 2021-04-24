@@ -242,10 +242,13 @@ router.get("/:id/comments", async (req, res) => {
 
 // WRITE COMMENT
 router.post("/:id/comments", async (req, res) => {
+  if (!req.body.token)
+    return res.status(400).json({ msg: "로그인이 필요합니다." });
+
   const newComment = await Comment.create({
     contents: req.body.contents,
     creator: req.body.userId,
-    creatorName: req.body.userName ? req.body.userName : "Visitor",
+    creatorName: req.body.userName,
     post: req.body.id,
     date: moment().format("MMMM DD, YYYY"),
   });
@@ -275,8 +278,6 @@ router.post("/:id/comments", async (req, res) => {
 
 // DELETE COMMENT / DELETE
 router.delete("/comment/:id", async (req, res) => {
-  console.log(req.body);
-
   await Comment.deleteOne({ _id: req.params.id });
   // User에서 comment가 안지워지네....
   await User.findByIdAndUpdate(req.body.userId, {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Alert, Button, Form, FormGroup, Input, Row } from "reactstrap";
+import { useDispatch } from "react-redux";
+import { Button, Form, FormGroup, Input, Row } from "reactstrap";
 import {
   COMMENT_LOADING_REQUEST,
   COMMENT_UPLOADING_REQUEST,
@@ -11,16 +11,6 @@ function Comments({ id, userId, userName }) {
   const [form, setValues] = useState({
     contents: "",
   });
-  const { errorMsg } = useSelector((state) => state.comment);
-  const [localMsg, setLocalMsg] = useState("");
-
-  useEffect(() => {
-    try {
-      setLocalMsg(errorMsg);
-    } catch (e) {
-      console.log(e);
-    }
-  }, [errorMsg]);
 
   const onChange = (e) => {
     setValues({
@@ -80,7 +70,6 @@ function Comments({ id, userId, userName }) {
           </Row>
         </FormGroup>
       </Form>
-      {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
     </>
   );
 }

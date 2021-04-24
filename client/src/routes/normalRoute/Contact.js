@@ -2,14 +2,17 @@ import React from "react";
 
 function Contact() {
   return (
-    <div style={{ minHeight: "70vh", fontSize: "3rem" }}>
-      <div className="d-flex justify-content-center align-items-center">
+    <div
+      className="align-items-center"
+      style={{ minHeight: "70vh", fontSize: "3rem" }}
+    >
+      <div className="d-flex justify-content-center">
         Email :&nbsp;
         <a href="#" className="text-decoration-none">
           dbswpgur2@naver.com
         </a>
       </div>
-      <div className="d-flex justify-content-center align-items-center">
+      <div className="d-flex justify-content-center">
         Github :&nbsp;
         <a
           href="http://github.com/Yun-Jehyeok"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import {
@@ -6,6 +6,7 @@ import {
   USER_LOADING_REQUEST,
   POST_DELETE_REQUEST,
   COMMENT_DELETE_REQUEST,
+  CLEAR_COMMENT_ERROR_REQUEST,
 } from "../../redux/types";
 import { Row, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -38,7 +39,8 @@ function PostDetail(req) {
     (state) => state.post
   );
   const { userId, userName } = useSelector((state) => state.auth);
-  const { comments } = useSelector((state) => state.comment);
+  const { comments /* errorMsg */ } = useSelector((state) => state.comment);
+  // const [localMsg, setLocalMsg] = useState("");
 
   const { date } = postDetail;
 
@@ -53,6 +55,19 @@ function PostDetail(req) {
       payload: localStorage.getItem("token"),
     });
   }, [dispatch, req.match.params.id]);
+
+  // useEffect(() => {
+  //   try {
+  //     setLocalMsg(errorMsg);
+  //     alert(localMsg);
+
+  //     dispatch({
+  //       type: CLEAR_COMMENT_ERROR_REQUEST,
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }, [errorMsg]);
 
   const onDeleteClick = () => {
     dispatch({
@@ -169,14 +184,7 @@ function PostDetail(req) {
                           <div>{contents}</div>
                         </Row>
                         {creator === userId && userId ? (
-                          <div
-                            className="d-flex justify-content-end border-bottom"
-                            style={{
-                              width: "10%",
-                              marginLeft: "90%",
-                              borderWidth: "70%",
-                            }}
-                          >
+                          <div className="d-flex justify-content-end">
                             <span
                               style={{ cursor: "pointer" }}
                               onClick={() => onCommentDeleteClick(_id)}

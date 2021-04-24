@@ -2,6 +2,9 @@ import axios from "axios";
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 import { push } from "connected-react-router";
 import {
+  CLEAR_COMMENT_ERROR_FAILURE,
+  CLEAR_COMMENT_ERROR_REQUEST,
+  CLEAR_COMMENT_ERROR_SUCCESS,
   COMMENT_DELETE_FAILURE,
   COMMENT_DELETE_REQUEST,
   COMMENT_DELETE_SUCCESS,
@@ -56,7 +59,7 @@ function* uploadComment(action) {
   } catch (e) {
     yield put({
       type: COMMENT_UPLOADING_FAILURE,
-      payload: e,
+      payload: e.response,
     });
 
     yield push("/");
@@ -108,10 +111,28 @@ function* watchdeleteComment() {
   yield takeEvery(COMMENT_DELETE_REQUEST, deleteComment);
 }
 
+// Clear Comment Error
+function* clearCommentError() {
+  try {
+    yield put({
+      type: CLEAR_COMMENT_ERROR_SUCCESS,
+    });
+  } catch (e) {
+    yield put({
+      type: CLEAR_COMMENT_ERROR_FAILURE,
+    });
+  }
+}
+
+function* watchclearCommentError() {
+  yield takeEvery(CLEAR_COMMENT_ERROR_REQUEST, clearCommentError);
+}
+
 export default function* commentSaga() {
   yield all([
     fork(watchloadComments),
     fork(watchuploadComment),
     fork(watchdeleteComment),
+    fork(watchclearCommentError),
   ]);
 }

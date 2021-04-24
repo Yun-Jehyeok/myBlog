@@ -1,4 +1,7 @@
 import {
+  CLEAR_COMMENT_ERROR_FAILURE,
+  CLEAR_COMMENT_ERROR_REQUEST,
+  CLEAR_COMMENT_ERROR_SUCCESS,
   COMMENT_DELETE_SUCCESS,
   COMMENT_LOADING_FAILURE,
   COMMENT_LOADING_REQUEST,
@@ -59,6 +62,22 @@ const commentReducer = (state = initialState, action) => {
 
       return {
         ...state,
+      };
+
+    // CLEAR COMMENT ERROR
+    case CLEAR_COMMENT_ERROR_REQUEST:
+      return {
+        ...state,
+      };
+    case CLEAR_COMMENT_ERROR_SUCCESS:
+      return {
+        ...state,
+        errorMsg: "",
+      };
+    case CLEAR_COMMENT_ERROR_FAILURE:
+      return {
+        ...state,
+        errorMsg: "Clear Error Fail",
       };
 
     default:
