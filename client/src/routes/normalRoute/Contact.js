@@ -4,7 +4,7 @@ function Contact() {
   return (
     <div
       className="align-items-center"
-      style={{ minHeight: "70vh", fontSize: "3rem" }}
+      style={{ minHeight: "50vh", fontSize: "3.5vw", marginTop: "20%" }}
     >
       <div className="d-flex justify-content-center">
         Email :&nbsp;
