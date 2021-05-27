@@ -136,8 +136,6 @@ function* uploadPost(action) {
   try {
     const result = yield call(uploadPostAPI, action.payload);
 
-    console.log(result);
-
     yield put({
       type: POST_UPLOAD_SUCCESS,
       payload: result.data,

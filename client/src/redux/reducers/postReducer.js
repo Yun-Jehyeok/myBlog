@@ -78,24 +78,6 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    case POST_WRITE_REQUEST:
-      return {
-        ...state,
-        posts: [],
-        loading: true,
-      };
-    case POST_WRITE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-      };
-    case POST_WRITE_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-      };
-
     case POST_UPLOAD_REQUEST:
       return {
         ...state,

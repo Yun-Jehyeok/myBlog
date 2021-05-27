@@ -42,7 +42,7 @@ function PostDetail(req) {
   const { comments /* errorMsg */ } = useSelector((state) => state.comment);
   // const [localMsg, setLocalMsg] = useState("");
 
-  const { date } = postDetail;
+  const { date, creator, category, contents } = postDetail;
 
   useEffect(() => {
     dispatch({
@@ -115,7 +115,7 @@ function PostDetail(req) {
     <Container style={style.container} className="mb-4 p-3">
       <Row className="d-flex p-3 mb-1 justify-content-center mt-3 pt-5">
         {(() => {
-          if (postDetail && postDetail.creator) {
+          if (postDetail && creator) {
             return (
               <div className="font-weight-bold" style={{ fontSize: "2.5rem" }}>
                 {postDetail.title}
@@ -132,7 +132,7 @@ function PostDetail(req) {
           >
             <span className="ml-2">
               <Button outline color="primary">
-                {postDetail.category.categoryName}
+                {category.categoryName}
               </Button>
             </span>
             <span className="text-muted" style={{ fontSize: "1.2rem" }}>
@@ -143,7 +143,7 @@ function PostDetail(req) {
           <div className="mb-3 mt-4 p-3" style={style.editor}>
             <CKEditor
               editor={BalloonEditor}
-              data={postDetail.contents}
+              data={contents}
               config={editorConfiguration}
               disabled="true"
             />

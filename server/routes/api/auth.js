@@ -46,25 +46,6 @@ router.post("/login", (req, res) => {
   });
 });
 
-// GOOGLE LOGIN / GET
-router.get("/googlelogin", (req, res) => {
-  console.log(req.body);
-  const { RR, Se, At } = req.body;
-
-  jwt.sign({ id: RR }, JWT_SECRET, { expiresIn: "2 days" }, (err, token) => {
-    if (err) return res.status(400).json({ err });
-
-    res.json({
-      token,
-      user: {
-        name: Se,
-        email: At,
-        role: "Visitor",
-      },
-    });
-  });
-});
-
 // LOGOUT / POST
 router.post("/logout", (req, res) => {
   res.json("LOGOUT SUCCESS");
