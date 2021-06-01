@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "http://Yun-Jehyeok.github.io/myBlog",
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
@@ -10,7 +11,9 @@
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
     "prebuild": "cd client && npm run build",
     "build": "babel server --out-dir build",
-    "build:server": "babel server --out-dir build"
+    "build:server": "babel server --out-dir build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +21,6 @@
     "@babel/node": "^7.13.13",
     "@babel/polyfill": "^7.12.1",
     "aws-sdk": "^2.884.0",
-    "babel": "^6.23.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -38,5 +40,9 @@
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "sass-loader": "^11.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "gh-pages": "^3.2.0"
   }
 }

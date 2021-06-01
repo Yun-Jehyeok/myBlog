@@ -10,8 +10,12 @@ import {
   ModalBody,
   Label,
   ModalHeader,
+  NavLink,
 } from "reactstrap";
 import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
+import Google from "./Google";
+
+import { Link } from "react-router-dom";
 
 function LoginModal({ theme }) {
   const [modal, setModal] = useState(false);
@@ -79,6 +83,10 @@ function LoginModal({ theme }) {
           {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
             <FormGroup>
+              <div id="line" className="mb-3" style={style.textLine}>
+                소셜 계정으로 로그인
+              </div>
+              <Google />
               <div id="line" className="mt-2 mb-2" style={style.textLine}>
                 이메일로 로그인
               </div>
