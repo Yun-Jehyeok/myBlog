@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { POST_LOADING_REQUEST } from "../../redux/types";
 import { Helmet } from "react-helmet";
@@ -42,12 +42,8 @@ function PostList({ theme }) {
   const useOnScreen = (options) => {
     const lastPostElementRef = useRef();
 
-    const [visible, setVisible] = useState(false);
-
     useEffect(() => {
       const observer = new IntersectionObserver(([entry]) => {
-        setVisible(entry.isIntersecting);
-
         if (entry.isIntersecting) {
           let remainPostCount = postCountRef.current - skipNumberRef.current;
 
@@ -76,10 +72,10 @@ function PostList({ theme }) {
       return LastElementReturnFunc;
     }, [lastPostElementRef, options]);
 
-    return [lastPostElementRef, visible];
+    return [lastPostElementRef];
   };
 
-  const [lastPostElementRef, visible] = useOnScreen({
+  const [lastPostElementRef] = useOnScreen({
     threshold: "0.5",
   });
 

@@ -12,10 +12,33 @@ import {
 } from "reactstrap";
 import { CHANGE_USER_PASSWORD_REQUEST } from "../../redux/types";
 
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 function FindPassword() {
+  const style = {
+    firstContainer: {
+      width: "50%",
+      height: "63vh",
+      marginTop: "14vh",
+      border: "1px solid #212529",
+      borderRadius: "5px",
+      backgroundColor: "white",
+      color: "black",
+    },
+    secondContainer: {
+      width: "50%",
+      marginTop: "14vh",
+      border: "1px solid #212529",
+      borderRadius: "5px",
+      backgroundColor: "white",
+      color: "black",
+    },
+    form: {
+      width: "90%",
+      marginLeft: "5%",
+    },
+  };
+
   const { isPasswordChange, errorMsg } = useSelector((state) => state.auth);
   const [localMsg, setLocalMsg] = useState("");
   const [form, setValue] = useState({
@@ -116,29 +139,5 @@ function FindPassword() {
     </>
   );
 }
-
-const style = {
-  firstContainer: {
-    width: "50%",
-    height: "63vh",
-    marginTop: "14vh",
-    border: "1px solid #212529",
-    borderRadius: "5px",
-    backgroundColor: "white",
-    color: "black",
-  },
-  secondContainer: {
-    width: "50%",
-    marginTop: "14vh",
-    border: "1px solid #212529",
-    borderRadius: "5px",
-    backgroundColor: "white",
-    color: "black",
-  },
-  form: {
-    width: "90%",
-    marginLeft: "5%",
-  },
-};
 
 export default FindPassword;

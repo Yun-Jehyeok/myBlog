@@ -5,9 +5,31 @@ import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import { REGISTER_REQUEST } from "../../redux/types";
 import { Helmet } from "react-helmet";
 
-import { Link } from "react-router-dom";
-
 function Register() {
+  const style = {
+    firstContainer: {
+      width: "50%",
+      height: "68vh",
+      marginTop: "14vh",
+      border: "1px solid #212529",
+      borderRadius: "5px",
+      backgroundColor: "white",
+      color: "black",
+    },
+    secondContainer: {
+      width: "50%",
+      marginTop: "14vh",
+      border: "1px solid #212529",
+      borderRadius: "5px",
+      backgroundColor: "white",
+      color: "black",
+    },
+    form: {
+      width: "90%",
+      marginLeft: "5%",
+    },
+  };
+
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   const [form, setValue] = useState({
@@ -108,27 +130,4 @@ function Register() {
   );
 }
 
-const style = {
-  firstContainer: {
-    width: "50%",
-    height: "68vh",
-    marginTop: "14vh",
-    border: "1px solid #212529",
-    borderRadius: "5px",
-    backgroundColor: "white",
-    color: "black",
-  },
-  secondContainer: {
-    width: "50%",
-    marginTop: "14vh",
-    border: "1px solid #212529",
-    borderRadius: "5px",
-    backgroundColor: "white",
-    color: "black",
-  },
-  form: {
-    width: "90%",
-    marginLeft: "5%",
-  },
-};
 export default Register;

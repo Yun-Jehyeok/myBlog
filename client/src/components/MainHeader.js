@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Fade from "react-reveal/Fade";
+import styled from "styled-components";
+
+const Logo = styled.a`
+  font-size: 2.3rem;
+  transition: all 0.5s linear;
+`;
 
 function MainHeader({ theme }) {
-  const style = {
-    logo: { fontSize: "2.3rem", transition: "all 0.50s linear" },
-  };
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -20,15 +23,14 @@ function MainHeader({ theme }) {
           className="d-flex justify-content-center pt-5"
           style={{ width: "auto" }}
         >
-          <a
+          <Logo
             href="/"
             className={`${
               theme === "dark" ? "text-white" : "text-dark"
             } text-decoration-none`}
-            style={style.logo}
           >
             <b>YLOG</b>
-          </a>
+          </Logo>
         </div>
       </Fade>
     </>

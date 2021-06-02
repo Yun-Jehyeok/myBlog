@@ -10,14 +10,49 @@ import {
   ModalBody,
   Label,
   ModalHeader,
-  NavLink,
 } from "reactstrap";
 import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
 import Google from "./Google";
+import styled from "styled-components";
 
-import { Link } from "react-router-dom";
+const LoginLink = styled.a`
+  font-size: 1.3rem;
+  transition: all 0.5s linear;
+  padding: 0;
+`;
+const Register = styled.div`
+  font-size: 0.8rem;
+`;
+const TextLine = styled.div`
+  display: flex;
+  width: 95%;
+  flex-basis: 100%;
+  align-items: center;
+  color: gray;
+  margin-left: 2.5%;
 
-function LoginModal({ theme }) {
+  ::before,
+  ::after {
+    content: "";
+    flex-grow: 1;
+    background: #a6a6a6;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+    margin: 0 16px;
+  }
+`;
+const EmailLogin = styled.div`
+  width: 95%;
+  margin-left: 2.5%;
+`;
+
+function LoginModal() {
+  const style = {
+    modalHeader: { fontSize: "2rem" },
+    loginButton: { marginTop: "2rem" },
+  };
+
   const [modal, setModal] = useState(false);
   const [localMsg, setLocalMsg] = useState("");
   const [form, setValues] = useState({
@@ -63,14 +98,13 @@ function LoginModal({ theme }) {
 
   return (
     <div>
-      <a
+      <LoginLink
         onClick={handleToggle}
         href="#"
         className={`text-decoration-none text-secondary p-0`}
-        style={style.loginLink}
       >
         LOGIN
-      </a>
+      </LoginLink>
       <Modal
         isOpen={modal}
         toggle={handleToggle}
@@ -83,14 +117,10 @@ function LoginModal({ theme }) {
           {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <div id="line" className="mb-3" style={style.textLine}>
-                소셜 계정으로 로그인
-              </div>
+              <TextLine className="mb-3">소셜 계정으로 로그인</TextLine>
               <Google />
-              <div id="line" className="mt-2 mb-2" style={style.textLine}>
-                이메일로 로그인
-              </div>
-              <div style={style.emailLogin}>
+              <TextLine className="mt-2 mb-2">이메일로 로그인</TextLine>
+              <EmailLogin style={style.emailLogin}>
                 <Label for="email">Email</Label>
                 <Input
                   type="email"
@@ -112,28 +142,22 @@ function LoginModal({ theme }) {
                 <Button color="dark" style={style.loginButton} block>
                   LOGIN
                 </Button>
-              </div>
-              <div
-                className="d-flex justify-content-center mt-3"
-                style={style.register}
-              >
+              </EmailLogin>
+              <Register className="d-flex justify-content-center mt-3">
                 <span>
                   <a href="/findpassword" className="text-decoration-none">
                     Forgot Password?
                   </a>
                 </span>
-              </div>
-              <div
-                className="d-flex justify-content-center mt-1"
-                style={style.register}
-              >
+              </Register>
+              <Register className="d-flex justify-content-center mt-1">
                 <span>Not a member?&nbsp;&nbsp;</span>
                 <span>
                   <a href="/register" className="text-decoration-none">
                     REGISTER
                   </a>
                 </span>
-              </div>
+              </Register>
             </FormGroup>
           </Form>
         </ModalBody>
@@ -141,14 +165,5 @@ function LoginModal({ theme }) {
     </div>
   );
 }
-
-const style = {
-  loginLink: { fontSize: "1.3rem", transition: "all 0.50s linear" },
-  modalHeader: { fontSize: "2rem" },
-  loginButton: { marginTop: "2rem" },
-  register: { fontSize: "0.8rem" },
-  textLine: { width: "100%", marginLeft: "0" },
-  emailLogin: { width: "95%", marginLeft: "2.5%" },
-};
 
 export default LoginModal;

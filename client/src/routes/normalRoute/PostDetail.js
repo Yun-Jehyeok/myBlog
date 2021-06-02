@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import {
@@ -6,7 +6,6 @@ import {
   USER_LOADING_REQUEST,
   POST_DELETE_REQUEST,
   COMMENT_DELETE_REQUEST,
-  CLEAR_COMMENT_ERROR_REQUEST,
 } from "../../redux/types";
 import { Row, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -15,6 +14,14 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Comments from "../../components/comments/Comments";
+import styled from "styled-components";
+
+const Editor = styled.div`
+  width: 100%;
+  height: auto;
+  min-height: 20vh;
+  word-break: break-all;
+`;
 
 function PostDetail(req) {
   const theme = localStorage.getItem("theme");
@@ -25,12 +32,6 @@ function PostDetail(req) {
       color: `${theme === "dark" ? "white" : "black"}`,
       minHeight: "70vh",
       transition: "all 0.50s linear",
-    },
-    editor: {
-      width: "100%",
-      height: "auto",
-      minHeight: "20vh",
-      wordBreak: "break-all",
     },
   };
 
@@ -140,14 +141,14 @@ function PostDetail(req) {
               {date.split(" ")[1]} {date.split(" ")[2]}
             </span>
           </div>
-          <div className="mb-3 mt-4 p-3" style={style.editor}>
+          <Editor className="mb-3 mt-4 p-3">
             <CKEditor
               editor={BalloonEditor}
               data={contents}
               config={editorConfiguration}
               disabled="true"
             />
-          </div>
+          </Editor>
           {userId === creatorId ? EditButton : ""}
           <Row>
             <Container>

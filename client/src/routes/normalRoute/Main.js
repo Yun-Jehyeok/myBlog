@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Container, Row } from "reactstrap";
 import Fade from "react-reveal/Fade";
 import { Helmet } from "react-helmet";
-
-import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function Main({ theme }) {
+  const GoPost = styled.a`
+    width: auto;
+    background-color: ${theme === "dark" ? "#212529" : "white"};
+    color: ${theme === "dark" ? "white" : "#212529"};
+    transition: all 0.5s linear;
+  `;
+
   const style = {
     container: {
       marginTop: "5vh",
       height: "65vh",
-    },
-    goPost: {
-      width: "auto",
-      backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
-      color: `${theme === "dark" ? "white" : "#212529"}`,
-      transition: "all 0.50s linear",
     },
   };
 
@@ -51,15 +51,14 @@ function Main({ theme }) {
       </Container>
       <Fade when={postShow}>
         <div className="d-flex justify-content-end">
-          <a
+          <GoPost
             href="/postlist"
             className={`${
               theme === "dark" ? "text-white" : "text-dark"
             } text-decoration-none`}
-            style={style.goPost}
           >
             Go to Post&nbsp;&rarr;
-          </a>
+          </GoPost>
         </div>
       </Fade>
     </>

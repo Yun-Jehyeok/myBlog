@@ -6,17 +6,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT_REQUEST } from "../redux/types";
 import Dropdown from "react-bootstrap/Dropdown";
 import { CgProfile } from "react-icons/cg";
+import styled from "styled-components";
 
 import { POST_WRITE_REQUEST } from "../redux/types";
-import { Link } from "react-router-dom";
+
+const Logo = styled.a`
+  font-size: 1trem;
+  transition: all 0.5s linear;
+`;
+const Container = styled.div`
+  margin-right: 6%;
+`;
+const StyledButton = styled.a`
+  font-size: 1.3rem;
+  transition: all 0.5s linear;
+`;
 
 function Header({ theme }) {
   const style = {
-    logo: {
-      fontSize: "1.5rem",
-      transition: "all 0.50s linear",
-    },
-    container: { marginRight: "6%" },
     dropdownToggle: {
       backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
       color: `${theme === "dark" ? "#687078" : "#212529"}`,
@@ -29,7 +36,6 @@ function Header({ theme }) {
       padding: "0",
     },
     logoutButton: { backgroundColor: "white", color: "#212529" },
-    button: { fontSize: "1.3rem", transition: "all 0.50s linear" },
   };
 
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
@@ -63,23 +69,19 @@ function Header({ theme }) {
               className="d-flex justify-content-between pt-3"
               style={{ marginLeft: "6%" }}
             >
-              <a
+              <Logo
                 href="/"
                 className={`${
                   theme === "dark" ? "text-white" : "text-dark"
                 } text-decoration-none`}
-                style={style.logo}
               >
                 <b>Y&nbsp;LOG</b>
-              </a>
+              </Logo>
             </div>
           </Col>
           <Col xs="0" sm="2"></Col>
           <Col xs="9" sm="7">
-            <div
-              className="d-flex justify-content-end pt-3"
-              style={style.container}
-            >
+            <Container className="d-flex justify-content-end pt-3">
               <span>
                 {userRole === "Master" ? (
                   <Form>
@@ -121,22 +123,20 @@ function Header({ theme }) {
                 )}
               </span>
               <span className="mr-5">
-                <a
+                <StyledButton
                   href="/postlist"
                   className="text-decoration-none text-secondary"
-                  style={style.button}
                 >
                   POST
-                </a>
+                </StyledButton>
               </span>
-              <a
+              <StyledButton
                 href="/contact"
                 className={`text-decoration-none text-secondary`}
-                style={style.button}
               >
                 CONTACT
-              </a>
-            </div>
+              </StyledButton>
+            </Container>
           </Col>
         </Row>
       </Fade>
