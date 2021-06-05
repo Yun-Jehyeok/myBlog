@@ -1,11 +1,15 @@
 import React from "react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  min-height: 50vh;
+  font-size: 2vw;
+  margin-top: 30%;
+`;
 
 function Contact() {
   return (
-    <div
-      className="align-items-center"
-      style={{ minHeight: "50vh", fontSize: "3.5vw", marginTop: "20%" }}
-    >
+    <Container className="align-items-center">
       <div className="d-flex justify-content-center">
         Email :&nbsp;
         <a href="#" className="text-decoration-none">
@@ -23,7 +27,7 @@ function Contact() {
           http://github.com/Yun-Jehyeok
         </a>
       </div>
-    </div>
+    </Container>
   );
 }
 

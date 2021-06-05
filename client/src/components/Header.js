@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { POST_WRITE_REQUEST } from "../redux/types";
 
 const Logo = styled.a`
-  font-size: 1trem;
+  font-size: 1.3rem;
   transition: all 0.5s linear;
 `;
 const Container = styled.div`
