@@ -10,11 +10,14 @@ import {
 import { Row, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
-import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Comments from "../../components/comments/Comments";
 import styled from "styled-components";
+
+//////////////////////////////////////////////
+// Toast UI Viewer
+import "@toast-ui/editor/dist/toastui-editor-viewer.css";
+import "codemirror/lib/codemirror.css";
+import { Viewer } from "../../components/editor/viewer/index";
 
 const Editor = styled.div`
   width: 100%;
@@ -142,12 +145,7 @@ function PostDetail(req) {
             </span>
           </div>
           <Editor className="mb-3 mt-4 p-3">
-            <CKEditor
-              editor={BalloonEditor}
-              data={contents}
-              config={editorConfiguration}
-              disabled="true"
-            />
+            <Viewer height="600px" initialValue={contents} />
           </Editor>
           {userId === creatorId ? EditButton : ""}
           <Row>

@@ -7,8 +7,6 @@ import styled from "styled-components";
 function Main({ theme }) {
   const GoPost = styled.a`
     width: auto;
-    transition: all 0.5s linear;
-    -webkit-transition: all 0.5s linear;
     background-color: ${theme === "dark" ? "#212529" : "white"};
     color: ${theme === "dark" ? "white" : "#212529"};
   `;
