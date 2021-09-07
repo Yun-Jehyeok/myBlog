@@ -1,49 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Fade from "react-reveal/Fade";
-import {
-  Button,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Alert,
-} from "reactstrap";
-import { CHANGE_USER_PASSWORD_REQUEST } from "../../redux/types";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Fade from 'react-reveal/Fade';
+import { Button, FormGroup, Input, Label, Alert } from 'reactstrap';
+import { CHANGE_USER_PASSWORD_REQUEST } from 'redux/types';
 
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
+import { FirstContainer, FormContainer, SecondContainer } from './style';
 
 function FindPassword() {
-  const style = {
-    firstContainer: {
-      width: "50%",
-      height: "63vh",
-      marginTop: "14vh",
-      border: "1px solid #212529",
-      borderRadius: "5px",
-      backgroundColor: "white",
-      color: "black",
-    },
-    secondContainer: {
-      width: "50%",
-      marginTop: "14vh",
-      border: "1px solid #212529",
-      borderRadius: "5px",
-      backgroundColor: "white",
-      color: "black",
-    },
-    form: {
-      width: "90%",
-      marginLeft: "5%",
-    },
-  };
-
   const { isPasswordChange, errorMsg } = useSelector((state) => state.auth);
-  const [localMsg, setLocalMsg] = useState("");
+  const [localMsg, setLocalMsg] = useState('');
   const [form, setValue] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const dispatch = useDispatch();
@@ -79,7 +48,7 @@ function FindPassword() {
     <>
       <Helmet title="YLOG - 비밀번호 변경" />
       {isPasswordChange ? (
-        <Container className="text-dark" style={style.firstContainer}>
+        <FirstContainer className="text-dark">
           <div className="d-flex justify-content-center">
             You've successfly changed your password
           </div>
@@ -88,27 +57,27 @@ function FindPassword() {
               GO HOME
             </a>
           </div>
-        </Container>
+        </FirstContainer>
       ) : (
         <Fade left>
-          <Container className="mb-4" style={style.secondContainer}>
+          <SecondContainer className="mb-4">
             <div
               className="d-flex justify-content-center bold mb-3 mt-4"
-              style={{ fontSize: "2rem" }}
+              style={{ fontSize: '2rem' }}
             >
               <a href="/" className="text-decoration-none text-dark">
                 <b>Y&nbsp;</b>LOG
               </a>
             </div>
             {localMsg ? (
-              <Alert color="danger" style={{ width: "90%", marginLeft: "5%" }}>
+              <Alert color="danger" style={{ width: '90%', marginLeft: '5%' }}>
                 {localMsg}
               </Alert>
             ) : null}
             <div id="line" className="mb-4">
               Change Password
             </div>
-            <Form onSubmit={onSubmit} style={style.form}>
+            <FormContainer onSubmit={onSubmit}>
               <FormGroup>
                 <Label for="email">EMAIL</Label>
                 <Input
@@ -129,11 +98,11 @@ function FindPassword() {
                   onChange={onChange}
                 />
                 <div className="mt-4 d-flex justify-content-center pb-4">
-                  <Button style={{ width: "100%" }}>CHANGE PASSWORD</Button>
+                  <Button style={{ width: '100%' }}>CHANGE PASSWORD</Button>
                 </div>
               </FormGroup>
-            </Form>
-          </Container>
+            </FormContainer>
+          </SecondContainer>
         </Fade>
       )}
     </>

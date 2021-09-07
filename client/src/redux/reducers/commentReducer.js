@@ -9,14 +9,14 @@ import {
   COMMENT_UPLOADING_FAILURE,
   COMMENT_UPLOADING_REQUEST,
   COMMENT_UPLOADING_SUCCESS,
-} from "../types";
+} from '../types';
 
 const initialState = {
   comments: [],
-  creatorId: "",
+  creatorId: '',
   loading: false,
   isAuthenticated: false,
-  errorMsg: "",
+  errorMsg: '',
 };
 
 const commentReducer = (state = initialState, action) => {
@@ -51,6 +51,7 @@ const commentReducer = (state = initialState, action) => {
         loading: false,
       };
     case COMMENT_UPLOADING_FAILURE:
+      console.log(action.payload.data.msg);
       return {
         ...state,
         loading: false,
@@ -72,12 +73,12 @@ const commentReducer = (state = initialState, action) => {
     case CLEAR_COMMENT_ERROR_SUCCESS:
       return {
         ...state,
-        errorMsg: "",
+        errorMsg: '',
       };
     case CLEAR_COMMENT_ERROR_FAILURE:
       return {
         ...state,
-        errorMsg: "Clear Error Fail",
+        errorMsg: 'Clear Error Fail',
       };
 
     default:

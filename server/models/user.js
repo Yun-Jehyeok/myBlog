@@ -1,5 +1,5 @@
-const moment = require("moment");
-const mongoose = require("mongoose");
+const moment = require('moment');
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -17,33 +17,33 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["Master", "Visitor"],
-    default: "Visitor",
+    enum: ['Master', 'Visitor'],
+    default: 'Visitor',
   },
   register_date: {
     type: Date,
-    default: moment().format("MMMM DD, YYYY"),
+    default: moment().format('MMMM DD, YYYY'),
   },
   comments: [
     {
       post_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "post",
+        ref: 'post',
       },
       comment_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "comment",
+        ref: 'comment',
       },
     },
   ],
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "post",
+      ref: 'post',
     },
   ],
 });
 
-const User = mongoose.model("user", UserSchema);
+const User = mongoose.model('user', UserSchema);
 
 module.exports = { User };

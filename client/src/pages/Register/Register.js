@@ -1,41 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Fade from "react-reveal/Fade";
-import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
-import { REGISTER_REQUEST } from "../../redux/types";
-import { Helmet } from "react-helmet";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Fade from 'react-reveal/Fade';
+import { Button, FormGroup, Input, Label } from 'reactstrap';
+import { REGISTER_REQUEST } from 'redux/types';
+import { Helmet } from 'react-helmet';
+import { FirstContainer, FormContainer, SecondContainer } from './style';
 
 function Register() {
-  const style = {
-    firstContainer: {
-      width: "50%",
-      height: "68vh",
-      marginTop: "14vh",
-      border: "1px solid #212529",
-      borderRadius: "5px",
-      backgroundColor: "white",
-      color: "black",
-    },
-    secondContainer: {
-      width: "50%",
-      marginTop: "14vh",
-      border: "1px solid #212529",
-      borderRadius: "5px",
-      backgroundColor: "white",
-      color: "black",
-    },
-    form: {
-      width: "90%",
-      marginLeft: "5%",
-    },
-  };
-
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   const [form, setValue] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
   const dispatch = useDispatch();
@@ -63,7 +40,7 @@ function Register() {
     <>
       <Helmet title="YLOG - 회원가입" />
       {isAuthenticated ? (
-        <Container className="text-dark" style={style.firstContainer}>
+        <FirstContainer className="text-dark">
           <div className="d-flex justify-content-center">
             Congratulations! Register was successful.
           </div>
@@ -73,13 +50,13 @@ function Register() {
               HOME
             </a>
           </div>
-        </Container>
+        </FirstContainer>
       ) : (
         <Fade left>
-          <Container className="mb-4" style={style.secondContainer}>
+          <SecondContainer className="mb-4">
             <div
               className="d-flex justify-content-center bold mb-3 mt-4"
-              style={{ fontSize: "2rem" }}
+              style={{ fontSize: '2rem' }}
             >
               <a href="/" className="text-decoration-none text-dark">
                 <b>Y&nbsp;</b>LOG
@@ -88,7 +65,7 @@ function Register() {
             <div id="line" className="mb-4">
               REGISTER
             </div>
-            <Form onSubmit={onSubmit} style={style.form}>
+            <FormContainer onSubmit={onSubmit}>
               <FormGroup>
                 <Label for="name">NAME</Label>
                 <Input
@@ -119,11 +96,11 @@ function Register() {
                   onChange={onChange}
                 />
                 <div className="mt-4 d-flex justify-content-center pb-4">
-                  <Button style={{ width: "100%" }}>REGISTER</Button>
+                  <Button style={{ width: '100%' }}>REGISTER</Button>
                 </div>
               </FormGroup>
-            </Form>
-          </Container>
+            </FormContainer>
+          </SecondContainer>
         </Fade>
       )}
     </>

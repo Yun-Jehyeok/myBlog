@@ -1,46 +1,30 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Helmet } from "react-helmet";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import {
   POST_DETAIL_LOADING_REQUEST,
   USER_LOADING_REQUEST,
   POST_DELETE_REQUEST,
   COMMENT_DELETE_REQUEST,
-} from "../../redux/types";
-import { Row, Container, Button } from "reactstrap";
-import { Link } from "react-router-dom";
-import { GrowingSpinner } from "../../components/spinner/Spinner";
-import Comments from "../../components/comments/Comments";
-import styled from "styled-components";
+} from 'redux/types';
+import { Row, Container, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { GrowingSpinner } from 'components/spinner/Spinner';
+import Comments from 'components/comments/Comments';
 
 //////////////////////////////////////////////
 // Toast UI Viewer
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
-import "codemirror/lib/codemirror.css";
-import { Viewer } from "../../components/editor/viewer/index";
-
-const Editor = styled.div`
-  width: 100%;
-  height: auto;
-  min-height: 20vh;
-  word-break: break-all;
-`;
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+import 'codemirror/lib/codemirror.css';
+import { Viewer } from 'components/editor/viewer/index';
+import { Wrap, Editor } from 'pages/PostDetail/style';
 
 function PostDetail(req) {
-  const theme = localStorage.getItem("theme");
-
-  const style = {
-    container: {
-      backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
-      color: `${theme === "dark" ? "white" : "black"}`,
-      minHeight: "70vh",
-      transition: "all 0.50s linear",
-    },
-  };
+  const theme = localStorage.getItem('theme');
 
   const dispatch = useDispatch();
   const { postDetail, creatorId, title, loading } = useSelector(
-    (state) => state.post
+    (state) => state.post,
   );
   const { userId, userName } = useSelector((state) => state.auth);
   const { comments /* errorMsg */ } = useSelector((state) => state.comment);
@@ -56,7 +40,7 @@ function PostDetail(req) {
 
     dispatch({
       type: USER_LOADING_REQUEST,
-      payload: localStorage.getItem("token"),
+      payload: localStorage.getItem('token'),
     });
   }, [dispatch, req.match.params.id]);
 
@@ -78,7 +62,7 @@ function PostDetail(req) {
       type: POST_DELETE_REQUEST,
       payload: {
         id: req.match.params.id,
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem('token'),
       },
     });
   };
@@ -90,7 +74,7 @@ function PostDetail(req) {
         userId: userId,
         commentId: commentId,
         postId: req.match.params.id,
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem('token'),
       },
     });
   };
@@ -116,12 +100,12 @@ function PostDetail(req) {
   );
 
   const Body = (
-    <Container style={style.container} className="mb-4 p-3">
+    <Wrap className="mb-4 p-3" theme={theme}>
       <Row className="d-flex p-3 mb-1 justify-content-center mt-3 pt-5">
         {(() => {
           if (postDetail && creator) {
             return (
-              <div className="font-weight-bold" style={{ fontSize: "2.5rem" }}>
+              <div className="font-weight-bold" style={{ fontSize: '2.5rem' }}>
                 {postDetail.title}
               </div>
             );
@@ -132,28 +116,28 @@ function PostDetail(req) {
         <>
           <div
             className="d-flex justify-content-between pb-4"
-            style={{ borderBottom: "1px solid gray" }}
+            style={{ borderBottom: '1px solid gray' }}
           >
             <span className="ml-2">
               <Button outline color="primary">
                 {category.categoryName}
               </Button>
             </span>
-            <span className="text-muted" style={{ fontSize: "1.2rem" }}>
-              Posted on {date.split(" ")[0]}&nbsp;
-              {date.split(" ")[1]} {date.split(" ")[2]}
+            <span className="text-muted" style={{ fontSize: '1.2rem' }}>
+              Posted on {date.split(' ')[0]}&nbsp;
+              {date.split(' ')[1]} {date.split(' ')[2]}
             </span>
           </div>
           <Editor className="mb-3 mt-4 p-3">
             <Viewer height="600px" initialValue={contents} />
           </Editor>
-          {userId === creatorId ? EditButton : ""}
+          {userId === creatorId ? EditButton : ''}
           <Row>
             <Container>
               <div
                 style={{
                   borderBottom: `1px solid ${
-                    theme === "dark" ? "white" : "gray"
+                    theme === 'dark' ? 'white' : 'gray'
                   }`,
                 }}
               >
@@ -169,11 +153,11 @@ function PostDetail(req) {
                     ({ contents, creator, date, _id, creatorName }) => (
                       <div key={_id} className="mb-2">
                         <Row className="d-flex justify-content-between p-2">
-                          <div style={{ fontSize: "1.1rem" }}>
+                          <div style={{ fontSize: '1.1rem' }}>
                             <b>{creatorName ? creatorName : creator}</b>&nbsp;•
                             <span
                               className="font-weight-light"
-                              style={{ color: "gray", fontSize: "0.8em" }}
+                              style={{ color: 'gray', fontSize: '0.8em' }}
                             >
                               &nbsp;{date}
                             </span>
@@ -185,27 +169,27 @@ function PostDetail(req) {
                         {creator === userId && userId ? (
                           <div className="d-flex justify-content-end">
                             <span
-                              style={{ cursor: "pointer" }}
+                              style={{ cursor: 'pointer' }}
                               onClick={() => onCommentDeleteClick(_id)}
                             >
                               삭제
                             </span>
                           </div>
                         ) : (
-                          ""
+                          ''
                         )}
                       </div>
-                    )
+                    ),
                   )
-                : "Creator"}
+                : 'Creator'}
             </Container>
           </Row>
           <hr />
         </>
       ) : (
-        ""
+        ''
       )}
-    </Container>
+    </Wrap>
   );
 
   return (

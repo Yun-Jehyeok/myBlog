@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button, Form, FormGroup, Input, Row } from "reactstrap";
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Button, Form, FormGroup, Input, Row } from 'reactstrap';
 import {
   COMMENT_LOADING_REQUEST,
   COMMENT_UPLOADING_REQUEST,
-} from "../../redux/types";
+} from 'redux/types';
 
 function Comments({ id, userId, userName }) {
   const dispatch = useDispatch();
   const [form, setValues] = useState({
-    contents: "",
+    contents: '',
   });
 
   const onChange = (e) => {
@@ -23,7 +23,7 @@ function Comments({ id, userId, userName }) {
     await e.preventDefault();
 
     const { contents } = form;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const body = { contents, token, id, userId, userName };
 
     dispatch({
@@ -31,8 +31,8 @@ function Comments({ id, userId, userName }) {
       payload: body,
     });
 
-    resetValue.current.value = "";
-    setValues("");
+    resetValue.current.value = '';
+    setValues('');
   };
 
   const resetValue = useRef(null);

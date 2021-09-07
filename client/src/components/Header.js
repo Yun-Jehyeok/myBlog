@@ -1,14 +1,14 @@
-import React, { useCallback } from "react";
-import { Button, Col, Row, Form } from "reactstrap";
-import Fade from "react-reveal/Fade";
-import LoginModal from "./auth/LoginModal";
-import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT_REQUEST } from "../redux/types";
-import Dropdown from "react-bootstrap/Dropdown";
-import { CgProfile } from "react-icons/cg";
-import styled from "styled-components";
+import React, { useCallback } from 'react';
+import { Button, Col, Row, Form } from 'reactstrap';
+import Fade from 'react-reveal/Fade';
+import LoginModal from './LoginModal/LoginModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGOUT_REQUEST } from 'redux/types';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { CgProfile } from 'react-icons/cg';
+import styled from 'styled-components';
 
-import { POST_WRITE_REQUEST } from "../redux/types";
+import { POST_WRITE_REQUEST } from 'redux/types';
 
 const Logo = styled.a`
   font-size: 1.3rem;
@@ -25,17 +25,17 @@ const StyledButton = styled.a`
 function Header({ theme }) {
   const style = {
     dropdownToggle: {
-      backgroundColor: `${theme === "dark" ? "#212529" : "white"}`,
-      color: `${theme === "dark" ? "#687078" : "#212529"}`,
-      border: "0",
-      fontSize: "1.3rem",
-      paddingTop: "0",
-      transition: "all 0.50s linear",
+      backgroundColor: `${theme === 'dark' ? '#212529' : 'white'}`,
+      color: `${theme === 'dark' ? '#687078' : '#212529'}`,
+      border: '0',
+      fontSize: '1.3rem',
+      paddingTop: '0',
+      transition: 'all 0.50s linear',
     },
     dropdownItem: {
-      padding: "0",
+      padding: '0',
     },
-    logoutButton: { backgroundColor: "white", color: "#212529" },
+    logoutButton: { backgroundColor: 'white', color: '#212529' },
   };
 
   const { isAuthenticated, userRole } = useSelector((state) => state.auth);
@@ -60,19 +60,19 @@ function Header({ theme }) {
         <Row
           className="pb-3 mb-4"
           style={{
-            borderBottom: `1px solid ${theme === "dark" ? "white" : "black"}`,
-            transition: "all 0.50s linear",
+            borderBottom: `1px solid ${theme === 'dark' ? 'white' : 'black'}`,
+            transition: 'all 0.50s linear',
           }}
         >
           <Col xs="3" sm="3">
             <div
               className="d-flex justify-content-between pt-3"
-              style={{ marginLeft: "6%" }}
+              style={{ marginLeft: '6%' }}
             >
               <Logo
                 href="/"
                 className={`${
-                  theme === "dark" ? "text-white" : "text-dark"
+                  theme === 'dark' ? 'text-white' : 'text-dark'
                 } text-decoration-none`}
               >
                 <b>Y&nbsp;LOG</b>
@@ -83,7 +83,7 @@ function Header({ theme }) {
           <Col xs="9" sm="7">
             <Container className="d-flex justify-content-end pt-3">
               <span>
-                {userRole === "Master" ? (
+                {userRole === 'Master' ? (
                   <Form>
                     <a
                       href="/postwrite"
@@ -94,7 +94,7 @@ function Header({ theme }) {
                     </a>
                   </Form>
                 ) : (
-                  ""
+                  ''
                 )}
               </span>
               <span className="mr-5">
@@ -106,7 +106,7 @@ function Header({ theme }) {
                     >
                       <CgProfile />
                     </Dropdown.Toggle>
-                    <Dropdown.Menu style={{ padding: "0" }}>
+                    <Dropdown.Menu style={{ padding: '0' }}>
                       <Dropdown.Item style={style.dropdownItem}>
                         <Button
                           onClick={onLogout}

@@ -1,17 +1,11 @@
-import React, { useState, useRef } from "react";
-import { Form, Input } from "reactstrap";
-import { useDispatch } from "react-redux";
-import { SEARCH_REQUEST } from "../../redux/types";
+import React, { useState, useRef } from 'react';
+import { Form, Input } from 'reactstrap';
+import { useDispatch } from 'react-redux';
+import { SEARCH_REQUEST } from 'redux/types';
 
 function SearchInput() {
   const dispatch = useDispatch();
-  const [form, setValues] = useState({ searchBy: "" });
-  const style = {
-    searchInput: {
-      width: "25%",
-      marginLeft: "74%",
-    },
-  };
+  const [form, setValues] = useState({ searchBy: '' });
 
   const onChange = (e) => {
     setValues({
@@ -29,14 +23,18 @@ function SearchInput() {
       payload: searchBy,
     });
 
-    resetValue.current.value = "";
+    resetValue.current.value = '';
   };
 
   const resetValue = useRef(null);
 
   return (
     <>
-      <Form onSubmit={onSubmit} className="col" style={style.searchInput}>
+      <Form
+        onSubmit={onSubmit}
+        className="col"
+        style={{ width: '25%', marginLeft: '74%' }}
+      >
         <Input
           name="searchBy"
           onChange={onChange}

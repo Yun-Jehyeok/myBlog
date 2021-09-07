@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Col,
@@ -8,15 +8,15 @@ import {
   Input,
   Label,
   Progress,
-} from "reactstrap";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
-import { editorConfiguration } from "../../components/editor/EditorConfig";
-import Myinit from "../../components/editor/UploadAdapter";
+} from 'reactstrap';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+import { editorConfiguration } from 'components/editor/EditorConfig';
+import Myinit from 'components/editor/UploadAdapter';
 
-import { POST_EDIT_UPLOADING_REQUEST } from "../../redux/types";
+import { POST_EDIT_UPLOADING_REQUEST } from 'redux/types';
 
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
 function PostWrite() {
@@ -25,7 +25,7 @@ function PostWrite() {
   const [form, setValues] = useState({
     title: `${postDetail.title}`,
     contents: `${postDetail.contents}`,
-    fileUrl: "",
+    fileUrl: '',
   });
   const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ function PostWrite() {
     await e.preventDefault();
 
     const { title, contents, fileUrl } = form;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const id = postDetail._id;
     const body = { title, contents, fileUrl, token, id };
 
@@ -53,14 +53,14 @@ function PostWrite() {
   const getDataFromCKEditor = (event, editor) => {
     const data = editor.getData();
 
-    if (data && data.match("<img src=")) {
-      const whereImg_start = data.indexOf("<img src=");
+    if (data && data.match('<img src=')) {
+      const whereImg_start = data.indexOf('<img src=');
 
-      let whereImg_end = "";
-      let ext_name_find = "";
-      let result_Img_Url = "";
+      let whereImg_end = '';
+      let ext_name_find = '';
+      let result_Img_Url = '';
 
-      const ext_name = ["jpeg", "png", "gif", "jpg"];
+      const ext_name = ['jpeg', 'png', 'gif', 'jpg'];
 
       for (let i = 0; i < ext_name.length; i++) {
         if (data.match(ext_name[i])) {
@@ -70,7 +70,7 @@ function PostWrite() {
         }
       }
 
-      if (ext_name_find === "jpeg") {
+      if (ext_name_find === 'jpeg') {
         result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 4);
       } else {
         result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 3);
@@ -84,7 +84,7 @@ function PostWrite() {
     } else {
       setValues({
         ...form,
-        fileUrl: "",
+        fileUrl: '',
         contents: data,
       });
     }

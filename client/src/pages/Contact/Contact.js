@@ -1,11 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-
-const Container = styled.div`
-  min-height: 50vh;
-  font-size: 2vw;
-  margin-top: 30%;
-`;
+import React from 'react';
+import { Container } from './style';
 
 function Contact() {
   return (

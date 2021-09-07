@@ -1,20 +1,20 @@
-const express = require("express");
-const { auth } = require("../../middleware/auth");
-const { Post } = require("../../models/post");
-const { Category } = require("../../models/category");
-const { User } = require("../../models/user");
-const { Comment } = require("../../models/comment");
-require("@babel/polyfill");
+const express = require('express');
+const { auth } = require('../../middleware/auth');
+const { Post } = require('../../models/post');
+const { Category } = require('../../models/category');
+const { User } = require('../../models/user');
+const { Comment } = require('../../models/comment');
+require('@babel/polyfill');
 
 const router = express.Router();
 
 // const multer = require("multer");
 // const multerS3 = require("multer-s3");
 // const AWS = require("aws-sdk");
-const path = require("path");
-const dotenv = require("dotenv");
-const moment = require("moment");
-const { isNullOrUndefined } = require("util");
+const path = require('path');
+const dotenv = require('dotenv');
+const moment = require('moment');
+const { isNullOrUndefined } = require('util');
 
 dotenv.config();
 
@@ -39,13 +39,13 @@ dotenv.config();
 // });
 
 // LOADING ALL POSTS / GET
-router.get("/skip/:skip", async (req, res) => {
+router.get('/skip/:skip', async (req, res) => {
   try {
     const postCount = await Post.countDocuments();
     const postFindResult = await Post.find()
       .skip(Number(req.params.skip))
       .limit(6)
-      .sort({ date: -1 });
+      .sort({ date: 1 });
 
     const categoryFindResult = await Category.find();
     const result = { postFindResult, categoryFindResult, postCount };
@@ -53,7 +53,7 @@ router.get("/skip/:skip", async (req, res) => {
     res.json(result);
   } catch (e) {
     console.log(e);
-    res.json({ msg: "No Post" });
+    res.json({ msg: 'No Post' });
   }
 });
 
@@ -69,7 +69,7 @@ router.get("/skip/:skip", async (req, res) => {
 
 // WRITE A POST / POST
 router.post(
-  "/write",
+  '/write',
   auth,
   /*uploadS3.none(),*/ async (req, res, next) => {
     try {
@@ -79,7 +79,7 @@ router.post(
         contents,
         fileUrl,
         creator: req.user.id,
-        date: moment().format("MMMM DD, YYYY"),
+        date: moment().format('MMMM DD, YYYY'),
       });
 
       const categoryFindResult = await Category.findOne({
@@ -124,15 +124,15 @@ router.post(
     } catch (e) {
       console.log(e);
     }
-  }
+  },
 );
 
 // POST DETAIL / GET
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id)
-      .populate("creator", "name")
-      .populate({ path: "category", select: "categoryName" });
+      .populate('creator', 'name')
+      .populate({ path: 'category', select: 'categoryName' });
 
     post.views += 1;
     post.save();
@@ -145,7 +145,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // DELETE POST / DELETE
-router.delete("/:id", auth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   await Post.deleteMany({ _id: req.params.id });
   await Comment.deleteMany({ post: req.params.id });
   await User.findByIdAndUpdate(req.user.id, {
@@ -158,7 +158,7 @@ router.delete("/:id", auth, async (req, res) => {
   const CategoryUpdateResult = await Category.findOneAndUpdate(
     { posts: req.params.id },
     { $pull: { posts: req.params.id } },
-    { new: true }
+    { new: true },
   );
 
   if (CategoryUpdateResult.posts.length === 0) {
@@ -170,16 +170,16 @@ router.delete("/:id", auth, async (req, res) => {
 
 // EDIT POST / POST
 
-router.get("/:id/edit", async (req, res, next) => {
+router.get('/:id/edit', async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params.id).populate("creator", "name");
+    const post = await Post.findById(req.params.id).populate('creator', 'name');
     res.json(post);
   } catch (e) {
     console.log(e);
   }
 });
 
-router.post("/:id/edit", async (req, res, next) => {
+router.post('/:id/edit', async (req, res, next) => {
   const {
     body: { title, contents, fileUrl, id },
   } = req;
@@ -191,9 +191,9 @@ router.post("/:id/edit", async (req, res, next) => {
         title,
         contents,
         fileUrl,
-        date: moment().format("MMMM DD, YYYY"),
+        date: moment().format('MMMM DD, YYYY'),
       },
-      { new: true }
+      { new: true },
     );
 
     res.redirect(`/api/post/${modified_post.id}`);
@@ -204,17 +204,17 @@ router.post("/:id/edit", async (req, res, next) => {
 });
 
 // Find Category
-router.get("/category/:categoryName", async (req, res, next) => {
+router.get('/category/:categoryName', async (req, res, next) => {
   try {
     const result = await Category.findOne(
       {
         categoryName: {
           $regex: req.params.categoryName,
-          $options: "i",
+          $options: 'i',
         },
       },
-      "posts"
-    ).populate({ path: "posts" });
+      'posts',
+    ).populate({ path: 'posts' });
 
     res.send(result);
   } catch (e) {
@@ -226,10 +226,10 @@ router.get("/category/:categoryName", async (req, res, next) => {
 // Comments Route
 
 // GET ALL COMMENTS
-router.get("/:id/comments", async (req, res) => {
+router.get('/:id/comments', async (req, res) => {
   try {
     const comment = await Post.findById(req.params.id).populate({
-      path: "comments",
+      path: 'comments',
     });
 
     const result = comment.comments;
@@ -241,16 +241,16 @@ router.get("/:id/comments", async (req, res) => {
 });
 
 // WRITE COMMENT
-router.post("/:id/comments", async (req, res) => {
+router.post('/:id/comments', async (req, res) => {
   if (!req.body.token)
-    return res.status(400).json({ msg: "로그인이 필요합니다." });
+    return res.status(400).json({ msg: '로그인이 필요합니다.' });
 
   const newComment = await Comment.create({
     contents: req.body.contents,
     creator: req.body.userId,
     creatorName: req.body.userName,
     post: req.body.id,
-    date: moment().format("MMMM DD, YYYY"),
+    date: moment().format('MMMM DD, YYYY'),
   });
 
   try {
@@ -277,7 +277,7 @@ router.post("/:id/comments", async (req, res) => {
 });
 
 // DELETE COMMENT / DELETE
-router.delete("/comment/:id", async (req, res) => {
+router.delete('/comment/:id', async (req, res) => {
   await Comment.deleteOne({ _id: req.params.id });
   // User에서 comment가 안지워지네....
   await User.findByIdAndUpdate(req.body.userId, {
@@ -289,7 +289,7 @@ router.delete("/comment/:id", async (req, res) => {
     { comments: req.params.id },
     {
       $pull: { comments: req.params.id },
-    }
+    },
   );
 
   return res.json({ success: true });

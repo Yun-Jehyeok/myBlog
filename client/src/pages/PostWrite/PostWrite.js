@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Col,
@@ -8,24 +8,24 @@ import {
   Input,
   Label,
   Progress,
-} from "reactstrap";
-import { POST_UPLOAD_REQUEST } from "../../redux/types";
+} from 'reactstrap';
+import { POST_UPLOAD_REQUEST } from 'redux/types';
 
 ////////////////////// Use TUI
-import "codemirror/lib/codemirror.css";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import { Editor } from "@toast-ui/react-editor";
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
 
 function PostWrite() {
   /////////////// Use TUI
   const editorRef = useRef();
-  const [contents, setContents] = useState("");
+  const [contents, setContents] = useState('');
 
   const { isAuthenticated } = useSelector((state) => state.auth);
   const [form, setValues] = useState({
-    title: "",
-    contents: "",
-    fileUrl: "",
+    title: '',
+    contents: '',
+    fileUrl: '',
   });
   const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ function PostWrite() {
     setContents(editorRef.current.getInstance().getHtml());
 
     const { title, fileUrl, category } = form;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const body = { title, contents, fileUrl, category, token };
 
     dispatch({

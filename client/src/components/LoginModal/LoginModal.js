@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Alert,
   Button,
@@ -10,54 +10,17 @@ import {
   ModalBody,
   Label,
   ModalHeader,
-} from "reactstrap";
-import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
-import Google from "./Google";
-import styled from "styled-components";
-
-const LoginLink = styled.a`
-  font-size: 1.3rem;
-  transition: all 0.5s linear;
-  padding: 0;
-`;
-const Register = styled.div`
-  font-size: 0.8rem;
-`;
-const TextLine = styled.div`
-  display: flex;
-  width: 95%;
-  flex-basis: 100%;
-  align-items: center;
-  color: gray;
-  margin-left: 2.5%;
-
-  ::before,
-  ::after {
-    content: "";
-    flex-grow: 1;
-    background: #a6a6a6;
-    height: 1px;
-    font-size: 0;
-    line-height: 0;
-    margin: 0 16px;
-  }
-`;
-const EmailLogin = styled.div`
-  width: 95%;
-  margin-left: 2.5%;
-`;
+} from 'reactstrap';
+import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from 'redux/types';
+import Google from '../auth/Google';
+import { EmailLogin, LoginLink, Register, TextLine } from './style';
 
 function LoginModal() {
-  const style = {
-    modalHeader: { fontSize: "2rem" },
-    loginButton: { marginTop: "2rem" },
-  };
-
   const [modal, setModal] = useState(false);
-  const [localMsg, setLocalMsg] = useState("");
+  const [localMsg, setLocalMsg] = useState('');
   const [form, setValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const dispatch = useDispatch();
   const { errorMsg } = useSelector((state) => state.auth);
@@ -110,7 +73,7 @@ function LoginModal() {
         toggle={handleToggle}
         className="custom-modal-style text-dark"
       >
-        <ModalHeader toggle={handleToggle} style={style.modalHeader}>
+        <ModalHeader toggle={handleToggle} style={{ fontSize: '2rem' }}>
           <b>Y&nbsp;</b>LOG
         </ModalHeader>
         <ModalBody>
@@ -120,7 +83,7 @@ function LoginModal() {
               <TextLine className="mb-3">소셜 계정으로 로그인</TextLine>
               <Google />
               <TextLine className="mt-2 mb-2">이메일로 로그인</TextLine>
-              <EmailLogin style={style.emailLogin}>
+              <EmailLogin style={{ marginTop: '2rem' }}>
                 <Label for="email">Email</Label>
                 <Input
                   type="email"
@@ -139,7 +102,7 @@ function LoginModal() {
                   placeholder="Password"
                   onChange={onChange}
                 />
-                <Button color="dark" style={style.loginButton} block>
+                <Button color="dark" style={{ marginTop: '2rem' }} block>
                   LOGIN
                 </Button>
               </EmailLogin>
