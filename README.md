@@ -40,3 +40,7 @@
 - morgan
 - nodemon
 - path
+
+### Start
+
+개인 정보 포함으로 실행이 불가능합니다.
